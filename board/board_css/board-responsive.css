@@ -1,0 +1,929 @@
+/* if scrollbarY exist */
+
+.more-heigth {
+  height: 104vh !important;
+}
+
+/* if scrollbarY exist end */
+
+.tablet-sidebar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  border-top: 1px solid lightgray;
+  z-index: 20;
+}
+
+.editRespons {
+  margin-top: -169px !important;
+  height: 84vh !important;
+}
+
+@media (width <=1800px) {
+  .board {
+    margin-left: 18.5vw;
+  }
+
+  .board-main {
+    height: 71vh;
+  }
+}
+
+@media (width <=1660px) {
+  .mr26 {
+    margin-right: 3vw;
+  }
+
+  .board {
+    margin-left: 19vw;
+  }
+}
+
+@media (width <=1600px) {
+  .popup-card {
+    right: 32vw !important;
+  }
+  .add-task-content-overlay {
+    scale: 0.8 !important;
+    height: 100% !important;
+    margin-inline-end: -49px !important;
+    margin-inline-start: -47px;
+    margin-block-start: -64px;
+  }
+
+  .popup-card {
+    scale: 0.8;
+    margin-top: -73px;
+  }
+}
+
+@media (width <=1560px) {
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    width: 18vw !important;
+  }
+
+  .head {
+    width: 17vw !important;
+    margin-right: 8px !important;
+  }
+
+  .card {
+    width: 15.5vw !important;
+  }
+
+  .edit-box {
+    display: flex;
+    justify-content: end;
+    margin-right: 0;
+    margin-block-start: -36px;
+  }
+
+  .mr26 {
+    margin-right: 2.5vw;
+  }
+
+  .board {
+    margin-left: 22vw;
+  }
+}
+
+@media (width <=1441px) {
+  body {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+  .popup-title-for_edit {
+    margin-top: 91px !important;
+    margin-bottom: 67px !important;
+  }
+
+  .popup-card-title {
+    display: flex;
+    height: auto;
+    align-items: center;
+    margin-top: 0px;
+  }
+
+  .popup-card {
+    top: 8px;
+  }
+
+  .board-main {
+    height: 68vh;
+  }
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    width: calc(17.5vw - 8px);
+  }
+
+  /* .todobox {
+    margin-inline-start: -6px;
+  } */
+
+  .head {
+    margin-bottom: 10px;
+  }
+
+  .mr26 {
+    margin-right: 0vw;
+  }
+
+  .board {
+    margin-left: 21.4vw;
+    margin-top: 130.7px;
+    height: 76vh;
+  }
+
+  .board-top {
+    margin-bottom: 13px;
+    width: auto;
+  }
+
+  .board-main {
+    gap: 0px;
+  }
+}
+
+/* @media (width <=1440px) {
+  .popup-card {
+    right: 22vw;
+  }
+} */
+
+@media (max-width: 1500px) {
+  .popup-card {
+    right: 30vw;
+  }
+}
+
+@media (width <=1409px) {
+  .card {
+    width: 16.4vw;
+  }
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    width: calc(17.5vw - 8px);
+  }
+
+  .todo-content {
+    width: 19vw;
+  }
+
+  .board {
+    margin-left: 20.4vw;
+  }
+
+  .board-main {
+    gap: 15px;
+  }
+
+  .for-tablet {
+    gap: 15px;
+  }
+
+  .popup-card-title {
+    margin-top: 8px;
+  }
+
+  .popup-title {
+    font-size: 45px;
+  }
+
+  #contact0,
+  #contact1,
+  #contact2 {
+    margin-top: 7px;
+    align-items: baseline;
+  }
+
+  .inpbox {
+    height: 40px;
+  }
+
+  .btn-top {
+    height: 38px;
+  }
+
+  .head {
+    font-size: 13px;
+  }
+}
+
+@media (width <=1380px) {
+  .board {
+    margin-left: 23.4vw;
+  }
+
+  .popup-title {
+    font-size: 50px;
+  }
+
+  .head {
+    width: 16vw !important;
+  }
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    width: 17vw !important;
+  }
+
+  .card {
+    width: 15vw !important;
+  }
+}
+
+@media (width <=1240px) {
+  .edit-box {
+    display: flex;
+    justify-content: end;
+    margin-right: 15vw;
+  }
+
+  .board {
+    margin-left: 19.4vw;
+  }
+
+  .head {
+    width: 18.5vw;
+  }
+}
+
+@media (width <=1200px) {
+  .popup-card {
+    right: 25vw !important;
+  }
+}
+
+@media (width <=1200px) {
+  .head {
+    width: 14.5vw !important;
+  }
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    width: 16vw !important;
+  }
+
+  .card {
+    width: 13vw !important;
+  }
+}
+
+@media (width <=1024px) {
+  .kanban {
+    display: flex !important;
+    justify-content: center;
+  }
+
+  .add-task-content-overlay {
+    margin-block-start: -162px;
+  }
+
+  .add-task-content {
+    height: 100% !important;
+  }
+
+  .board-top {
+    margin-bottom: 32px !important;
+  }
+
+  .popup-card {
+    left: 55% !important;
+    margin-left: -290px !important;
+    z-index: 8 !important;
+    width: 469px;
+  }
+
+  .popup-card-title {
+    width: 415px !important;
+  }
+
+  textarea {
+    width: 411px !important;
+  }
+
+  .card-content-popup {
+    width: 98%;
+  }
+
+  .popup-title {
+    font-size: 50px !important;
+    width: 500px !important;
+  }
+
+  /*   body {
+    height: 134vh;
+  } */
+
+  .board {
+    margin-left: 0px !important;
+    margin-top: 140px !important;
+    align-items: center !important;
+  }
+
+  .inpbox {
+    width: 317px !important;
+  }
+
+  .btn-top {
+    display: none;
+  }
+
+  header span {
+    display: none;
+  }
+
+  #help-section-btn {
+    display: none;
+  }
+
+  .sidebar-bottom {
+    display: none !important;
+  }
+
+  .sidebar-top {
+    flex-direction: inherit !important;
+
+    height: 64px !important;
+
+    width: 90% !important;
+    caret-color: transparent;
+  }
+
+  .sidebar-top a {
+    text-decoration: unset;
+  }
+
+  .sidebar-top button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+  }
+
+  .sidebar span {
+    padding-top: 5px;
+  }
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 41.3vh;
+    width: 25vw !important;
+    padding-bottom: 48px !important;
+  }
+
+  .board-main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* height: 122vh; */
+    gap: 0;
+    margin-inline-start: 0;
+  }
+
+  .head h2 {
+    padding-inline-start: 0 !important;
+  }
+
+  .for-tablet {
+    gap: 8vw;
+    /* margin-left: 5%; */
+    justify-content: center;
+  }
+
+  .done {
+    height: 60vh;
+  }
+
+  .head {
+    width: 27vw !important;
+  }
+
+  .card {
+    width: 26vw !important;
+  }
+
+  .edit-box {
+    width: 428px;
+  }
+
+  .ok {
+    right: 36px !important;
+  }
+}
+
+@media (width <=900px) {
+  .popup-title {
+    font-size: 40px;
+    width: 47vw;
+  }
+}
+
+/* For all of us */
+
+@media (width <=830px) {
+  .popup-card {
+    right: 21vw;
+  }
+}
+
+@media (width <=767px) and (height <=800px) {
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 25.3vh;
+  }
+}
+
+@media (width <=767px) and (height <=700px) {
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 28.3vh;
+  }
+}
+
+@media (width <=767px) {
+  .add-task-content {
+    top: -100px !important;
+    bottom: 277px !important;
+    display: flex;
+    align-items: center;
+    width: 89vw;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 70px;
+    gap: 34px;
+    position: absolute;
+    height: 48px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+  .logo {
+    width: 47px;
+    height: 57.3px;
+  }
+  .close-add-task-board {
+    top: 4px;
+  }
+}
+
+@media (width <=757px) {
+}
+
+@media (width <=670px) {
+  .popup-card-title {
+    width: 65vw;
+  }
+  .category-overlay {
+    width: 113px !important;
+  }
+}
+
+@media (width <=600px) {
+  .popup-card {
+    scale: 0.9;
+    top: 142px !important;
+    right: 0 !important;
+  }
+
+  .popup-title {
+    width: 72vw !important;
+  }
+
+  .popup-card-title h1 {
+    font-size: 50px !important;
+  }
+
+  .card {
+    width: 154px !important;
+  }
+}
+
+@media (width <=500px) and (height <=800px) {
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 27vh;
+  }
+}
+
+@media (width <=500px) and (height <=690px) {
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 30vh;
+  }
+}
+
+@media (width <=500px) {
+  .board {
+    margin-top: 125px !important;
+  }
+  .add-task-content-overlay {
+    width: 100%;
+    margin-inline-end: 0 !important;
+    margin-inline-start: 0 !important;
+  }
+  .category-overlay {
+    width: 127px !important;
+  }
+
+  .contacts-dropdown-content {
+    width: 424px !important;
+  }
+
+  .popup {
+    justify-content: end;
+  }
+
+  .kanban {
+    width: 361px;
+  }
+
+  .popup-card-title {
+    width: 50vw;
+
+    width: 57vw;
+  }
+
+  .popup-title {
+    line-height: 46.2px;
+    width: 68vw;
+  }
+
+  .board-main {
+    gap: 0;
+  }
+
+  .for-tablet {
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .todobox,
+  .progressbox,
+  .feedbackbox,
+  .donebox {
+    width: inherit;
+  }
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 24vh;
+    width: inherit;
+  }
+
+  .board-main {
+    height: inherit;
+    margin-inline-start: inherit;
+  }
+
+  .inpbox {
+    width: 217px !important;
+    margin-left: 9px !important;
+  }
+
+  .done {
+    height: 58vh;
+  }
+
+  .in-progress {
+    margin-top: 5vh;
+  }
+
+  .kanban {
+    width: 77vw;
+    margin-bottom: 24px;
+    display: flex !important;
+    margin-top: 0 !important;
+  }
+
+  .importance-buttons {
+    width: 423px !important;
+  }
+}
+
+@media (width <=500px) {
+  .popup {
+    right: -21px;
+  }
+
+  .popup-text {
+    margin-top: 33px !important;
+  }
+
+  .todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .popup-card {
+    transform: scale(0.9);
+    right: -22px;
+    margin-left: -305px !important;
+  }
+
+  .popup-card-title {
+    width: 68vw;
+  }
+
+  .kanban {
+    font-size: 11px;
+    width: 76vw;
+    margin-inline-end: -2vw;
+    justify-content: center;
+  }
+
+  .card {
+    width: 75vw !important;
+  }
+
+  .in-progress {
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .done {
+    margin-top: -3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .await-feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 26vh;
+  }
+
+  .head {
+    margin-inline-start: 9px;
+    width: 80vw !important;
+    margin-bottom: 0 !important;
+  }
+
+  .add-tasks-board-head {
+    width: 403px !important;
+  }
+
+  .add-task-content-overlay {
+    scale: 0.7 !important;
+  }
+}
+
+@media (width <=480px) {
+  .popup {
+    right: -46px;
+  }
+  textarea {
+    width: 413px !important;
+  }
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box,
+  .subtask-box {
+    width: 422px !important;
+  }
+  .title-input {
+    width: 400px !important;
+  }
+
+  .select-contacts,
+  .select-category,
+  .add-subtask {
+    width: 400px !important;
+  }
+
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box,
+  .subtask-box {
+    width: 422px !important;
+  }
+
+  .select-date {
+    width: 384px !important;
+  }
+
+  .popup-card {
+    scale: 0.75;
+    height: 82vh;
+    margin-top: -9vh;
+    left: 62% !important;
+  }
+
+  .popup-title,
+  .popup-card-title {
+    width: 76vw;
+  }
+
+  .kanban {
+    width: 77vw;
+    margin-bottom: 24px;
+    display: flex !important;
+    margin-top: 0 !important;
+  }
+
+  .head {
+    margin-inline-start: 9px;
+    width: 80vw !important;
+  }
+}
+
+@media (width <=430px) {
+  .head {
+    margin-inline-start: 9px;
+    width: 80vw !important;
+  }
+}
+@media (width <= 440px) {
+  .add-task-content-overlay {
+    margin-inline-start: 15% !important;
+  }
+}
+@media (width <= 420px) {
+  .add-task-content-overlay {
+    margin-inline-start: 19% !important;
+  }
+}
+
+@media (width <= 400px) {
+  .add-task-content-overlay {
+    margin-inline-start: 23% !important;
+  }
+}
+
+@media (width <= 380px) {
+  .add-task-content-overlay {
+    margin-inline-start: 27% !important;
+  }
+}
+
+@media (width <= 365px) {
+  .add-task-content-overlay {
+    margin-inline-start: 31% !important;
+  }
+}
+
+@media (width <= 350px) {
+  .add-task-content-overlay {
+    margin-inline-start: 37% !important;
+  }
+}
+
+@media (width <= 342px) {
+  .add-task-content-overlay {
+    margin-inline-start: 39% !important;
+    scale: 0.65 !important;
+  }
+}
+
+@media (width <= 330px) {
+  .add-task-content-overlay {
+    margin-inline-start: 43% !important;
+    scale: 0.6 !important;
+  }
+}
+
+@media (width <= 315px) {
+  .add-task-content-overlay {
+    margin-inline-start: 45% !important;
+    scale: 0.5 !important;
+  }
+}
+
+@media (width <=400px) {
+  .popup {
+    right: -57px;
+  }
+
+  .head {
+    margin-inline-start: 9px;
+    width: 80vw !important;
+  }
+
+  .in-progress {
+    margin-top: 5vh;
+  }
+
+  .done {
+    margin-top: 1vh;
+    height: 65vh;
+  }
+
+  .popup-title,
+  .popup-card-title {
+    width: 104vw !important;
+  }
+
+  .todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .select-date {
+    width: 380px !important;
+  }
+  .add-task-content {
+    margin-top: 141px !important;
+  }
+  .elect-contacts,
+  .select-category,
+  .add-subtask {
+    width: 95% !important;
+    margin-inline-start: -8px !important;
+  }
+}
+
+@media (width <=365px) {
+  .popup-title,
+  .popup-card-title {
+    width: 100vw;
+  }
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 26vh;
+  }
+}
+
+@media (width <= 300px) {
+  .popup-card {
+    left: 18rem !important;
+  }
+
+  #priority {
+    margin-left: 30px;
+  }
+  .add-task-content-overlay {
+    margin-inline-start: 53px;
+  }
+}
+
+@media (width <= 391px) {
+  .popup-card {
+    scale: 0.6;
+    left: 64% !important;
+    margin-top: -163px;
+  }
+}
+
+@media (width <= 335px) {
+  .popup-card {
+    margin-left: -294px !important;
+  }
+}
+
+/* end */

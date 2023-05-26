@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../templates/header_sidebar.css">
+    <link rel="stylesheet" href="../templates/header-sidebar-responsive.css">
+    <link rel="stylesheet" href="../help/help-responsive.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+    <link rel="shortcut icon" href="../login/img/logo_blue.png" type="image/x-icon">
+    <script src="../help/help.js"></script>
+    <script src="../include.js"></script>
+    <script src="../main.js"></script>
+    <script src="../templates/header_sidebar.js"></script>
+    <title>Help</title>
+</head>
+
+<body onload="init()" onresize="checkMainSize()">
+    <header w3-include-html="../templates/header.html"></header>
+    <div w3-include-html="../templates/sidebar.html"></div>
+    <div class="help-content">
+        <div class="help-headline">
+            <h1>Help</h1>
+            <img onclick="goBackToLastPage()" src="../legal_notice/img-legal-notice/arrow_left.png"
+                class="back-from-help">
+        </div>
+        <h2>What is Join?</h2>
+        <p>A kanban board is an agile project management tool designed to help visualize work, limit work-in-progress,
+            and maximize efficiency (or flow). It can help both agile and DevOps teams establish order in their daily
+            work. Kanban boards use cards, columns, and continuous improvement to help technology and service teams
+            commit to the right amount of work, and get it done!</p>
+       
+        <div class="list-item">
+            <h3>Summary</h3>
+            <p>Here you can find an overview of the amount of tasks and their current statuses.</p>
+        </div>
+        <div class="list-item">
+            <h3>Add Task</h3>
+            <ul>
+                <li><b>Title:</b> Title of the task</li>
+                <li><b>Description:</b> Description of the task in detail</li>
+                <li><b>Category:</b> Choose or add a new category of department</li>
+                <li><b>Assigned to:</b> Choose the members to assign to</li>
+                <li><b>Due date:</b> Set due date for the task</li>
+                <li><b>Prioriy:</b> Choose kind of priority of urgency</li>
+                <li><b>Subtasks:</b> Add subtasks to break the task down in multiple stages</li>
+            </ul>
+        </div>
+        <div class="list-item">
+            <h3>Board</h3>
+            <p>On the board you will find all created tasks which are separated in four sections of <b>"To Do"</b>,
+                <b>"In progress"</b>, <b>"Awaiting feedback"</b> and <b>"Done"</b>.
+            <p>Via drag and drop method you can change the status of the selected task. <br>
+                To see an overview of the details of a task, just click on it and take changes if neccasary. <br>
+                You can also search for a specific task title or its description.</p>
+            <br>
+        </div>
+
+        <div class="list-item">
+            <h3>Contacts</h3>
+            <p>Here you will find all listed contacts. Detail informations are provided for each contact on the side.
+                You are able to edit these or just create a task from there directly for that contact.</p>
+        </div>
+    </div>
+</body>
+
+</html>
