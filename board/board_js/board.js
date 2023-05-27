@@ -1,4 +1,6 @@
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+setURL(
+  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
+);
 let startposition;
 let todosMap = new Map();
 todosMap.set("x", { value: "none" });
@@ -331,11 +333,22 @@ async function saveAndResetCounterAndTask() {
 
 async function creatNewCard(map, key, colors, doneCoordinates) {
   let namesSplit = splitName(key);
+  doneCoordinates = setDoneCoordinates(doneCoordinates);
   colors = await defineColors(key);
   setNewCard(map, key, colors, namesSplit, doneCoordinates);
   subtask = map.get(`${idCounter}`)["substack"];
   idCounter++;
   idCounterToBackend();
+}
+
+function setDoneCoordinates(doneCoordinates) {
+  let subtaskLength = key["subtasks"].length;
+  if (subtaskLength > 0) {
+    for (let j = 0; j < subtaskLength; j++) {
+      doneCoordinates.push(`cancel_sub${j}`);
+    }
+  }
+  return doneCoordinates;
 }
 
 async function defineColors(key) {
@@ -347,7 +360,6 @@ async function defineColors(key) {
 }
 
 function splitName(key) {
-  let subtaskLength = key["subtasks"].length;
   if (key["letters"] == null || key["letters"][0] == null) {
     let contactsLetter = key["contacts"];
     contactsLetter = checkIfString(contactsLetter);
@@ -356,11 +368,7 @@ function splitName(key) {
     namesSplit = new Map();
     namesSplit.set(`${idCounter}`, { letters: `${key["letters"]}` });
   }
-  if (subtaskLength > 0) {
-    for (let j = 0; j < subtaskLength; j++) {
-      doneCoordinates.push(`cancel_sub${j}`);
-    }
-  }
+
   if (namesSplit.get(`${idCounter}`) == undefined) {
     location.reload();
   }
@@ -1359,6 +1367,7 @@ function checkPrioBtnEdit(id) {
     "importance-button-colored-edit-6"
   ).classList;
 
+  debugger;
   if (urgent[1] == undefined) {
     result = "urgent";
   } else if (medium[1] == undefined) {

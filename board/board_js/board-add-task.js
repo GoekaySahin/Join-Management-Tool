@@ -15,7 +15,9 @@ let exist;
 let currentContacts = [];
 let filled = false;
 let checkedEdit = [];
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+setURL(
+  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
+);
 
 async function getUrgentCounter() {
   urgentCounter = (await backend.getItem("urgentCounter")) || 0;
@@ -40,34 +42,23 @@ function checkWichMap(section) {
   return map;
 }
 
-function checkFilled() {
+async function addToTasks(section) {
   if (filled == false) {
     return;
   }
-}
-
-async function addToTasks(section) {
-  checkFilled();
   load();
   let task = await setNewTask();
   selectedContacts = [];
   tasks.push(task);
-  resetTasksInputs(
-    title,
-    selectedContacts,
-    date,
-    categoryColor,
-    description,
-    selectedSubtasks
-  );
+
   resetImportanceButtons();
   document.getElementById("subtask-content").innerHTML = "";
   await saveTaskAndCounter();
   tasks = [];
-  resetAddTask();
+  resetAddTask(section);
 }
 
-function resetAddTask() {
+function resetAddTask(section) {
   closeAddTask();
   setTasks(section);
   setTimeout(activateDragAndDrop, 400); /* setCards(); */
@@ -86,6 +77,7 @@ async function setNewTask() {
   let date = document.getElementById("select-date-task");
   let description = document.getElementById("description-input");
   let contactsData = await contactToSave(selectedContacts);
+
   selectedSubtasks = subtasks;
   subtaskChecked();
   btn.classList.remove("opacity");
@@ -103,6 +95,14 @@ async function setNewTask() {
     subtasks: selectedSubtasks,
     subtaskCheck: checkedList,
   };
+  resetTasksInputs(
+    title,
+    selectedContacts,
+    date,
+    categoryColor,
+    description,
+    selectedSubtasks
+  );
   return task;
 }
 
@@ -118,12 +118,12 @@ async function contactToSave(selectedContacts) {
   let colors = [];
   let letters = [];
   let list = await JSON.parse(backend.getItem("contacts"));
-  checkColorAndLetter(selectedContacts, list);
+  checkColorAndLetter(selectedContacts, list, names, colors, letters);
   let data = [names, colors, letters];
   return data;
 }
 
-function checkColorAndLetter(selectedContacts, list) {
+function checkColorAndLetter(selectedContacts, list, names, colors, letters) {
   for (let j = 0; j < selectedContacts.length; j++) {
     const selected = selectedContacts[j];
     for (let i = 0; i < list.length; i++) {
@@ -156,8 +156,8 @@ function allFieldsFilled() {
   if (fieldsFilled(title, description, category, date)) {
     setTimeout(allFieldsFilled, 250);
   }
-  if (checkFieldsFilled()) {
-    buttonImportanceCheck(title, description, category, date);
+  if (checkFieldsFilled(title, description, category, date)) {
+    buttonImportanceCheck();
   } else {
     let btn = document.getElementById("submit-btn");
     btn.classList.add("opacity");
@@ -256,7 +256,7 @@ function resetImportanceButtons() {
 function setImportanceButtons(
   importance1,
   importance2,
-  importance2,
+  importance3,
   importance1Colored,
   importance2Colored,
   importance3Colored
@@ -273,11 +273,11 @@ async function renderContactsAddTask(invateNewContactName) {
   let dropdown = document.getElementById("contacts-drop-down");
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
-  loopForContacts(contacts);
+  loopForContacts(contacts, dropdown);
   checkedSetting(invateNewContactName);
 }
 
-function loopForContacts(contacts) {
+function loopForContacts(contacts, dropdown) {
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     if (dropdown == null) {
@@ -308,7 +308,7 @@ function checkSelectedContacts(contact) {
   }
 }
 
-function cBoxSetting(cBox) {
+function cBoxSetting(cBox, addTask) {
   if (
     cBox == null ||
     cBox == undefined ||
@@ -316,6 +316,7 @@ function cBoxSetting(cBox) {
   ) {
     cBox = document.getElementById("invite_contacts_select_edit");
   }
+  return cBox;
 }
 
 function setConatctShow(inviteContacts, currentContacts, contactsShow) {
@@ -328,11 +329,12 @@ function setConatctShow(inviteContacts, currentContacts, contactsShow) {
       }
     }
   }
-  return invateContact;
+  return contacts;
 }
 
 async function renderContactsSelection(contacts) {
-  conatcts = checkContacts();
+  contacts = checkContactsIfEmpty(contacts);
+
   let inviteContacts = [];
   let changedColorForDots = [];
   let addTask = document.getElementById("add_task");
@@ -369,7 +371,7 @@ function setColorForDots(inviteContacts, cBox) {
   }
 }
 
-function checkContacts(contacts) {
+function checkContactsIfEmpty(contacts) {
   if (contacts[0] == "") {
     contacts.splice(0, 1);
   }
@@ -378,6 +380,7 @@ function checkContacts(contacts) {
       selectedContacts.splice(0, 1);
     }
   }
+  return contacts;
 }
 
 function fillCategory(category) {
@@ -646,13 +649,6 @@ function setImportanceBoard(pushed) {
 function fillImportanceButton(nr) {
   let pushed;
   let pushedColored;
-  checkAndResetImpotance(nr);
-  setImportanceBoard(pushed);
-  pushed.classList.toggle("d-none");
-  pushedColored.classList.toggle("d-none");
-}
-
-function checkAndResetImpotance(nr) {
   if (nr > 3) {
     resetImportanceEdit();
     pushed = document.getElementById(`importance-button-edit-${nr}`);
@@ -664,6 +660,9 @@ function checkAndResetImpotance(nr) {
     pushed = document.getElementById(`importance-button${nr}`);
     pushedColored = document.getElementById(`importance-button${nr}-colored`);
   }
+  setImportanceBoard(pushed);
+  pushed.classList.toggle("d-none");
+  pushedColored.classList.toggle("d-none");
 }
 
 function resetImportance() {
@@ -912,7 +911,7 @@ async function invateCreateNewContact(invateNewContactName, email, id) {
     firstLetters: firstletter,
     color: color,
   };
-  checkIfNewContactExist(contact);
+  let indexLength = await checkIfNewContactExist(contact);
 
   newContactAddTaskReturn();
   clearContactsBeforeRendering(indexLength);
@@ -920,16 +919,18 @@ async function invateCreateNewContact(invateNewContactName, email, id) {
   renderContactsSelection(contacts);
 }
 
-async function checkIfNewContactExist() {
+async function checkIfNewContactExist(contact) {
   exist = (await JSON.parse(backend.getItem("contacts"))) || [];
   exist.push(contact);
   await backend.setItem("contacts", JSON.stringify(exist));
-  /*   let currentContactsEdit = (await JSON.parse(backend.getItem("contacts"))) || [];
-  let indexLength; */
+  let currentContactsEdit =
+    (await JSON.parse(backend.getItem("contacts"))) || [];
+  let indexLength;
 
   if (exist.length > 0) {
     indexLength = exist.length;
   }
+  return indexLength;
 }
 
 function ContactsDivDisplay(displayContacts) {
@@ -987,7 +988,6 @@ async function checkedSetting(invateNewContactName) {
 function clearContactsBeforeRendering(indexLength) {
   if (exist.length > 0) {
     for (let i = 0; i < indexLength - 1; i++) {
-      // const element = contacts[i];
       let contact = document.getElementById(`selected-contact${i}`);
       if (contact == null) {
         continue;

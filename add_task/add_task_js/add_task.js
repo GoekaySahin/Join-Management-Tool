@@ -17,7 +17,9 @@ let importance1Colored;
 let importance2Colored;
 let importance3Colored;
 
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+setURL(
+  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
+);
 
 async function getUrgentCounter() {
   urgentCounter = (await backend.getItem("urgentCounter")) || 0;
@@ -35,6 +37,8 @@ async function addToTasks() {
     alert("Please select at least one contact!");
   } else if (category.innerHTML.includes("Select")) {
     alert("Please select category!");
+  } else if (importance == undefined) {
+    alert("set an impotance");
   } else {
     await creatNewTask(title, date, category, description, contactsSmalView);
   }
@@ -181,6 +185,7 @@ async function init() {
   const today = new Date().toISOString().split("T")[0];
   document.getElementById("select-date").setAttribute("min", today);
   getUrgentCounter();
+  setTimeout(setImportanceButton, 250);
 }
 
 function hoverAddTaskHtml() {
@@ -494,7 +499,6 @@ function fillImportanceButton1() {
 }
 
 function emptyImportanceButton1() {
-  setImportanceButton();
   importance = "";
   importance1.style = "display: flex;";
   importance1Colored.style = "display: none;";

@@ -10,7 +10,9 @@ let progressesMap;
 let feedbacksMap;
 let donesMap; */
 
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+setURL(
+  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
+);
 
 async function init() {
   await downloadFromServer();

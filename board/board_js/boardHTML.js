@@ -419,16 +419,6 @@ function assignedHTML(id) {
             </div`;
 }
 
-/* <div class="contacts-list-elem">
-<label class="control control-checkbox" onmousedown="loadAtStartTask()">
-    <div class="contacts-list-elem-box">
-        <span class="rendered-contact-name">You</span>
-        <input type="checkbox" />
-        <div class="control-indicator"></div>
-    </div>
-</label>
-</div> */
-
 function popupCardHTML(
   category,
   color,
