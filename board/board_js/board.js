@@ -116,6 +116,9 @@ function checkSize() {
     draggableTrue();
     sidebarDesktop();
     hoverBoardHtml();
+    if (activateDragAndDrop() == undefined) {
+      location.reload();
+    }
     activateDragAndDrop();
   }
 }
@@ -1184,7 +1187,7 @@ async function editDone(id) {
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
   let dateEdit = document.getElementById("select-date").value;
-  let button = checkPrioBtn(id);
+  let button = checkPrioBtnEdit(id);
   let section = wichSection(id);
   let contactsEdit = selectedContacts;
 
@@ -1330,16 +1333,13 @@ function checkPrioBtn(id) {
   let low;
   let result;
 
-  if (urgent == null) {
+  /*   if (urgent == null) {
     result = checkPrioBtnEdit(id);
     return result;
-  } else {
-    urgent = document.getElementById("importance-button1-colored").style
-      .cssText;
-    medium = document.getElementById("importance-button2-colored").style
-      .cssText;
-    low = document.getElementById("importance-button3-colored").style.cssText;
-  }
+  } else { */
+  urgent = document.getElementById("importance-button1-colored").style.cssText;
+  medium = document.getElementById("importance-button2-colored").style.cssText;
+  low = document.getElementById("importance-button3-colored").style.cssText;
 
   if (urgent.includes("flex")) {
     result = "urgent";
@@ -1367,12 +1367,11 @@ function checkPrioBtnEdit(id) {
     "importance-button-colored-edit-6"
   ).classList;
 
-  debugger;
-  if (urgent[1] == undefined) {
+  if (!urgent.value.includes("d-none")) {
     result = "urgent";
-  } else if (medium[1] == undefined) {
+  } else if (!medium.value.includes("d-none")) {
     result = "medium";
-  } else if (low[1] == undefined) {
+  } else if (!low.value.includes("d-none")) {
     result = "low";
   } else {
     result = currentPrio;
