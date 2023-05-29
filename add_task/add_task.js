@@ -11,22 +11,70 @@ let contacts;
 let newContactAddTaskActive = true;
 let urgentCounter;
 
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+setURL(
+  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
+);
 
 async function getUrgentCounter() {
   urgentCounter = (await backend.getItem("urgentCounter")) || 0;
   urgentCounter = parseInt(urgentCounter);
 }
 
+function controlContactCheckbox() {
+  for (let i = 0; i < list.length - 1; i++) {
+    element = document.getElementById(`contacts-checkbox-${i}`);
+    if (element.checked) {
+      return true;
+    }
+    return false;
+  }
+}
+
+function controlDateInput() {
+  if (document.getElementById("select-date").value.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function controlImportanceBtn() {
+  for (let i = 1; i < 4; i++) {
+    let importanceBtn = document.getElementById(`importance-button${i}`);
+    if (importanceBtn.classList.value.includes("d-none")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+function contolDescriptionInput() {
+  let description = document.getElementById("description-input").value;
+  if (description.value.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function checkInpAddTask() {
+  let title = document.getElementById("title-input");
+  let contacts = controlContactCheckbox();
+  let date = controlDateInput();
+  let importanceBtn = controlImportanceBtn();
+  let description = contolDescriptionInput();
+  if (title && contacts && date && importanceBtn && description) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 async function addToTasks() {
   let contactsSmalView = document.getElementById("contacts_box");
-  if (selectedContacts.length == 0) {
-    alert("Please select at least one contact!");
-  } else if (
-    document.getElementById("select-category").innerHTML.includes("Select")
-  ) {
-    alert("Please select category!");
-  } else {
+  if (checkInpAddTask()) {
+    console.log(true);
     triggerAddedToBoardButton();
     checkImportance();
 
@@ -61,6 +109,8 @@ async function addToTasks() {
 
     await backend.setItem("tasks", JSON.stringify(tasks));
     await backend.setItem("urgentCounter", JSON.stringify(urgentCounter));
+  } else {
+    return;
   }
 }
 
