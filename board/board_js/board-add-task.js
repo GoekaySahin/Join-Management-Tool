@@ -367,7 +367,7 @@ function setConatctShow(inviteContacts, currentContacts, contactsShow) {
       }
     }
   }
-  return contacts;
+  return inviteContacts;
 }
 
 async function renderContactsSelection(contacts) {
@@ -437,23 +437,35 @@ function fillCategory(category) {
   let categoryField = document.getElementById("select-category");
 
   if (category == "sales") {
-    categoryField.innerHTML = "";
-    categoryField.innerHTML += setCategoryToSales();
-    openCategoriesToSelect();
-    categoryColor = "#df1c9f";
+    fillSales(categoryField);
   } else if (category == "backoffice") {
-    categoryField.innerHTML = "";
-    categoryField.innerHTML += setCategoryToBackoffice();
-    openCategoriesToSelect();
-    categoryColor = "#22bfc7";
+    fillBackoffice(categoryField);
   } else {
-    categoryField.innerHTML = "";
-    categoryField.innerHTML += setCategoryToNewCategory(
-      categoryName,
-      categoryColorTrue
-    );
-    openCategoriesToSelect();
+    fillNewCategory(categoryField);
   }
+}
+
+function fillNewCategory(categoryField) {
+  categoryField.innerHTML = "";
+  categoryField.innerHTML += setCategoryToNewCategory(
+    categoryName,
+    categoryColorTrue
+  );
+  openCategoriesToSelect();
+}
+
+function fillBackoffice(categoryField) {
+  categoryField.innerHTML = "";
+  categoryField.innerHTML += setCategoryToBackoffice();
+  openCategoriesToSelect();
+  categoryColor = "#22bfc7";
+}
+
+function fillSales(categoryField) {
+  categoryField.innerHTML = "";
+  categoryField.innerHTML += setCategoryToSales();
+  openCategoriesToSelect();
+  categoryColor = "#df1c9f";
 }
 
 function createNewCategory() {
@@ -560,6 +572,10 @@ function categorySelectReset() {
     "blue",
   ];
 
+  resetCategoryColorSelect(categoryColorsList);
+}
+
+function resetCategoryColorSelect(categoryColorsList) {
   for (let i = 0; i < categoryColorsList.length; i++) {
     const element = categoryColorsList[i];
     let categoryColorId = document.getElementById(`category-color-${element}`);
@@ -579,14 +595,8 @@ function showErrorColor() {
 
 function selectCategoryColor(color) {
   categorySelectReset();
-  document
-    .getElementById("category-color-" + color)
-    .classList.toggle("select-new-category-color");
-  if (
-    document
-      .getElementById("category-color-" + color)
-      .classList.contains("select-new-category-color")
-  ) {
+  showCategoryColor(color);
+  if (containsCategoryColor(color)) {
     categoryColor = color;
     categoryColorTrue = color;
   } else {
@@ -595,14 +605,28 @@ function selectCategoryColor(color) {
   }
 }
 
+function containsCategoryColor(color) {
+  let newCategory = document.getElementById("category-color-" + color);
+
+  return newCategory.classList.contains("select-new-category-color");
+}
+
+function showCategoryColor(color) {
+  let newCategory = document.getElementById("category-color-" + color);
+
+  newCategory.classList.toggle("select-new-category-color");
+}
+
 function renderNewCategories(categoryName, categoryColorTrue) {
-  document.getElementById("categories-drop-down").innerHTML +=
-    generateHTMLcategory(categoryName, categoryColorTrue);
+  let cDropDown = document.getElementById("categories-drop-down");
+  cDropDown.innerHTML += generateHTMLcategory(categoryName, categoryColorTrue);
 }
 
 function createNewSubtask() {
-  document.getElementById("plus-icon").classList.add("d-none");
-  document.getElementById("new-subtask-accept").classList.remove("d-none");
+  let plus = document.getElementById("plus-icon");
+  let accept = document.getElementById("new-subtask-accept");
+  plus.classList.add("d-none");
+  accept.classList.remove("d-none");
 }
 
 function addSubtask() {
@@ -613,6 +637,10 @@ function addSubtask() {
   if (selectedSubtasks.indexOf(newSubtask) == -1) {
     selectedSubtasks.push(newSubtask);
   }
+  prepareSubstask(newSubtask, plus, subtask_accept);
+}
+
+function prepareSubstask(newSubtask, plus, subtask_accept) {
   subtaskDescription();
   renderSubtasks();
   newSubtask.value = "";
@@ -622,10 +650,10 @@ function addSubtask() {
 
 let descript = 0;
 function subtaskDescription() {
+  let subtask = document.getElementById("add-subtask");
   if (descript == 0) {
     descript++;
-    document.getElementById("add-subtask").placeholder =
-      "Uncheck it, to remove the subtask!";
+    subtask.placeholder = "Uncheck it, to remove the subtask!";
     subtaskToggleRed();
     setTimeout(subtaskSetBack, 1850);
   }
@@ -743,192 +771,7 @@ function openCategoriesToSelect() {
   element.classList.toggle("d-none");
 }
 
-function generateHTMLcontactsBoard(element, i) {
-  return `
-      <div class="contacts-list-elem">
-        <label class="control control-checkbox" id="selected-contact${i}">
-          <div class="contacts-list-elem-box" id="${element["name"]}">
-            <span class="rendered-contact-name">${element["name"]}</span>
-            <input onclick="addContactToTaskBoard(${i})" id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />
-            <div id="control-indicator-${i}" class="control-indicator"></div>
-          </div>
-        </label>
-      </div>
-      `;
-}
-
-function generateHTMLcategory(categoryName, categoryColorTrue) {
-  return `
-  <div onclick="fillCategory('${categoryName}')" class="categories-list-elem">
-    ${categoryName}
-    <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
-  </div>
-  `;
-}
-
-function setCategoryToSales() {
-  return `
-      <div class="selected-category">
-        Sales
-        <img src="../add_task/img-add_task/circle_pink.png" />
-      </div>
-      `;
-}
-
-function setCategoryToBackoffice() {
-  return `
-      <div class="selected-category">
-        Backoffice
-        <img src="../add_task/img-add_task/circle_turquois.png" />
-      </div>
-      `;
-}
-
-function setCategoryToNewCategory(categoryName, categoryColorTrue) {
-  return `
-    <div class="selected-category">
-      ${categoryName}
-      <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
-    </div>
-    `;
-}
-
-function generateHTMLnewCategoryNameAndColor(categoryName, categoryColorTrue) {
-  return `
-  <div class="selected-category">
-    ${categoryName}
-    <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
-  </div>
-  `;
-}
-
-function resetCategory() {
-  return `
-    <div class="selected-category">
-      Select task category
-    </div>
-    `;
-}
-
-function generateHTMLsubtask(subtask, i) {
-  return `
-      <div class="subtask-list-elem">
-        <label class="control control-checkbox" id="selected-subtask">
-          <div class="subtask-list-elem-box">
-            <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" checked/>
-            <span class="rendered-subtask-name">${subtask}</span>
-            <div class="control-indicator-subtask"></div>
-          </div>
-        </label>
-      </div>
-      `;
-}
-
-function newContactAddTask(index) {
-  if (newContactAddTaskActive == true) {
-    let invateContact;
-    if (index == 1) {
-      invateContact = document.getElementById("new_contact");
-    } else if (index == 0) {
-      invateContact = document.getElementById("new_contact-edit");
-    }
-    invateContact.innerHTML = `<div class="new-contact-add-task">
-                                    <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
-                                      <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                        <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
-                                        <span>|</span>
-                                        <img onclick="addNameNewContact()" src="../add_task/img-add_task/check_blue.png">
-                                     </div>
-                                  </div>`;
-    invateContact.classList.remove("contacts-list-elem");
-    invateContact.classList.remove("new-contact");
-    invateContact.classList.add("invate-class");
-
-    newContactAddTaskActive = false;
-  }
-}
-
-function newContactEdit(index) {
-  if (newContactAddTaskActive == true) {
-    let invateContact;
-    if (index == 1) {
-      invateContact = document.getElementById("new_contact");
-    } else if (index == 0) {
-      invateContact = document.getElementById("new_contact-edit");
-    }
-    invateContact.innerHTML = `<div class="new-contact-add-task">
-                                    <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
-                                      <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                        <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
-                                        <span>|</span>
-                                        <img onclick="addNameNewContactEdit(${index})" src="../add_task/img-add_task/check_blue.png">
-                                     </div>
-                                  </div>`;
-    invateContact.classList.remove("contacts-list-elem");
-    invateContact.classList.remove("new-contact");
-    invateContact.classList.add("invate-class");
-
-    newContactAddTaskActive = false;
-  }
-}
-
-function newContactAddTaskReturn() {
-  let invateContact = document.getElementById("new_contact");
-  let addTask = document.getElementById("add_task");
-
-  if (addTask == null || addTask.classList.contains("d-none")) {
-    invateContact = document.getElementById("new_contact-edit");
-  }
-  invateContact.classList.add("contacts-list-elem");
-  invateContact.classList.add("new-contact");
-  invateContact.classList.remove("invate-class");
-  invateContact.innerHTML = `
-  <span class="rendered-contact-name">Invite new contact</span>
-    <img src="../add_task/img-add_task/contact_blue.png" />`;
-  newContactAddTaskActive = true;
-}
-
 let email;
-
-function addNameNewContact() {
-  let emailInput = document.getElementById("add_task_email").value;
-  if (!emailInput.includes(".")) {
-    return;
-  }
-  let invateNewContactEmail = document.getElementById("add_task_email").value;
-  email = [String(invateNewContactEmail)];
-  let invateContact = document.getElementById("new_contact");
-  if (invateContact == null) {
-    invateContact = document.getElementById("new_contact-edit");
-  }
-  invateContact.innerHTML = `<div class="new-contact-add-task">
-                                  <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
-                                    <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
-                                      <span>|</span>
-                                      <img onmouseup="creatNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
-                                   </div>
-                                </div>`;
-}
-
-function addNameNewContactEdit(index) {
-  let emailInput = document.getElementById("add_task_email").value;
-  if (!emailInput.includes(".")) {
-    return;
-  }
-  let invateNewContactEmail = document.getElementById("add_task_email").value;
-  email = [String(invateNewContactEmail)];
-  let invateContact = document.getElementById("new_contact-edit");
-
-  invateContact.innerHTML = `<div class="new-contact-add-task">
-                                  <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
-                                    <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
-                                      <span>|</span>
-                                      <img onmouseup="creatNewContactEdit(${index})" src="../add_task/img-add_task/check_blue.png">
-                                   </div>
-                                </div>`;
-}
 
 let checkedIndex = [];
 async function creatNewContactAddTask() {
@@ -998,7 +841,7 @@ async function getCheckboxValue(invateNewContactName) {
   checkedEdit = [];
   if (currentContacts == null) {
     checkedIndex.push(0);
-  } else if (checkedIndex.length == 0 && checkEdit.length == 0) {
+  } else if (checkedIndex.length == 0 && checkedEdit.length == 0) {
     checkedIndex.push(invateNewContactName);
     setCheckboxValue(checkedIndex, checkedEdit);
   } else {
@@ -1027,13 +870,21 @@ async function checkedSetting(invateNewContactName) {
   }
   selectedContacts.push(invateNewContactName);
   if (selectedContacts.length > 1) {
-    for (let i = 0; i < selectedContacts.length; i++) {
-      const names = selectedContacts[i];
-      let docElement = document.getElementById(names);
-      docElement.childNodes[3].checked = true;
-    }
+    showCheckedOnEditContacts(selectedContacts);
   } else {
-    let docElement = document.getElementById(invateNewContactName);
+    showCheckedEditContact(invateNewContactName);
+  }
+}
+
+function showCheckedEditContact(invateNewContactName) {
+  let docElement = document.getElementById(invateNewContactName);
+  docElement.childNodes[3].checked = true;
+}
+
+function showCheckedOnEditContacts(selectedContacts) {
+  for (let i = 0; i < selectedContacts.length; i++) {
+    const names = selectedContacts[i];
+    let docElement = document.getElementById(names);
     docElement.childNodes[3].checked = true;
   }
 }
@@ -1072,6 +923,11 @@ function getFirstLetterInvate(contact) {
   contact = checkIfString(contact);
   contact = spliceEmptyObject(contact);
 
+  letterList = setTheFirstLetterInvate(contact);
+  return letterList;
+}
+
+function setTheFirstLetterInvate(contact) {
   for (let i = 0; i < contact.length; i++) {
     const element = contact[i];
     let name = element.split(" ");
