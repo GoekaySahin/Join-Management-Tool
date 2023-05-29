@@ -82,7 +82,34 @@ async function setNewTask() {
   subtaskChecked();
   btn.classList.remove("opacity");
 
-  let task = {
+  let task = creatNewTask(
+    title,
+    contactsData,
+    date,
+    category,
+    importance,
+    description
+  );
+  resetTasksInputs(
+    title,
+    selectedContacts,
+    date,
+    categoryColor,
+    description,
+    selectedSubtasks
+  );
+  return task;
+}
+
+function creatNewTask(
+  title,
+  contactsData,
+  date,
+  category,
+  importance,
+  description
+) {
+  return {
     title: title.value,
     contacts: contactsData[0],
     letters: contactsData[2],
@@ -95,15 +122,6 @@ async function setNewTask() {
     subtasks: selectedSubtasks,
     subtaskCheck: checkedList,
   };
-  resetTasksInputs(
-    title,
-    selectedContacts,
-    date,
-    categoryColor,
-    description,
-    selectedSubtasks
-  );
-  return task;
 }
 
 let checkedList = [];
@@ -126,21 +144,29 @@ async function contactToSave(selectedContacts) {
 function checkColorAndLetter(selectedContacts, list, names, colors, letters) {
   for (let j = 0; j < selectedContacts.length; j++) {
     const selected = selectedContacts[j];
-    for (let i = 0; i < list.length; i++) {
-      const element = list[i];
-      if (element["name"] == selected) {
-        names.push(element["name"]);
-        if (element["color"] == undefined) {
-          colors.push(element["colors"]);
-        } else {
-          colors.push(element["color"]);
-        }
-        if (element["firstLetters"] == undefined) {
-          letters.push(element["firstletter"]);
-        } else {
-          letters.push(element["firstLetters"]);
-        }
-      }
+    compareColorAndLetter(selected, list, names, colors, letters);
+  }
+}
+
+function compareColorAndLetter(selected, list, names, colors, letters) {
+  for (let i = 0; i < list.length; i++) {
+    const element = list[i];
+    selectColorAndLetter(element, selected, names, colors, letters);
+  }
+}
+
+function selectColorAndLetter(element, selected, names, colors, letters) {
+  if (element["name"] == selected) {
+    names.push(element["name"]);
+    if (element["color"] == undefined) {
+      colors.push(element["colors"]);
+    } else {
+      colors.push(element["color"]);
+    }
+    if (element["firstLetters"] == undefined) {
+      letters.push(element["firstletter"]);
+    } else {
+      letters.push(element["firstLetters"]);
     }
   }
 }
@@ -190,18 +216,30 @@ async function buttonImportanceCheck() {
   let buttonLow = document.getElementById("importance-button3");
   let result;
 
-  if (
+  if (checkButtonImportanceAddTask(buttonUrgent, buttonMedium, buttonLow)) {
+    importanceRemoveOpa();
+  } else {
+    importanceAddOpa();
+  }
+}
+
+function importanceAddOpa() {
+  let btn = document.getElementById("submit-btn");
+  btn.classList.add("opacity");
+}
+
+function importanceRemoveOpa() {
+  let btn = document.getElementById("submit-btn");
+  btn.classList.remove("opacity");
+  filled = true;
+}
+
+function checkButtonImportanceAddTask(buttonUrgent, buttonMedium, buttonLow) {
+  return (
     buttonUrgent.classList.contains("d-none") ||
     buttonMedium.classList.contains("d-none") ||
     buttonLow.classList.contains("d-none")
-  ) {
-    let btn = document.getElementById("submit-btn");
-    btn.classList.remove("opacity");
-    filled = true;
-  } else {
-    let btn = document.getElementById("submit-btn");
-    btn.classList.add("opacity");
-  }
+  );
 }
 
 function resetAddedButton() {
@@ -355,20 +393,32 @@ async function renderContactsSelection(contacts) {
 
 function setColorForDots(inviteContacts, cBox) {
   if (inviteContacts.length > 2) {
-    for (let i = 0; i < 2; i++) {
-      cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
-    }
-    changedColorForDots = "#FFAA00";
-    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${changedColorForDots};">...</p>`;
+    moreThanTwoContactsSmallView(inviteContacts, cBox);
   } else if (inviteContacts.length == 2) {
-    for (let i = 0; i < inviteContacts.length; i++) {
-      cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
-    }
+    twoContactsSmallView(invateContacts, cBox);
   } else {
-    for (let i = 0; i < inviteContacts.length; i++) {
-      cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
-    }
+    oneContactSmallView(invateContacts, cBox);
   }
+}
+
+function oneContactSmallView(inviteContacts, cBox) {
+  for (let i = 0; i < inviteContacts.length; i++) {
+    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
+  }
+}
+
+function twoContactsSmallView(inviteContacts, cBox) {
+  for (let i = 0; i < inviteContacts.length; i++) {
+    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
+  }
+}
+
+function moreThanTwoContactsSmallView(inviteContacts, cBox) {
+  for (let i = 0; i < 2; i++) {
+    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
+  }
+  changedColorForDots = "#FFAA00";
+  cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${changedColorForDots};">...</p>`;
 }
 
 function checkContactsIfEmpty(contacts) {
@@ -948,6 +998,9 @@ async function getCheckboxValue(invateNewContactName) {
   checkedEdit = [];
   if (currentContacts == null) {
     checkedIndex.push(0);
+  } else if (checkedIndex.length == 0 && checkEdit.length == 0) {
+    checkedIndex.push(invateNewContactName);
+    setCheckboxValue(checkedIndex, checkedEdit);
   } else {
     setCheckboxValue(checkedIndex, checkedEdit);
   }
