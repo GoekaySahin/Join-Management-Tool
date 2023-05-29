@@ -104,10 +104,12 @@ html {
 }
 
 .contacts-dropdown-content {
+  position: absolute;
   width: 436px;
   margin-top: -12px;
-  height: 250px;
+  height: 265px;
   overflow-y: auto;
+  background-color: white;
 }
 
 .contacts-list-elem {
@@ -260,11 +262,16 @@ html {
 }
 
 .categories-dropdown-content {
-  width: 422px;
-  margin-top: -16px;
-  margin-bottom: -24px;
-  max-height: 250px;
+  width: 425px;
+  margin-top: -18px;
+  max-height: 92px;
   overflow-y: auto;
+  position: absolute;
+  background-color: white;
+  margin-inline-start: -3px;
+  border: 1px solid #8080803d;
+  border-right: none;
+  border-left: none;
 }
 
 .subtask-content {
@@ -598,6 +605,7 @@ html {
 }
 
 .creat-task-btn-manual-hover {
+  background-color: #4589ff !important;
   cursor: pointer;
   background-color: #045fff;
   box-shadow: 0px 9px 5px -3px rgba(0, 0, 0, 0.2);

@@ -26,6 +26,82 @@ async function getUrgentCounter() {
   urgentCounter = parseInt(urgentCounter);
 }
 
+function controlContactCheckbox() {
+  let list = document.getElementsByClassName("contacts-list-elem");
+  for (let i = 0; i < list.length - 1; i++) {
+    element = document.getElementById(`contacts-checkbox-${i}`);
+    if (element.checked) {
+      return true;
+    }
+    return false;
+  }
+}
+
+function controlDateInput() {
+  if (document.getElementById("select-date").value.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function controlImportanceBtn() {
+  for (let i = 1; i < 4; i++) {
+    let importanceBtn = document.getElementById(`importance-button${i}`);
+    if (importanceBtn.style.display.includes("none")) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function controlDescriptionInput() {
+  let description = document.getElementById("description-input").value;
+  if (description.length > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function controlCategorySelect() {
+  let category = document
+    .getElementById("select-category")
+    .innerHTML.includes("Select task");
+  return !category;
+}
+
+function checkInpAddTask() {
+  let title = document.getElementById("title-input").value.length > 0;
+  let contacts = controlContactCheckbox();
+  let date = controlDateInput();
+  let importanceBtn = controlImportanceBtn();
+  let description = controlDescriptionInput();
+  let category = controlCategorySelect();
+  /* let category =  */
+  if (title && contacts && date && importanceBtn && description && category) {
+    activateCreatTaskButton();
+    return true;
+  } else {
+    deactivateCreatTaskButton();
+    return false;
+  }
+}
+
+setInterval(() => {
+  checkInpAddTask();
+}, 250);
+
+function activateCreatTaskButton() {
+  let btn = document.getElementById("create-task-btn");
+  btn.classList.add("creat-task-btn-manual-hover");
+}
+
+function deactivateCreatTaskButton() {
+  let btn = document.getElementById("create-task-btn");
+  btn.classList.remove("creat-task-btn-manual-hover");
+}
+
 async function addToTasks() {
   let contactsSmalView = document.getElementById("contacts_box");
   let category = document.getElementById("select-category");
@@ -33,14 +109,10 @@ async function addToTasks() {
   let date = document.getElementById("select-date");
   let description = document.getElementById("description-input");
 
-  if (selectedContacts.length == 0) {
-    alert("Please select at least one contact!");
-  } else if (category.innerHTML.includes("Select")) {
-    alert("Please select category!");
-  } else if (importance == undefined) {
-    alert("set an impotance");
-  } else {
+  if (checkInpAddTask()) {
     await creatNewTask(title, date, category, description, contactsSmalView);
+  } else {
+    return;
   }
 }
 
