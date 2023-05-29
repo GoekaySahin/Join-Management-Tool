@@ -28,13 +28,16 @@ async function getUrgentCounter() {
 
 function controlContactCheckbox() {
   let list = document.getElementsByClassName("contacts-list-elem");
-  for (let i = 0; i < list.length - 1; i++) {
+  for (let i = 0; i < list.length; i++) {
     element = document.getElementById(`contacts-checkbox-${i}`);
+    if (element == null) {
+      return;
+    }
     if (element.checked) {
       return true;
     }
-    return false;
   }
+  return false;
 }
 
 function controlDateInput() {
@@ -69,6 +72,10 @@ function controlCategorySelect() {
     .getElementById("select-category")
     .innerHTML.includes("Select task");
   return !category;
+}
+
+function clearContacts() {
+  document.getElementById("contacts_box").innerHTML = "";
 }
 
 function checkInpAddTask() {
@@ -146,11 +153,23 @@ async function creatNewTask(
     description,
     selectedSubtasks
   );
+  clearContacts();
   resetImportanceButtons();
   clearSubtasksAddTask();
   contactsSmalView.innerHTML = "";
 
   await saveCounterAndTasks(tasks);
+}
+
+function resetImportanceButtons() {
+  for (let i = 1; i < 4; i++) {
+    const btn = document.getElementById(`importance-button${i}`);
+    btn.style = "";
+  }
+  for (let j = 1; j < 4; j++) {
+    const btn = document.getElementById(`importance-button${j}-colored`);
+    btn.style = "display: none";
+  }
 }
 
 async function saveCounterAndTasks(tasks) {
