@@ -667,7 +667,6 @@ function renderContactsCardDetail(contactsMap, contactsNew, letters, id, map) {
 async function renderContactsCard(id) {
   let map = wichSection(id);
   let contactsMap = map.get(`${id}`)["contacts"];
-  /* let colors = map.get(`${id}`)["colors"]; */
   let contactsNew;
   let letters;
   renderContactsCardDetail(contactsMap, contactsNew, letters, id, map);
@@ -1232,17 +1231,20 @@ function dateFutureTask() {
   dateId.setAttribute("min", today);
 }
 
-function showEdit(title, description, id) {
-  let colors = document.getElementById(`c-color`);
-  let popupTitle = document.getElementById("popup_title");
-  let cardConten = document.getElementById("card_content");
-  let popupDescription = document.getElementById("popup_description");
-  let date = document.getElementById("date_box");
-  let prio = document.getElementById("edit_priority");
-  let assing = document.getElementById("edit-assigned");
-  let contact = document.getElementById("contact");
-  let editBox = document.getElementById("edit_box");
-
+function renderShowEdit(
+  colors,
+  popupTitle,
+  cardConten,
+  popupDescription,
+  date,
+  prio,
+  assing,
+  contact,
+  editBox,
+  title,
+  description,
+  id
+) {
   colors.classList.add("d-none");
   popupTitle.innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
   popupTitle.classList.add("set-title");
@@ -1257,6 +1259,33 @@ function showEdit(title, description, id) {
                         <button class="ok-text ok ok-delete" id="ok" onclick="deleteTask(${id})">Delete</button>`;
 }
 
+function showEdit(title, description, id) {
+  let colors = document.getElementById(`c-color`);
+  let popupTitle = document.getElementById("popup_title");
+  let cardConten = document.getElementById("card_content");
+  let popupDescription = document.getElementById("popup_description");
+  let date = document.getElementById("date_box");
+  let prio = document.getElementById("edit_priority");
+  let assing = document.getElementById("edit-assigned");
+  let contact = document.getElementById("contact");
+  let editBox = document.getElementById("edit_box");
+
+  renderShowEdit(
+    colors,
+    popupTitle,
+    cardConten,
+    popupDescription,
+    date,
+    prio,
+    assing,
+    contact,
+    editBox,
+    title,
+    description,
+    id
+  );
+}
+
 function deleteTask(id) {
   let map = wichSection(id);
   map.delete(`${id}`);
@@ -1265,20 +1294,21 @@ function deleteTask(id) {
   saveMaps();
 }
 
-function qickSaveMap(id) {
-  let titleEdit = document.getElementById("popup_title_edit").value;
-  let descriptionEdit = document.getElementById("popup_description_edit").value;
-  let dateEdit = document.getElementById("select-date").value;
-  let contactsEdit = selectedContacts;
-  let button = checkPrioBtn(id);
-  let section = wichSection(id);
-
-  let category = section.get(`${id}`)["category"];
-  let categorycolor = section.get(`${id}`)["categorycolor"];
-  let colors = section.get(`${id}`)["colors"];
-  let letters = section.get(`${id}`)["letters"];
-  let subtask = section.get(`${id}`)["subtask"];
-  let subtaskStatus = globalProgress;
+function checkItBeforSaving(
+  titleEdit,
+  descriptionEdit,
+  dateEdit,
+  contactsEdit,
+  button,
+  section,
+  category,
+  categorycolor,
+  colors,
+  letters,
+  subtask,
+  subtaskStatus,
+  id
+) {
   if (titleEdit.length == 0) {
     titleEdit = section.get(`${id}`)["title"];
   }
@@ -1295,7 +1325,6 @@ function qickSaveMap(id) {
   if (button == undefined) {
     button = section.get(`${id}`)["importance"];
   }
-
   saveIn(
     titleEdit,
     descriptionEdit,
@@ -1313,6 +1342,49 @@ function qickSaveMap(id) {
   );
 }
 
+function qickSaveMap(id) {
+  let titleEdit = document.getElementById("popup_title_edit").value;
+  let descriptionEdit = document.getElementById("popup_description_edit").value;
+  let dateEdit = document.getElementById("select-date").value;
+  let contactsEdit = selectedContacts;
+  let button = checkPrioBtn(id);
+  let section = wichSection(id);
+
+  let category = section.get(`${id}`)["category"];
+  let categorycolor = section.get(`${id}`)["categorycolor"];
+  let colors = section.get(`${id}`)["colors"];
+  let letters = section.get(`${id}`)["letters"];
+  let subtask = section.get(`${id}`)["subtask"];
+  let subtaskStatus = globalProgress;
+  checkItBeforSaving(
+    titleEdit,
+    descriptionEdit,
+    dateEdit,
+    contactsEdit,
+    button,
+    section,
+    category,
+    categorycolor,
+    colors,
+    letters,
+    subtask,
+    subtaskStatus,
+    id
+  );
+}
+
+function checkSelectedContacts() {
+  if (selectedContacts.length > 0) {
+    for (let i = 0; i < selectedContacts.length; i++) {
+      const element = selectedContacts[i];
+      if (currentContacts.indexOf(element) == -1) {
+        currentContacts.push(element);
+      }
+    }
+  }
+  return currentContacts;
+}
+
 function checkContacts(id) {
   let newContacts = selectedContacts;
   let map = wichSection(id);
@@ -1324,14 +1396,7 @@ function checkContacts(id) {
   if (currentContacts == selectedContacts) {
     return currentContacts;
   }
-  if (selectedContacts.length > 0) {
-    for (let i = 0; i < selectedContacts.length; i++) {
-      const element = selectedContacts[i];
-      if (currentContacts.indexOf(element) == -1) {
-        currentContacts.push(element);
-      }
-    }
-  }
+  currentContacts = checkSelectedContacts(currentContacts);
 
   return currentContacts;
 }
@@ -1351,6 +1416,35 @@ async function setColorsExist() {
   return colorList;
 }
 
+function titleLengthCheck(titleEdit, section, id) {
+  if (titleEdit.length == 0) {
+    titleEdit = section.get(`${id}`)["title"];
+  }
+
+  return titleEdit;
+}
+
+function descriptionLengthCheck(descriptionEdit, section, id) {
+  if (descriptionEdit.length == 0) {
+    descriptionEdit = section.get(`${id}`)["description"];
+  }
+  return descriptionEdit;
+}
+
+function dateLengthCheck(dateEdit, section, id) {
+  if (dateEdit.length == 0) {
+    dateEdit = section.get(`${id}`)["date"];
+  }
+  return dateEdit;
+}
+
+function buttonEditCheck(button, section, id) {
+  if (button == undefined) {
+    button = section.get(`${id}`)["importance"];
+  }
+  return button;
+}
+
 async function editDone(id) {
   /// KKKKKKKKÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜRRRRRRRRRRRRRZZZZZZZZZZZZZZZZZZZEEEEEEEEENNNNNNNNNNNNNN
   addEditClasses();
@@ -1362,7 +1456,6 @@ async function editDone(id) {
   let button = checkPrioBtnEdit(id);
   let section = wichSection(id);
   let contactsEdit = selectedContacts;
-
   let category = section.get(`${id}`)["category"];
   let categorycolor = section.get(`${id}`)["categorycolor"];
   let colors = await contactToSave(selectedContacts);
@@ -1370,20 +1463,11 @@ async function editDone(id) {
   letters = letters.get(`${id}`)["letters"];
   let subtask = section.get(`${id}`)["subtask"];
   let subtaskStatus = globalProgress;
-  if (titleEdit.length == 0) {
-    titleEdit = section.get(`${id}`)["title"];
-  }
-  if (descriptionEdit.length == 0) {
-    descriptionEdit = section.get(`${id}`)["description"];
-  }
-  if (dateEdit.length == 0) {
-    dateEdit = section.get(`${id}`)["date"];
-  }
 
-  if (button == undefined) {
-    button = section.get(`${id}`)["importance"];
-  }
-
+  titleEdit = titleLengthCheck(titleEdit, section, id);
+  descriptionEdit = descriptionLengthCheck(descriptionEdit, section, id);
+  dateEdit = dateLengthCheck(dateEdit, section, id);
+  button = buttonEditCheck(button, section, id);
   colors = colors[1];
 
   saveIn(
@@ -1408,6 +1492,126 @@ async function editDone(id) {
   selectedContacts = [];
 }
 
+function saveInTodosMap(
+  id,
+  titleEdit,
+  descriptionEdit,
+  dateEdit,
+  contactsEdit,
+  button,
+  section,
+  category,
+  categorycolor,
+  colors,
+  letters,
+  subtask,
+  subtaskStatus
+) {
+  todosMap.set(`${id}`, {
+    category: `${category}`,
+    categorycolor: `${categorycolor}`,
+    colors: `${colors}`,
+    contacts: `${contactsEdit}`,
+    date: `${dateEdit}`,
+    description: `${descriptionEdit}`,
+    importance: `${button}`,
+    letters: `${letters}`,
+    subtask: `${subtask}`,
+    subtaskStatus: `${subtaskStatus}`,
+    title: `${titleEdit}`,
+  });
+}
+
+function saveInProgressMap(
+  titleEdit,
+  descriptionEdit,
+  dateEdit,
+  contactsEdit,
+  button,
+  section,
+  category,
+  categorycolor,
+  colors,
+  letters,
+  subtask,
+  subtaskStatus,
+  id
+) {
+  progressesMap.set(`${id}`, {
+    category: `${category}`,
+    categorycolor: `${categorycolor}`,
+    colors: `${colors}`,
+    contacts: `${contactsEdit}`,
+    date: `${dateEdit}`,
+    description: `${descriptionEdit}`,
+    importance: `${button}`,
+    letters: `${letters}`,
+    subtask: `${subtask}`,
+    subtaskStatus: `${subtaskStatus}`,
+    title: `${titleEdit}`,
+  });
+}
+
+function saveInProgressMap(
+  titleEdit,
+  descriptionEdit,
+  dateEdit,
+  contactsEdit,
+  button,
+  section,
+  category,
+  categorycolor,
+  colors,
+  letters,
+  subtask,
+  subtaskStatus,
+  id
+) {
+  feedbacksMap.set(`${id}`, {
+    category: `${category}`,
+    categorycolor: `${categorycolor}`,
+    colors: `${colors}`,
+    contacts: `${contactsEdit}`,
+    date: `${dateEdit}`,
+    description: `${descriptionEdit}`,
+    importance: `${button}`,
+    letters: `${letters}`,
+    subtask: `${subtask}`,
+    subtaskStatus: `${subtaskStatus}`,
+    title: `${titleEdit}`,
+  });
+}
+
+function saveInDonesMap(
+  titleEdit,
+  descriptionEdit,
+  dateEdit,
+  contactsEdit,
+  button,
+  section,
+  category,
+  categorycolor,
+  colors,
+  letters,
+  subtask,
+  subtaskStatus,
+  id
+) {
+  donesMap.set(`${id}`, {
+    category: `${category}`,
+    categorycolor: `${categorycolor}`,
+    colors: `${colors}`,
+    contacts: `${contactsEdit}`,
+    date: `${dateEdit}`,
+    description: `${descriptionEdit}`,
+    importance: `${button}`,
+    letters: `${letters}`,
+    subtask: `${subtask}`,
+    subtaskStatus: `${subtaskStatus}`,
+    title: `${titleEdit}`,
+  });
+}
+
 function saveIn(
   titleEdit,
   descriptionEdit,
@@ -1424,61 +1628,69 @@ function saveIn(
   id
 ) {
   if (todosMap.has(`${id}`)) {
-    todosMap.set(`${id}`, {
-      category: `${category}`,
-      categorycolor: `${categorycolor}`,
-      colors: `${colors}`,
-      contacts: `${contactsEdit}`,
-      date: `${dateEdit}`,
-      description: `${descriptionEdit}`,
-      importance: `${button}`,
-      letters: `${letters}`,
-      subtask: `${subtask}`,
-      subtaskStatus: `${subtaskStatus}`,
-      title: `${titleEdit}`,
-    });
+    saveInTodosMap(
+      id,
+      titleEdit,
+      descriptionEdit,
+      dateEdit,
+      contactsEdit,
+      button,
+      section,
+      category,
+      categorycolor,
+      colors,
+      letters,
+      subtask,
+      subtaskStatus
+    );
   } else if (progressesMap.has(`${id}`)) {
-    progressesMap.set(`${id}`, {
-      category: `${category}`,
-      categorycolor: `${categorycolor}`,
-      colors: `${colors}`,
-      contacts: `${contactsEdit}`,
-      date: `${dateEdit}`,
-      description: `${descriptionEdit}`,
-      importance: `${button}`,
-      letters: `${letters}`,
-      subtask: `${subtask}`,
-      subtaskStatus: `${subtaskStatus}`,
-      title: `${titleEdit}`,
-    });
+    saveInProgressMap(
+      titleEdit,
+      descriptionEdit,
+      dateEdit,
+      contactsEdit,
+      button,
+      section,
+      category,
+      categorycolor,
+      colors,
+      letters,
+      subtask,
+      subtaskStatus,
+      id
+    );
   } else if (feedbacksMap.has(`${id}`)) {
-    feedbacksMap.set(`${id}`, {
-      category: `${category}`,
-      categorycolor: `${categorycolor}`,
-      colors: `${colors}`,
-      contacts: `${contactsEdit}`,
-      date: `${dateEdit}`,
-      description: `${descriptionEdit}`,
-      importance: `${button}`,
-      letters: `${letters}`,
-      subtask: `${subtask}`,
-      subtaskStatus: `${subtaskStatus}`,
-      title: `${titleEdit}`,
-    });
+    saveInFeedbackMap(
+      titleEdit,
+      descriptionEdit,
+      dateEdit,
+      contactsEdit,
+      button,
+      section,
+      category,
+      categorycolor,
+      colors,
+      letters,
+      subtask,
+      subtaskStatus,
+      id
+    );
   } else if (donesMap.has(`${id}`)) {
-    donesMap.set(`${id}`, {
-      category: `${category}`,
-      categorycolor: `${categorycolor}`,
-      colors: `${colors}`,
-      contacts: `${contactsEdit}`,
-      date: `${dateEdit}`,
-      description: `${descriptionEdit}`,
-      importance: `${button}`,
-      letters: `${letters}`,
-      subtask: `${subtask}`,
-      subtaskStatus: `${subtaskStatus}`,
-      title: `${titleEdit}`,
-    });
+    saveInDonesMap(
+      titleEdit,
+      descriptionEdit,
+      dateEdit,
+      contactsEdit,
+      button,
+      section,
+      category,
+      categorycolor,
+      colors,
+      letters,
+      subtask,
+      subtaskStatus,
+      id
+    );
   }
   setTimeout(activateDragAndDrop, 150);
 }

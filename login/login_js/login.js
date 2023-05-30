@@ -29,15 +29,15 @@ async function loginSteps(element) {
 }
 
 function renderSignUpPage() {
-  window.location = "signUp.html";
+  window.location = "../login/signUp/signUp.html";
 }
 
 function backToStart() {
-  window.location = "startPage.html";
+  window.location = "../startPage/startPage.html";
 }
 
 function forgotPassword() {
-  window.location = "forgotPassword.html";
+  window.location = "../login/forgot/forgotPassword.html";
 }
 
 function backFromForgot() {
@@ -68,8 +68,8 @@ function sendMeTheEmail() {
 }
 
 function resetPassword() {
-  var password = document.getElementById("new-password").value;
-  var confirmedPassword = document.getElementById("confirm-password").value;
+  let password = document.getElementById("new-password").value;
+  let confirmedPassword = document.getElementById("confirm-password").value;
   if (password == "") {
     alert("Bitte gib ein Passwort ein.");
     return false;
@@ -86,12 +86,12 @@ function resetPassword() {
 }
 
 function openSummaryAsUser() {
-  window.location = "../summary/summary.html";
+  window.location = "../../summary/summary.html";
 }
 
 async function openSummary() {
   currentUser = "Guest user";
   userAsJson = JSON.stringify(currentUser);
   await backend.setItem("currentUser", userAsJson);
-  window.location = "../summary/summary.html";
+  window.location = "../../summary/summary.html";
 }

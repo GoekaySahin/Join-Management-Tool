@@ -1,69 +1,65 @@
 let storedUsers = [];
 let emailValue = false;
 
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+setURL(
+  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
+);
 
-async function signUpUser() {
-    let userName = document.getElementById("user").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("pw").value;
-
-    checkIfEmailIsCorrectForm(email);
-
-    if (emailValue == false) {
-        return;
-    }
-
-    let newUser = {
-        userName: userName,
-        email: email,
-        password: password,
-    };
-
-    storedUsers.push(newUser);
-
-    await backend.setItem("storedUsers", JSON.stringify(storedUsers));
-
-    if (userName == "") {
-        alert("Bitte gib deinen Namen ein.");
-        return false;
-    } else if (email == "") {
-        alert("Bitte gib deine E-Mail-Adresse ein.");
-    } else if (password == "") {
-        alert("Bitte gib ein Passwort ein.");
-    } else {
-        // newAccCreated();
-        document.getElementById('sign-up-successful').classList.remove('d-none');
-        setTimeout(() => {
-            window.location = "../login/startPage.html";
-        }, 3000);
-    }
-
-    emailValue = false;
-    return true;
+function checkInputSignUp(userName, email, password) {
+  if (userName == "") {
+    alert("Bitte gib deinen Namen ein.");
+    return false;
+  } else if (email == "") {
+    alert("Bitte gib deine E-Mail-Adresse ein.");
+  } else if (password == "") {
+    alert("Bitte gib ein Passwort ein.");
+  } else {
+    let success = document.getElementById("sign-up-successful");
+    success.classList.remove("d-none");
+    setTimeout(() => {
+      window.location = "../startPage/startPage.html";
+    }, 3000);
+  }
 }
 
-// function newAccCreated() {
-//     document.getElementById('new_acc_created').classList.remove('d-none');
-//     setTimeout(() => {
-//         document.getElementById('new_acc_created').classList.add('d-none');
-//     }, 2500);
-// }
+function creatNewUserSignUp(userName, email, password) {
+  let newUser = {
+    userName: userName,
+    email: email,
+    password: password,
+  };
+  return newUser;
+}
+
+async function signUpUser() {
+  let userName = document.getElementById("user").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("pw").value;
+  checkIfEmailIsCorrectForm(email);
+  if (emailValue == false) {
+    return;
+  }
+  let newUser = creatNewUserSignUp(userName, email, password);
+
+  storedUsers.push(newUser);
+  await backend.setItem("storedUsers", JSON.stringify(storedUsers));
+  checkInputSignUp(userName, email, password);
+  emailValue = false;
+  return true;
+}
 
 function checkIfEmailIsCorrectForm(email) {
-    if (!email.includes('.')) {
-        alert('Incorrect e-mail form!');
-    } else {
-        emailValue = true;
-    }
+  if (!email.includes(".")) {
+    alert("Incorrect e-mail form!");
+  } else {
+    emailValue = true;
+  }
 }
 
 async function retrieveUsers() {
-    await downloadFromServer();
-    let storedJSON = (await backend.getItem("storedUsers")) || [];
-    if (storedJSON.length > 1) {
-        storedUsers = JSON.parse(storedJSON);
-    }
+  await downloadFromServer();
+  let storedJSON = (await backend.getItem("storedUsers")) || [];
+  if (storedJSON.length > 1) {
+    storedUsers = JSON.parse(storedJSON);
+  }
 }
-
-console.log(storedUsers);

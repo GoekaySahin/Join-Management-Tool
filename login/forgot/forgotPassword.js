@@ -1,7 +1,9 @@
 async function init() {
   await downloadFromServer();
 }
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+setURL(
+  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
+);
 
 let users = [];
 
@@ -13,7 +15,7 @@ async function onSubmit(event) {
 
 function action(formData) {
   const input =
-    "https://gruppe-417.developerakademie.net/join/login/send_mail.php";
+    "https://goekay-nuri-sahin.developerakademie.com/join/login/send_mail.php";
   const requestInit = {
     method: "post",
     body: formData,

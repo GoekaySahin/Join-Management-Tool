@@ -1,10 +1,10 @@
 function openContactsOnContactsHtml() {
-    renderContactsAddTask();
-    openContactsToSelect();
+  renderContactsAddTask();
+  openContactsToSelect();
 }
 
 function renderContactsRasterHTML() {
-    return `
+  return `
             <div id="contact-list-id" class="contact-list-inner-container">
                 <div id="a_container">
                     <div class="contact-char">A</div>
@@ -168,7 +168,7 @@ function renderContactsRasterHTML() {
 }
 
 function showNoContacts() {
-    document.getElementById("contact_list_container").innerHTML = `
+  document.getElementById("contact_list_container").innerHTML = `
         <div class="no-contacts">
         <h4>No contacts yet. <br> Please add a new contact!</h4>
     </div>
@@ -176,19 +176,21 @@ function showNoContacts() {
 }
 
 function ContactListHTML(id, acronym, i, element) {
-    document.getElementById(id).innerHTML += `
+  document.getElementById(id).innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
             <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${element["name"]}</span>
-                <span id="contact-email-${i}" class="contact-email">${element["mail"]}</span>
+                <span id="contact-email-${i}" class="contact-email">${
+    element["mail"]
+  }</span>
             </div>
         </div>
     `;
 }
 
 function renderOpenDetail(i) {
-    document.getElementById("contact_right").innerHTML = `
+  document.getElementById("contact_right").innerHTML = `
     <img onclick="closeDetail()" class="d-none" id="backarrow" src="img/backarrow.png" alt="" />
         <div class="name-container">
             <div class="circle-right" id="circle_right"></div>
@@ -223,24 +225,157 @@ function renderOpenDetail(i) {
 }
 
 function renderDetailHTML(name, email, phone, acronym, color) {
-    document.getElementById("contact_right").classList.remove("d-none");
-    document.getElementById("name_right").innerHTML = name;
-    document.getElementById("mail_right").innerHTML = email;
+  document.getElementById("contact_right").classList.remove("d-none");
+  document.getElementById("name_right").innerHTML = name;
+  document.getElementById("mail_right").innerHTML = email;
 
-    if (phone == undefined) {
-        document.getElementById("mobil_right").innerHTML = '';
-    } else {
-        document.getElementById("mobil_right").innerHTML = `${phone}`;
-    }
-    document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
-    document.getElementById("circle_right").style.background = color;
+  if (phone == undefined) {
+    document.getElementById("mobil_right").innerHTML = "";
+  } else {
+    document.getElementById("mobil_right").innerHTML = `${phone}`;
+  }
+  document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
+  document.getElementById("circle_right").style.background = color;
 }
 
 function renderDetailHTMLRespons() {
-    document.getElementById("new_contact_btn").classList.add("d-none");
-    document.getElementById("contact_list_container").classList.add("d-none");
-    document.getElementById("edit_contact_pencil").classList.add("d-none");
-    document.getElementById("backarrow").classList.remove("d-none");
-    document.getElementById("edit_contact").classList.remove("d-none");
-    document.getElementById("contact_right").classList.remove("d-none");
+  document.getElementById("new_contact_btn").classList.add("d-none");
+  document.getElementById("contact_list_container").classList.add("d-none");
+  document.getElementById("edit_contact_pencil").classList.add("d-none");
+  document.getElementById("backarrow").classList.remove("d-none");
+  document.getElementById("edit_contact").classList.remove("d-none");
+  document.getElementById("contact_right").classList.remove("d-none");
+}
+
+function disableContactContainer() {
+  if (document.getElementById("a").innerHTML < 1) {
+    document.getElementById("a_container").classList.add("d-none");
+  } else {
+    document.getElementById("a_container").classList.remove("d-none");
+  }
+  if (document.getElementById("b").innerHTML < 1) {
+    document.getElementById("b_container").classList.add("d-none");
+  } else {
+    document.getElementById("b_container").classList.remove("d-none");
+  }
+  if (document.getElementById("c").innerHTML < 1) {
+    document.getElementById("c_container").classList.add("d-none");
+  } else {
+    document.getElementById("c_container").classList.remove("d-none");
+  }
+  if (document.getElementById("d").innerHTML < 1) {
+    document.getElementById("d_container").classList.add("d-none");
+  } else {
+    document.getElementById("d_container").classList.remove("d-none");
+  }
+  if (document.getElementById("e").innerHTML < 1) {
+    document.getElementById("e_container").classList.add("d-none");
+  } else {
+    document.getElementById("e_container").classList.remove("d-none");
+  }
+  if (document.getElementById("f").innerHTML < 1) {
+    document.getElementById("f_container").classList.add("d-none");
+  } else {
+    document.getElementById("f_container").classList.remove("d-none");
+  }
+  if (document.getElementById("g").innerHTML < 1) {
+    document.getElementById("g_container").classList.add("d-none");
+  } else {
+    document.getElementById("g_container").classList.remove("d-none");
+  }
+  if (document.getElementById("h").innerHTML < 1) {
+    document.getElementById("h_container").classList.add("d-none");
+  } else {
+    document.getElementById("h_container").classList.remove("d-none");
+  }
+  if (document.getElementById("i").innerHTML < 1) {
+    document.getElementById("i_container").classList.add("d-none");
+  } else {
+    document.getElementById("i_container").classList.remove("d-none");
+  }
+  if (document.getElementById("j").innerHTML < 1) {
+    document.getElementById("j_container").classList.add("d-none");
+  } else {
+    document.getElementById("j_container").classList.remove("d-none");
+  }
+  if (document.getElementById("k").innerHTML < 1) {
+    document.getElementById("k_container").classList.add("d-none");
+  } else {
+    document.getElementById("k_container").classList.remove("d-none");
+  }
+  if (document.getElementById("l").innerHTML < 1) {
+    document.getElementById("l_container").classList.add("d-none");
+  } else {
+    document.getElementById("l_container").classList.remove("d-none");
+  }
+  if (document.getElementById("m").innerHTML < 1) {
+    document.getElementById("m_container").classList.add("d-none");
+  } else {
+    document.getElementById("m_container").classList.remove("d-none");
+  }
+  if (document.getElementById("n").innerHTML < 1) {
+    document.getElementById("n_container").classList.add("d-none");
+  } else {
+    document.getElementById("n_container").classList.remove("d-none");
+  }
+  if (document.getElementById("o").innerHTML < 1) {
+    document.getElementById("o_container").classList.add("d-none");
+  } else {
+    document.getElementById("o_container").classList.remove("d-none");
+  }
+  if (document.getElementById("p").innerHTML < 1) {
+    document.getElementById("p_container").classList.add("d-none");
+  } else {
+    document.getElementById("p_container").classList.remove("d-none");
+  }
+  if (document.getElementById("q").innerHTML < 1) {
+    document.getElementById("q_container").classList.add("d-none");
+  } else {
+    document.getElementById("q_container").classList.remove("d-none");
+  }
+  if (document.getElementById("r").innerHTML < 1) {
+    document.getElementById("r_container").classList.add("d-none");
+  } else {
+    document.getElementById("r_container").classList.remove("d-none");
+  }
+  if (document.getElementById("s").innerHTML < 1) {
+    document.getElementById("s_container").classList.add("d-none");
+  } else {
+    document.getElementById("s_container").classList.remove("d-none");
+  }
+  if (document.getElementById("t").innerHTML < 1) {
+    document.getElementById("t_container").classList.add("d-none");
+  } else {
+    document.getElementById("t_container").classList.remove("d-none");
+  }
+  if (document.getElementById("u").innerHTML < 1) {
+    document.getElementById("u_container").classList.add("d-none");
+  } else {
+    document.getElementById("u_container").classList.remove("d-none");
+  }
+  if (document.getElementById("v").innerHTML < 1) {
+    document.getElementById("v_container").classList.add("d-none");
+  } else {
+    document.getElementById("v_container").classList.remove("d-none");
+  }
+  if (document.getElementById("w").innerHTML < 1) {
+    document.getElementById("w_container").classList.add("d-none");
+  } else {
+    document.getElementById("w_container").classList.remove("d-none");
+  }
+  if (document.getElementById("x").innerHTML < 1) {
+    document.getElementById("x_container").classList.add("d-none");
+  } else {
+    document.getElementById("x_container").classList.remove("d-none");
+  }
+  if (document.getElementById("y").innerHTML < 1) {
+    document.getElementById("y_container").classList.add("d-none");
+  } else {
+    document.getElementById("y_container").classList.remove("d-none");
+  }
+  if (document.getElementById("z").innerHTML < 1) {
+    document.getElementById("z_container").classList.add("d-none");
+  } else {
+    document.getElementById("z_container").classList.remove("d-none");
+  }
 }
