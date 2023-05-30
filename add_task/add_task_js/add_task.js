@@ -21,11 +21,17 @@ setURL(
   "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
 );
 
+/**
+ * This Function is use to get the urgentCounter from backend in a global variable
+ */
 async function getUrgentCounter() {
   urgentCounter = (await backend.getItem("urgentCounter")) || 0;
   urgentCounter = parseInt(urgentCounter);
 }
 
+/**
+ * This Function is use to controll if a contact is added so the checkbox will be checked
+ */
 function controlContactCheckbox() {
   let list = document.getElementsByClassName("contacts-list-elem");
   for (let i = 0; i < list.length; i++) {
