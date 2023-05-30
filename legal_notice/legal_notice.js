@@ -26,13 +26,9 @@ function hoverNoticeRespons() {
 
 function checkSize() {
   let size = window.innerWidth;
-  console.log(size);
   if (size <= 1024) {
-    console.log("smaller than 1024");
     sidebarTabled();
   } else if (size > 1024) {
-    console.log("bigger than 1024");
-
     sidebarDesktop();
     hoverNoticeHtml();
   }

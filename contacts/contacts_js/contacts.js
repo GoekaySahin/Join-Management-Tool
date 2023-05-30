@@ -282,7 +282,6 @@ function getNewColor() {
 
   for (let f = 0; f < 6; f++) {
     color = color + symbols[Math.floor(Math.random() * 21)];
-    console.log(color);
   }
 }
 
@@ -414,7 +413,6 @@ function checkSetupMapsContact(contacts, map, index) {
   if (index.contacts == undefined) {
     return;
   } else {
-    console.log(index.contacts);
     if (index.contacts.indexOf(selectedContact.name) >= 0) {
       let i = index.contacts.indexOf(selectedContact.name);
       index.contacts.splice(i, 1);
@@ -422,7 +420,6 @@ function checkSetupMapsContact(contacts, map, index) {
         index.letters = index.letters.split(",");
       }
       index.letters.splice(i, 1);
-      console.log(contacts.name);
       index.letters.splice(i, 0, contacts.firstLetters);
       index.contacts.splice(i, 0, contacts.name);
     }

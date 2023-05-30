@@ -7,5 +7,4 @@ async function loadAtStart() {
 
   let ShowCurrentUserNameForSummery =
     JSON.parse(await backend.getItem("currentUser")) || [];
-  console.log(ShowCurrentUserNameForSummery);
 }
