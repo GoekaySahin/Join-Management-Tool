@@ -789,3 +789,15 @@ function addNameNewContactEdit(index) {
                                    </div>
                                 </div>`;
 }
+
+function renderSubtaskPopupHTML(i, element, id) {
+  return `
+      <div id='subtask_checking${i}'>
+        <p class="subtext" id="sub_p${i}">${element}</p>
+        <div  class="sub-checkmark d-none">
+          <img class="sub-img-setup d-none" id="cancel_sub${i}" src="../add_task/img-add_task/x_blue.png" onclick="removeProgress(${i}, ${id})">
+          <span id="span${i}">|</span>
+          <img  class="sub-img-setup" id="add_sub${i}" src="../add_task/img-add_task/check_blue.png" onclick="addProgress(${i}, ${id})">
+        </div>
+      </div>`; // beim checken hacken entfernen und das P element mit text-decoration: line-through; durchstreichen
+}
