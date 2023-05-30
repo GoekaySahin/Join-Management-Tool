@@ -1,31 +1,29 @@
-async function openEditContactsToSelect(id) {
-  let element = document.getElementById("contacts-drop-down-edit");
-  let doneButton = document.getElementById("ok");
-
+function editSelectBtn(element, doneButton) {
   if (doneButton.disabled == false) {
     doneButton.disabled = true;
   } else if (doneButton.disabled == true) {
     doneButton.disabled = false;
   }
   element.classList.toggle("d-none");
+}
+
+async function openEditContactsToSelect(id) {
+  let element = document.getElementById("contacts-drop-down-edit");
+  let doneButton = document.getElementById("ok");
+
+  editSelectBtn(element, doneButton);
 
   renderContactsEdit();
   setTimeout(checkExistContact, 100, id);
   setSelecdetContacts(id);
 }
 
-function checkExistContact(id) {
-  let element = document.getElementById("contacts-drop-down-edit");
-  /* if (element.classList.contains("d-none")) {
-    return;
-  } */
-  let map = wichSection(id);
-  let contactOnCard = map.get(`${id}`)["contacts"];
-
-  contactOnCard = checkIfString(contactOnCard);
-  selectedContacts = contactOnCard;
+function existContactLoop() {
   for (let i = 0; i < selectedContacts.length; i++) {
     const name = selectedContacts[i];
+    if (name == "") {
+      continue;
+    }
     if (selectedContacts.indexOf(name) == -1) {
       selectedContacts.push(name);
     }
@@ -38,19 +36,29 @@ function checkExistContact(id) {
   }
 }
 
-async function renderContactsEdit() {
-  let contactsEditRender =
-    (await JSON.parse(backend.getItem("contacts"))) || [];
-  /*   let contactsSafe = selectedContacts;
-   */ let dropdown = document.getElementById("add_task_new_render_container");
+function checkExistContact(id) {
+  let map = wichSection(id);
+  let contactOnCard = map.get(`${id}`)["contacts"];
+
+  contactOnCard = checkIfString(contactOnCard);
+  selectedContacts = contactOnCard;
+  existContactLoop();
+}
+
+function sortContactsEdit(contactsEditRender) {
+  let dropdown = document.getElementById("add_task_new_render_container");
   dropdown.innerHTML = "";
-  /*   selectedContacts = contactsSafe;
-   */
   contactsEditRender.sort((a, b) => (a.name > b.name ? 1 : -1));
   for (let i = 0; i < contactsEditRender.length; i++) {
     const element = contactsEditRender[i];
     dropdown.innerHTML += generateHTMLcontacts(element, i);
   }
+}
+
+async function renderContactsEdit() {
+  let contactsEditRender =
+    (await JSON.parse(backend.getItem("contacts"))) || [];
+  sortContactsEdit(contactsEditRender);
 }
 
 async function contactsCheckboxUpdate(id) {
@@ -79,20 +87,23 @@ async function safeEdit(id, selectedContacts) {
     id = globalId;
   }
   let map = wichSection(id);
-  if (map == todosMap) {
-    setupTodosMap(id, selectedContacts);
-  } else if (map == progressesMap) {
-    setupTodosMap(id, selectedContacts);
-  } else if (map == feedbacksMap) {
-    setupTodosMap(id, selectedContacts);
-  } else if (map == donesMap) {
-    setupTodosMap(id, selectedContacts);
-  }
+
+  setupMap(id, selectedContacts);
   await saveMaps();
 }
+/* } else if (map == progressesMap) {
+    setupMap(id, selectedContacts);
+  } else if (map == feedbacksMap) {
+    setupMap(id, selectedContacts);
+  } else if (map == donesMap) {
+    setupMap(id, selectedContacts);
+  } */
 
-function setupTodosMap(id, selectedContacts) {
+function setupMap(id, selectedContacts) {
   let map = wichSection(id);
+  if (map == undefined) {
+    debugger;
+  }
   let category = map.get(`${id}`)["category"];
   let categorycolor = map.get(`${id}`)["categorycolor"];
   let colors = map.get(`${id}`)["colors"];
@@ -119,7 +130,7 @@ function setupTodosMap(id, selectedContacts) {
     title: `${title}`,
   });
 }
-
+/* 
 function setupFeedbacksMap(id, selectedContacts) {
   let category = feedbacksMap.get(`${id}`)["category"];
   let categorycolor = feedbacksMap.get(`${id}`)["categorycolor"];
@@ -203,7 +214,7 @@ function setupProgressesMap(id, selectedContacts) {
     title: `${title}`,
   });
 }
-
+ */
 async function checkedSettingEdit(array) {
   let people = await JSON.parse(backend.getItem("contacts"));
   if (people.length > 1) {

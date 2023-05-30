@@ -307,32 +307,32 @@ function setImportanceButtons(
   importance3Colored.classList.add("d-none");
 }
 
-async function renderContactsAddTask(invateNewContactName) {
+async function renderContactsAddTask(invateNewContactName, id) {
   let dropdown = document.getElementById("contacts-drop-down");
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
-  loopForContacts(contacts, dropdown);
+  loopForContacts(contacts, dropdown, id);
   checkedSetting(invateNewContactName);
 }
 
-function loopForContacts(contacts, dropdown) {
+function loopForContacts(contacts, dropdown, id) {
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     if (dropdown == null) {
       dropdown = document.getElementById("contacts-drop-down-edit");
     }
-    dropdown.innerHTML += generateHTMLcontactsBoard(element, i);
+    dropdown.innerHTML += generateHTMLcontactsBoard(element, i, id);
   }
 }
 
 let contactsOnTask = [];
 
-async function addContactToTaskBoard(i) {
+async function addContactToTaskBoard(i, id) {
   let contact = document.getElementById("contacts-checkbox" + i).value;
   getCheckboxValue(contact);
 
   checkSelectedContacts(contact);
-  await safeEdit(undefined, selectedContacts);
+  await safeEdit(id, selectedContacts);
   contactsOnTask = selectedContacts;
   renderContactsSelection(selectedContacts);
 }
@@ -808,7 +808,7 @@ async function invateCreateNewContact(invateNewContactName, email, id) {
 
   newContactAddTaskReturn();
   clearContactsBeforeRendering(indexLength);
-  renderContactsAddTask(invateNewContactName);
+  renderContactsAddTask(invateNewContactName, id);
   renderContactsSelection(contacts);
 }
 

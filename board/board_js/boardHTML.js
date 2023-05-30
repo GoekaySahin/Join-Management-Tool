@@ -605,13 +605,13 @@ function generateHTMLcontacts(element, i) {
     `;
 }
 
-function generateHTMLcontactsBoard(element, i) {
+function generateHTMLcontactsBoard(element, i, id) {
   return `
       <div class="contacts-list-elem">
         <label class="control control-checkbox" id="selected-contact${i}">
           <div class="contacts-list-elem-box" id="${element["name"]}">
             <span class="rendered-contact-name">${element["name"]}</span>
-            <input onclick="addContactToTaskBoard(${i})" id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />
+            <input onclick="addContactToTaskBoard(${i}, ${id})" id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />
             <div id="control-indicator-${i}" class="control-indicator"></div>
           </div>
         </label>

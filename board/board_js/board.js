@@ -254,6 +254,9 @@ function getFirstLetter(contacts, idCounter) {
 function setupForGetFirstLetter(contacts, firstLetters, letterList, nameList) {
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
+    if (element == "") {
+      continue;
+    }
     let name = element.split(" ");
     let justName = `${name[0]} ${name[1]}`;
     let firstLetter = name[0].split("");
@@ -626,6 +629,9 @@ function renderContacts(section, id) {
 function checkIfString(element) {
   if (typeof element === "string") {
     element = element.split(",");
+    if (element[0] == "") {
+      element.splice(0, 1);
+    }
   }
   return element;
 }
@@ -1182,6 +1188,7 @@ function edit(id) {
     contactsInEdit.push(contact);
   }
   setTimeout(renderContactsSelection, 150, contactsInEdit);
+  setTimeout(ContactsDivDisplay, 1, contactsInEdit);
 
   showEdit(title, description, id);
   dateFuture();
@@ -1192,7 +1199,6 @@ function edit(id) {
   openEditContactsToSelect(id); */
   setTimeout(checkExistContact, 100, id);
   editDnone();
-  setTimeout(ContactsDivDisplay, 100, contactsInEdit);
   setEditPrio(id);
 }
 
@@ -1346,6 +1352,7 @@ async function setColorsExist() {
 }
 
 async function editDone(id) {
+  /// KKKKKKKKÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜRRRRRRRRRRRRRZZZZZZZZZZZZZZZZZZZEEEEEEEEENNNNNNNNNNNNNN
   addEditClasses();
   toggleEditTitle();
   checkExistContact(id);
