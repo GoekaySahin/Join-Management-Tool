@@ -1,9 +1,12 @@
-/* Lädt signUp.html und zurück kommt man dann auf startpage.html */
 let currentUser;
 async function init() {
   await retrieveUsers();
 }
 
+/**
+ * This function checks the inputs for login
+ * @returns if input is not correct
+ */
 async function checkInput() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("pw").value;
@@ -21,6 +24,10 @@ async function checkInput() {
   }
 }
 
+/**
+ * This function is to set the right user wich login
+ * @param {string} element name of the user
+ */
 async function loginSteps(element) {
   currentUser = element;
   userAsJson = JSON.stringify(currentUser);
@@ -41,12 +48,14 @@ function forgotPassword() {
 }
 
 function backFromForgot() {
-  document.getElementById("blue-screen").classList.add("blue-screen");
-  document
-    .getElementById("forgot_password")
-    .classList.add("shadow-drop-2-center");
-  document.getElementById("forgot_password").classList.add("scale-down-center");
-  document.getElementById("email").classList.add("slide-password-email");
+  let buleScreen = document.getElementById("blue-screen");
+  let email = document.getElementById("email");
+  let forgot = document.getElementById("forgot_password");
+
+  buleScreen.classList.add("blue-screen");
+  forgot.classList.add("shadow-drop-2-center");
+  forgot.classList.add("scale-down-center");
+  email.classList.add("slide-password-email");
 
   setTimeout(backToStart, 125);
 }
@@ -55,6 +64,10 @@ function backFromReset() {
   forgotPassword();
 }
 
+/**
+ * This funtion send the mail if input is right
+ * @returns boolean if input has value or not
+ */
 function sendMeTheEmail() {
   var email = document.getElementById("email").value;
   if (email == "") {
@@ -67,6 +80,10 @@ function sendMeTheEmail() {
   }
 }
 
+/**
+ * This function can use to reset the pw
+ * @returns if no value is in input
+ */
 function resetPassword() {
   let password = document.getElementById("new-password").value;
   let confirmedPassword = document.getElementById("confirm-password").value;
@@ -85,10 +102,16 @@ function resetPassword() {
   return true;
 }
 
+/**
+ * Open as User greet User
+ */
 function openSummaryAsUser() {
   window.location = "../../summary/summary.html";
 }
 
+/**
+ * Open as guest greet guest
+ */
 async function openSummary() {
   currentUser = "Guest user";
   userAsJson = JSON.stringify(currentUser);

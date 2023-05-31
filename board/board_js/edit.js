@@ -7,6 +7,10 @@ function editSelectBtn(element, doneButton) {
   element.classList.toggle("d-none");
 }
 
+/**
+ * This function open the edit version to select contacts
+ * @param {number} id of the map
+ */
 async function openEditContactsToSelect(id) {
   let element = document.getElementById("contacts-drop-down-edit");
   let doneButton = document.getElementById("ok");
@@ -15,7 +19,7 @@ async function openEditContactsToSelect(id) {
 
   renderContactsEdit();
   setTimeout(checkExistContact, 100, id);
-  setSelecdetContacts(id);
+  setSelectedContacts(id);
 }
 
 function existContactLoop() {
@@ -45,6 +49,10 @@ function checkExistContact(id) {
   existContactLoop();
 }
 
+/**
+ * This function sorts the contacts
+ * @param {array} contactsEditRender wich get sorted
+ */
 function sortContactsEdit(contactsEditRender) {
   let dropdown = document.getElementById("add_task_new_render_container");
   dropdown.innerHTML = "";
@@ -61,8 +69,12 @@ async function renderContactsEdit() {
   sortContactsEdit(contactsEditRender);
 }
 
+/**
+ * This function set the checkbox after changing
+ * @param {number} id of the map
+ */
 async function contactsCheckboxUpdate(id) {
-  let contacts = await editContactsPopup(id);
+  let contacts = await editContactsPopup();
   let docIndex = contacts.length - 1;
   let name = contacts[docIndex];
   let docElement = document.getElementById(name);
@@ -91,14 +103,12 @@ async function safeEdit(id, selectedContacts) {
   setupMap(id, selectedContacts);
   await saveMaps();
 }
-/* } else if (map == progressesMap) {
-    setupMap(id, selectedContacts);
-  } else if (map == feedbacksMap) {
-    setupMap(id, selectedContacts);
-  } else if (map == donesMap) {
-    setupMap(id, selectedContacts);
-  } */
 
+/**
+ * Take the right information an set the edit
+ * @param {number} id of the map
+ * @param {array} selectedContacts of the contacts
+ */
 function setupMap(id, selectedContacts) {
   let map = wichSection(id);
   if (map == undefined) {
@@ -130,90 +140,10 @@ function setupMap(id, selectedContacts) {
     title: `${title}`,
   });
 }
-/* 
-function setupFeedbacksMap(id, selectedContacts) {
-  let category = feedbacksMap.get(`${id}`)["category"];
-  let categorycolor = feedbacksMap.get(`${id}`)["categorycolor"];
-  let colors = feedbacksMap.get(`${id}`)["colors"];
-  let contacts = selectedContacts;
-  let date = feedbacksMap.get(`${id}`)["date"];
-  let description = feedbacksMap.get(`${id}`)["description"];
-  let importance = feedbacksMap.get(`${id}`)["importance"];
-  let letters = feedbacksMap.get(`${id}`)["letters"];
-  let subtask = feedbacksMap.get(`${id}`)["subtask"];
-  let subtaskStatus = feedbacksMap.get(`${id}`)["subtaskStatus"];
-  let title = feedbacksMap.get(`${id}`)["title"];
 
-  feedbacksMap.set(`${id}`, {
-    category: `${category}`,
-    categorycolor: `${categorycolor}`,
-    colors: `${colors}`,
-    contacts: `${contacts}`,
-    date: `${date}`,
-    description: `${description}`,
-    importance: `${importance}`,
-    letters: `${letters}`,
-    subtask: `${subtask}`,
-    subtaskStatus: `${subtaskStatus}`,
-    title: `${title}`,
-  });
-}
-
-function setupDonesMap(id, selectedContacts) {
-  let category = donesMap.get(`${id}`)["category"];
-  let categorycolor = donesMap.get(`${id}`)["categorycolor"];
-  let colors = donesMap.get(`${id}`)["colors"];
-  let contacts = selectedContacts;
-  let date = donesMap.get(`${id}`)["date"];
-  let description = donesMap.get(`${id}`)["description"];
-  let importance = donesMap.get(`${id}`)["importance"];
-  let letters = donesMap.get(`${id}`)["letters"];
-  let subtask = donesMap.get(`${id}`)["subtask"];
-  let subtaskStatus = donesMap.get(`${id}`)["subtaskStatus"];
-  let title = donesMap.get(`${id}`)["title"];
-
-  donesMap.set(`${id}`, {
-    category: `${category}`,
-    categorycolor: `${categorycolor}`,
-    colors: `${colors}`,
-    contacts: `${contacts}`,
-    date: `${date}`,
-    description: `${description}`,
-    importance: `${importance}`,
-    letters: `${letters}`,
-    subtask: `${subtask}`,
-    subtaskStatus: `${subtaskStatus}`,
-    title: `${title}`,
-  });
-}
-
-function setupProgressesMap(id, selectedContacts) {
-  let category = progressesMap.get(`${id}`)["category"];
-  let categorycolor = progressesMap.get(`${id}`)["categorycolor"];
-  let colors = progressesMap.get(`${id}`)["colors"];
-  let contacts = selectedContacts;
-  let date = progressesMap.get(`${id}`)["date"];
-  let description = progressesMap.get(`${id}`)["description"];
-  let importance = progressesMap.get(`${id}`)["importance"];
-  let letters = progressesMap.get(`${id}`)["letters"];
-  let subtask = progressesMap.get(`${id}`)["subtask"];
-  let subtaskStatus = progressesMap.get(`${id}`)["subtaskStatus"];
-  let title = progressesMap.get(`${id}`)["title"];
-
-  progressesMap.set(`${id}`, {
-    category: `${category}`,
-    categorycolor: `${categorycolor}`,
-    colors: `${colors}`,
-    contacts: `${contacts}`,
-    date: `${date}`,
-    description: `${description}`,
-    importance: `${importance}`,
-    letters: `${letters}`,
-    subtask: `${subtask}`,
-    subtaskStatus: `${subtaskStatus}`,
-    title: `${title}`,
-  });
-}
+/**
+ * This function will check the contacts that are invated in the edit version
+ * @param {array} array of contacts
  */
 async function checkedSettingEdit(array) {
   let people = await JSON.parse(backend.getItem("contacts"));

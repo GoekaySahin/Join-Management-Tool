@@ -801,3 +801,31 @@ function renderSubtaskPopupHTML(i, element, id) {
         </div>
       </div>`; // beim checken hacken entfernen und das P element mit text-decoration: line-through; durchstreichen
 }
+
+function renderShowEdit(
+  colors,
+  popupTitle,
+  cardConten,
+  popupDescription,
+  date,
+  prio,
+  assing,
+  contact,
+  editBox,
+  title,
+  description,
+  id
+) {
+  colors.classList.add("d-none");
+  popupTitle.innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
+  popupTitle.classList.add("set-title");
+  cardConten.classList.add("set-content");
+  popupDescription.innerHTML = descriptionHTML(description);
+  date.innerHTML = dateHTML();
+  prio.classList.add("correctPrio");
+  prio.innerHTML = priorityHTML();
+  assing.innerHTML += assignedHTML(id);
+  contact.classList.add("flex-contact");
+  editBox.innerHTML += `<button class="ok-text ok" id="ok" onclick="editDone(${id})">Done</button>
+                        <button class="ok-text ok ok-delete" id="ok" onclick="deleteTask(${id})">Delete</button>`;
+}

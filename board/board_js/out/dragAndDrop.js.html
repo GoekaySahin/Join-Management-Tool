@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: dragAndDrop.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: dragAndDrop.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let dragItem = null;
+let secTodo = document.getElementById("todo-board");
+let secProgress = document.getElementById("progress-board");
+let secFeedback = document.getElementById("feedback-board");
+let secDone = document.getElementById("done-board");
+let draggedItem;
+
+/**
+ * This function will make it possible for the drag and drop function
+ * ist takes the field where drag and drop is possible
+ */
+async function activateDragAndDrop() {
+  let card = document.getElementsByClassName("card");
+  let choice = document.getElementsByClassName("choice");
+
+  for (let i of card) {
+    i.addEventListener("dragstart", dragStart);
+    i.addEventListener("dragend", dragEnd);
+  }
+
+  for (j of choice) {
+    j.addEventListener("dragover", dragOver);
+    j.addEventListener("dragenter", dragEnter);
+    j.addEventListener("dragleave", dragLeave);
+    j.addEventListener("drop", Drop);
+  }
+}
+
+/**
+ * Where the card come from where it goes
+ */
+function setFeedback() {
+  secTodo.addEventListener("dragend", (event) => {
+    event.preventDefault();
+    comeTo = "todo";
+  });
+  secTodo.addEventListener("dragstart", (event) => {
+    event.preventDefault();
+    comeFrom = "todo";
+  });
+
+  secProgress.addEventListener("dragend", (event) => {
+    event.preventDefault();
+    comneTo = "progress";
+  });
+
+  secProgress.addEventListener("dragstart", (event) => {
+    event.preventDefault();
+    comeFrom = "progress";
+  });
+
+  secFeedback.addEventListener("dragend", (event) => {
+    event.preventDefault();
+    comeTo = "feedback";
+  });
+
+  secFeedback.addEventListener("dragstart", (event) => {
+    event.preventDefault();
+    comeFrom = "feedback";
+  });
+
+  secDone.addEventListener("dragend", (event) => {
+    event.preventDefault();
+    comeTo = "done";
+  });
+
+  secDone.addEventListener("dragstart", (event) => {
+    event.preventDefault();
+    comeFrom = "done";
+  });
+}
+
+/**
+ * This function will be able the dragstart and make the card on the place invisible
+ *
+ * @returns if screen width is smaller tahn 1024px dragstar ist not able
+ */
+function dragStart() {
+  if (window.innerWidth &lt; 1024) {
+    return;
+  }
+  dragItem = this;
+  comeFrom = this.parentNode;
+  draggedItem = this;
+
+  setTimeout(() => (this.style.display = "none"), 0);
+}
+
+/**
+ * This functionset the card on drag end and make it visible on the right place
+ * @returns if screen width is smaller tahn 1024px dragstar ist not able
+ */
+function dragEnd() {
+  if (window.innerWidth &lt; 1024) {
+    return;
+  }
+  setTimeout(() => (this.style.display = "block"), 0);
+
+  dragItem = null;
+  checkCards();
+}
+
+async function Drop() {
+  if (window.innerWidth &lt; 1024) {
+    return;
+  }
+  this.append(dragItem);
+  this.classList.remove("hover");
+  comeTo = this.parentNode;
+  /*   setTimeout(ScrollbarExist, 250); */
+}
+
+function dragOver(e) {
+  if (window.innerWidth &lt; 1024) {
+    return;
+  }
+  this.classList.add("hover");
+  e.preventDefault();
+}
+
+function dragEnter(e) {
+  if (window.innerWidth &lt; 1024) {
+    return;
+  }
+  e.preventDefault();
+}
+
+function dragLeave() {
+  if (window.innerWidth &lt; 1024) {
+    return;
+  }
+  this.classList.remove("hover");
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ContactsDivDisplay">ContactsDivDisplay</a></li><li><a href="global.html#activateDragAndDrop">activateDragAndDrop</a></li><li><a href="global.html#addContactToTaskBoard">addContactToTaskBoard</a></li><li><a href="global.html#addNewCategory">addNewCategory</a></li><li><a href="global.html#addSubtask">addSubtask</a></li><li><a href="global.html#addSubtaskToTask">addSubtaskToTask</a></li><li><a href="global.html#addToTasks">addToTasks</a></li><li><a href="global.html#allFieldsFilled">allFieldsFilled</a></li><li><a href="global.html#backToSubtasks">backToSubtasks</a></li><li><a href="global.html#buttonImportanceCheck">buttonImportanceCheck</a></li><li><a href="global.html#cBoxSetting">cBoxSetting</a></li><li><a href="global.html#categorySelectReset">categorySelectReset</a></li><li><a href="global.html#checkButtonImportanceAddTask">checkButtonImportanceAddTask</a></li><li><a href="global.html#checkColorAndLetter">checkColorAndLetter</a></li><li><a href="global.html#checkContactsIfEmpty">checkContactsIfEmpty</a></li><li><a href="global.html#checkIfNewContactExist">checkIfNewContactExist</a></li><li><a href="global.html#checkSelectedContacts">checkSelectedContacts</a></li><li><a href="global.html#checkWichMap">checkWichMap</a></li><li><a href="global.html#checkedSettingEdit">checkedSettingEdit</a></li><li><a href="global.html#clearContactsBeforeRendering">clearContactsBeforeRendering</a></li><li><a href="global.html#compareColorAndLetter">compareColorAndLetter</a></li><li><a href="global.html#contactToSave">contactToSave</a></li><li><a href="global.html#contactsCheckboxUpdate">contactsCheckboxUpdate</a></li><li><a href="global.html#containsCategoryColor">containsCategoryColor</a></li><li><a href="global.html#creatNewContactAddTask">creatNewContactAddTask</a></li><li><a href="global.html#creatNewContactEdit">creatNewContactEdit</a></li><li><a href="global.html#createNewSubtask">createNewSubtask</a></li><li><a href="global.html#dragEnd">dragEnd</a></li><li><a href="global.html#dragStart">dragStart</a></li><li><a href="global.html#fieldsFilled">fieldsFilled</a></li><li><a href="global.html#fillCategory">fillCategory</a></li><li><a href="global.html#fillImportanceButton">fillImportanceButton</a></li><li><a href="global.html#getCheckboxValue">getCheckboxValue</a></li><li><a href="global.html#getCurrentContacts">getCurrentContacts</a></li><li><a href="global.html#getFirstLetterInvate">getFirstLetterInvate</a></li><li><a href="global.html#getNewColorContacts">getNewColorContacts</a></li><li><a href="global.html#getUrgentCounter">getUrgentCounter</a></li><li><a href="global.html#goBackToSelectCategory">goBackToSelectCategory</a></li><li><a href="global.html#importanceAddOpa">importanceAddOpa</a></li><li><a href="global.html#importanceRemoveOpa">importanceRemoveOpa</a></li><li><a href="global.html#invateCreateNewContact">invateCreateNewContact</a></li><li><a href="global.html#loadAtStartTask">loadAtStartTask</a></li><li><a href="global.html#moreThanTwoContactsSmallView">moreThanTwoContactsSmallView</a></li><li><a href="global.html#oneContactSmallView">oneContactSmallView</a></li><li><a href="global.html#openCategoriesToSelect">openCategoriesToSelect</a></li><li><a href="global.html#openContactsToSelect">openContactsToSelect</a></li><li><a href="global.html#openEditContactsToSelect">openEditContactsToSelect</a></li><li><a href="global.html#renderContactsAddTask">renderContactsAddTask</a></li><li><a href="global.html#renderContactsSelection">renderContactsSelection</a></li><li><a href="global.html#renderSubtasks">renderSubtasks</a></li><li><a href="global.html#resetAddTask">resetAddTask</a></li><li><a href="global.html#resetAddedButton">resetAddedButton</a></li><li><a href="global.html#resetTasksInputs">resetTasksInputs</a></li><li><a href="global.html#saveTaskAndCounter">saveTaskAndCounter</a></li><li><a href="global.html#selectCategoryColor">selectCategoryColor</a></li><li><a href="global.html#selectColorAndLetter">selectColorAndLetter</a></li><li><a href="global.html#setColorForDots">setColorForDots</a></li><li><a href="global.html#setConatctShow">setConatctShow</a></li><li><a href="global.html#setFeedback">setFeedback</a></li><li><a href="global.html#setImportanceBoard">setImportanceBoard</a></li><li><a href="global.html#setImportanceButtons">setImportanceButtons</a></li><li><a href="global.html#setNewTask">setNewTask</a></li><li><a href="global.html#setupMap">setupMap</a></li><li><a href="global.html#showCategoryColor">showCategoryColor</a></li><li><a href="global.html#showErrorCategory">showErrorCategory</a></li><li><a href="global.html#sortContactsEdit">sortContactsEdit</a></li><li><a href="global.html#spliceEmptyObject">spliceEmptyObject</a></li><li><a href="global.html#subtaskChecked">subtaskChecked</a></li><li><a href="global.html#subtaskDescription">subtaskDescription</a></li><li><a href="global.html#subtaskSetBack">subtaskSetBack</a></li><li><a href="global.html#twoContactsSmallView">twoContactsSmallView</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed May 31 2023 17:58:16 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

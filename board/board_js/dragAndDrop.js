@@ -5,6 +5,10 @@ let secFeedback = document.getElementById("feedback-board");
 let secDone = document.getElementById("done-board");
 let draggedItem;
 
+/**
+ * This function will make it possible for the drag and drop function
+ * ist takes the field where drag and drop is possible
+ */
 async function activateDragAndDrop() {
   let card = document.getElementsByClassName("card");
   let choice = document.getElementsByClassName("choice");
@@ -22,6 +26,9 @@ async function activateDragAndDrop() {
   }
 }
 
+/**
+ * Where the card come from where it goes
+ */
 function setFeedback() {
   secTodo.addEventListener("dragend", (event) => {
     event.preventDefault();
@@ -63,6 +70,11 @@ function setFeedback() {
   });
 }
 
+/**
+ * This function will be able the dragstart and make the card on the place invisible
+ *
+ * @returns if screen width is smaller tahn 1024px dragstar ist not able
+ */
 function dragStart() {
   if (window.innerWidth < 1024) {
     return;
@@ -74,6 +86,10 @@ function dragStart() {
   setTimeout(() => (this.style.display = "none"), 0);
 }
 
+/**
+ * This functionset the card on drag end and make it visible on the right place
+ * @returns if screen width is smaller tahn 1024px dragstar ist not able
+ */
 function dragEnd() {
   if (window.innerWidth < 1024) {
     return;

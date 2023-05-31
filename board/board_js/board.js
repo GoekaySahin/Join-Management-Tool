@@ -25,12 +25,12 @@ let progress = "progress";
 let done = "done";
 let idCounter = 0;
 let actualContacts;
+let globalId;
 
 /**
  * This function Initialized some functions that need to run with onload of the body
  *
  */
-
 async function init() {
   await includeHTML();
   await downloadFromServer();
@@ -47,6 +47,11 @@ async function init() {
   setTimeout(load, 500);
 }
 
+/**
+ * This function will start the popup function to show big view
+ *
+ * @param {number} id of the map
+ */
 function openPopup(id) {
   generatePopup(id);
   popup();
@@ -55,6 +60,11 @@ function openPopup(id) {
   setTimeout(toggleArrows, 100);
 }
 
+/**
+ * This function returns if value is null otherwise it will change the section bg
+ *
+ * @returns return if no value
+ */
 function hoverBoardHtml() {
   let boardBG = document.getElementById("board_bg");
   if (boardBG == null) {
@@ -65,6 +75,11 @@ function hoverBoardHtml() {
   boardBG.classList.remove("section-background");
 }
 
+/**
+ * This function will change the background for responsive view
+ *
+ * @returns if value is null
+ */
 function hoverBoardRespons() {
   let boardBG = document.getElementById("board_bg");
   if (boardBG == null) {
@@ -76,10 +91,9 @@ function hoverBoardRespons() {
 
 /**
  * Remove the display none from the div's and show the popup
- * scroll to the top for good view (Layout)
+ * scroll to the top for good view
  * block scolling while view on popup
  */
-
 function popup(id) {
   let background = document.getElementById("popup");
   let card = document.getElementById("popup_card");
@@ -94,6 +108,12 @@ function popup(id) {
   setupForPopup(card, background);
 }
 
+/**
+ * This function is to apply the standart view on the popup
+ *
+ * @param {variable} card to show or hide
+ * @param {*} background show or hide
+ */
 function setupForPopup(card, background) {
   window.scrollTo(0, 0);
   card.classList.toggle("d-none");
@@ -168,7 +188,6 @@ function draggableFalse() {
 /**
  * abled the dragAndDrop
  */
-
 function draggableTrue() {
   let cards = document.getElementsByClassName("card");
 
@@ -179,6 +198,11 @@ function draggableTrue() {
   }
 }
 
+/**
+ * This function starts the render function for the tasks
+ *
+ * @param {string} section in wich section it will be rendered
+ */
 function renderAddTask(section) {
   let addTask = document.getElementById("add_task");
   addTask.innerHTML = renderAddTaskHTML(section);
@@ -229,9 +253,12 @@ function closeAddTask() {
 }
 
 /**
- * get the json data
+ * This function will get the firstletter from all the contactas an return it as an array
+ *
+ * @param {array} contacts
+ * @param {number} idCounter
+ * @returns list of splitted names for small view colored background
  */
-
 function getFirstLetter(contacts, idCounter) {
   let namesSplit = new Map();
   let nameList = [];
@@ -276,9 +303,10 @@ function setupForGetFirstLetter(contacts, firstLetters, letterList, nameList) {
   return nameList;
 }
 
-/* 
-This Function is to creat a new color for the contacts
-*/
+/**
+ *  This function creats new colors for background of fristletter colored
+ * @returns a number of colors after a hastag randomly
+ */
 function getNewColorContact() {
   let symbols, color;
   symbols = "0123456789ABCDEF";
@@ -290,6 +318,9 @@ function getNewColorContact() {
   return color;
 }
 
+/**
+ * Check the idCounter if empty than set to zero
+ */
 function checkIdCounter() {
   loadCounter();
   if (idCounter == "leer") {
@@ -297,15 +328,21 @@ function checkIdCounter() {
   }
 }
 
+/**
+ * This function is to check and creat new colors for contacts
+ *
+ * @param {array} contacts of contacts
+ * @returns
+ */
 async function checkContactsColor(contacts) {
   let contactsBackend = await JSON.parse(backend.getItem("contacts"));
   let contactData = [];
 
-  contactsData = creatNewColors(contact, contactData);
+  contactData = creatNewColors(contacts, contactData, contactsBackend);
   return contactData;
 }
 
-function creatNewColors(contacts, contactData) {
+function creatNewColors(contacts, contactData, contactsBackend) {
   for (let j = 0; j < contacts.length; j++) {
     const contact = contacts[j];
     for (let i = 0; i < contactsBackend.length; i++) {
@@ -322,15 +359,21 @@ function creatNewColors(contacts, contactData) {
   return contactData;
 }
 
+/**
+ * This function start the generating of the card in the sections
+ */
 function generateCards() {
   setTasks("todo");
-
   setCards("progress");
   setCards("feedback");
   setCards("done");
-  return;
 }
 
+/**
+ * This function will creat new tasks that come from add-task.html or direct from board-add-task
+ *
+ * @param {string} section in wich the task will created
+ */
 async function setTasks(section) {
   let map = checkWichMap(section);
   let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
@@ -355,6 +398,9 @@ async function checkSetTask(map, tasks, doneCoordinates, colors) {
   }
 }
 
+/**
+ * Delete the tasks, that are generated allready, and save the tasks on board
+ */
 async function saveAndResetCounterAndTask() {
   await backend.deleteItem("tasks");
   tasks = [];
@@ -362,6 +408,14 @@ async function saveAndResetCounterAndTask() {
   currentId = idCounter;
 }
 
+/**
+ * This function is creat the new card on board and save the idcounter
+ *
+ * @param {string} map the map itself as string
+ * @param {number} key of the map
+ * @param {string} colors of the contacts small view colored circle
+ * @param {array} doneCoordinates wich are done wich should be done
+ */
 async function creatNewCard(map, key, colors, doneCoordinates) {
   let namesSplit = splitName(key);
   doneCoordinates = setDoneCoordinates(doneCoordinates);
@@ -372,6 +426,11 @@ async function creatNewCard(map, key, colors, doneCoordinates) {
   idCounterToBackend();
 }
 
+/**
+ *  This function is to set the subtasks on the card small view and how much are done or not
+ * @param {array} doneCoordinates of the subtasks that are done or not
+ * @returns
+ */
 function setDoneCoordinates(doneCoordinates) {
   let subtaskLength = key["subtasks"].length;
   if (subtaskLength > 0) {
@@ -382,6 +441,12 @@ function setDoneCoordinates(doneCoordinates) {
   return doneCoordinates;
 }
 
+/**
+ * This function is to check the color and safe it
+ *
+ * @param {map} key is the map of the contact
+ * @returns
+ */
 async function defineColors(key) {
   if (key[`colors`] == undefined) {
     return (colors = await checkContactsColor(key["contacts"]));
@@ -390,6 +455,11 @@ async function defineColors(key) {
   }
 }
 
+/**
+ *  This function will split the name and get the firstletters
+ * @param {map} key is the map of the contact
+ * @returns
+ */
 function splitName(key) {
   if (key["letters"] == null || key["letters"][0] == null) {
     let contactsLetter = key["contacts"];
@@ -405,6 +475,15 @@ function splitName(key) {
   return namesSplit;
 }
 
+/**
+ * This function will creat the map in the right section and later it will saved
+ *
+ * @param {map} map the map itself
+ * @param {number} key key of the map
+ * @param {number} colors color of the contact
+ * @param {map} namesSplit name and firstletters
+ * @param {array} doneCoordinates of the subtasks done or not
+ */
 function setNewCard(map, key, colors, namesSplit, doneCoordinates) {
   map.set(`${idCounter}`, {
     category: key["category"],
@@ -422,6 +501,11 @@ function setNewCard(map, key, colors, namesSplit, doneCoordinates) {
   });
 }
 
+/**
+ * This function will render the card in the right section
+ *
+ * @param {string} section string of the section where it will be rendered
+ */
 function setCardTodo(section) {
   let todo = document.getElementById("todo-board");
   todo.innerHTML = "";
@@ -434,6 +518,11 @@ function setCardTodo(section) {
   }
 }
 
+/**
+ * This function will render the card in the right section
+ *
+ * @param {string} section string of the section where it will be rendered
+ */
 function setCardProgress(section) {
   let progress = document.getElementById("progress-board");
   progress.innerHTML = ``;
@@ -446,6 +535,11 @@ function setCardProgress(section) {
   }
 }
 
+/**
+ * This function will render the card in the right section
+ *
+ * @param {string} section string of the section where it will be rendered
+ */
 function setCardFeedback(section) {
   let feedback = document.getElementById("feedback-board");
   feedback.innerHTML = ``;
@@ -458,6 +552,11 @@ function setCardFeedback(section) {
   }
 }
 
+/**
+ * This function will render the card in the right section
+ *
+ * @param {string} section string of the section where it will be rendered
+ */
 function setCardDone(section) {
   let done = document.getElementById("done-board");
   done.innerHTML = "";
@@ -497,6 +596,11 @@ function cardContent(section, id) {
   }
 }
 
+/**
+ * This function checks the importance and render it
+ *
+ * @param {number} id of the map
+ */
 function setCardImportanc(id) {
   let footer = document.getElementById(`importance_footer${id}`);
   if (donesMap.get(`${id}`)["importance"] === "urgent") {
@@ -505,6 +609,21 @@ function setCardImportanc(id) {
   }
 }
 
+/**
+ *
+ * This function will creat the subtask of the cards and submit the variables to render it
+ * @param {map} mapCategory
+ * @param {map} mapCatColor
+ * @param {map} mapTitle
+ * @param {map} mapDescription
+ * @param {number} totalSub
+ * @param {number} doneSum
+ * @param {string} importance
+ * @param {string} sectionBoard
+ * @param {map} map
+ * @param {number} id
+ * @param {string} section
+ */
 function creatCardSubs(
   mapCategory,
   mapCatColor,
@@ -542,6 +661,13 @@ function creatCardSubs(
   );
 }
 
+/**
+ *
+ * This function will creat the hole content on the card
+ * @param {string} section of the section
+ * @param {number} id of the map
+ * @param {map} map map itself with correct section
+ */
 function creatCardContent(section, id, map) {
   let mapCategory = map.get(`${id}`)["category"];
   let mapCatColor = map.get(`${id}`)["categorycolor"];
@@ -583,6 +709,12 @@ function creatCardContent(section, id, map) {
   }
 }
 
+/**
+ * This function will check the subtasks and set the right height of the card
+ *
+ * @param {number} id of the map
+ * @param {map} map the map itself
+ */
 function checkSubtasks(id, map) {
   let currentMap = new Map(map);
   let progressId = document.getElementById(`progress_box${id}`);
@@ -597,6 +729,12 @@ function checkSubtasks(id, map) {
   }
 }
 
+/**
+ *  This function will check the subtasks and make it visible
+ * @param {array} subtaskCards with the subtasks
+ * @param {number} counter to count the subtasks
+ * @param {number} id of the map
+ */
 function setSubtasksOnCardVisible(subtaskCards, counter, id) {
   subtaskCards = checkIfString(subtaskCards);
   for (let i = 0; i < subtaskCards.length; i++) {
@@ -614,6 +752,12 @@ function addHeight(id) {
   list.style.height = "55px";
 }
 
+/**
+ * This function will start the rendering of the contacts in the cards
+ *
+ * @param {string} section in wich section it will be rendered
+ * @param {number} id of the map
+ */
 function renderContacts(section, id) {
   if (section === "todo") {
     renderContactsCard(id);
@@ -626,6 +770,12 @@ function renderContacts(section, id) {
   }
 }
 
+/**
+ * This function will check if it is a string if not convert
+ *
+ * @param {value} element to check if it is a string
+ * @returns a string
+ */
 function checkIfString(element) {
   if (typeof element === "string") {
     element = element.split(",");
@@ -664,6 +814,11 @@ function renderContactsCardDetail(contactsMap, contactsNew, letters, id, map) {
   checkForContactNumber(contactsNew, letters, contactsSection, contactColor);
 }
 
+/**
+ * This function will render the contacts on the right card
+ *
+ * @param {number} id of the map
+ */
 async function renderContactsCard(id) {
   let map = wichSection(id);
   let contactsMap = map.get(`${id}`)["contacts"];
@@ -714,7 +869,16 @@ function oneDotContact(
     contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors};">${letters[i]}</p>`;
   }
 }
-
+/**
+ * This function check how much contacts a card have and redner it
+ * if it has more than two so the third will be dottet no matter how much are invted there are at the end just
+ * three dots
+ *
+ * @param {array} contacts that will show in small view
+ * @param {array} letters letter that are created of the contacts
+ * @param {string} contactsSection in wich section the contacts are on the card
+ * @param {array} colors color of the background on the circle wich are colored
+ */
 function checkForContactNumber(contacts, letters, contactsSection, colors) {
   let changedColorForDots = [];
 
@@ -745,6 +909,22 @@ function checkForContactNumber(contacts, letters, contactsSection, colors) {
   }
 }
 
+/**
+ *
+ * This function is to render the popup view of the tasks
+ *
+ * @param {string} category of the popup that will shown
+ * @param {number} color of the popup that will shown
+ * @param {string} title of the popup that will shown
+ * @param {string} description of the popup that will shown
+ * @param {array} progressStatus of the popup that will shown
+ * @param {number} id of the popup that will shown
+ * @param {array} colors of the popup that will shown
+ * @param {array} contactsSplit of the popup that will shown
+ * @param {array} letters of the popup that will shown
+ * @param {string} section of the popup that will shown
+ * @param {string} importance of the popup that will shown
+ */
 function renderPopup(
   category,
   color,
@@ -800,6 +980,11 @@ function renderPopupDetail(
   generateCards();
 }
 
+/**
+ * This function will render the all subtasks on the card
+ *
+ * @param {number} id of the map
+ */
 function generateSubtasksSum(id) {
   let map = new Map(wichSection(id));
   let totalSub = map.get(`${id}`)["subtask"];
@@ -954,6 +1139,11 @@ function generatePopup(id) {
   renderSubtasksPopup(id, section);
 }
 
+/**
+ *  This function will check from wich section the id is
+ * @param {number} id of the map every task has his id
+ * @returns the right map
+ */
 function wichSection(id) {
   if (todosMap.has(`${id}`)) {
     return todosMap;
@@ -966,6 +1156,12 @@ function wichSection(id) {
   }
 }
 
+/**
+ * This will render the subtasks in the popup view
+ *
+ * @param {number} id of the map
+ * @param {string} section from wich section it comes
+ */
 function renderSubtasksPopup(id, section) {
   let taskArray = section.get(`${id}`)[`subtask`];
   let taskLength;
@@ -1016,19 +1212,7 @@ function toggleSelecter(i) {
   span.classList.toggle("mr15");
 }
 
-function removeProgress(i, id) {
-  let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
-  let subSum = document.getElementsByClassName("subtext");
-  let pct = 100 / subSum.length;
-  let progressPct = document.getElementById("progress_edit");
-  let map = wichSection(id);
-  let doneCoordinates = map.get(`${id}`)["subtaskStatus"];
-  doneCoordinates = checkIfString(doneCoordinates);
-
-  if (progressPct.style.width == "0%") {
-    return;
-  }
-
+function setupRemoveProgress(doneSum, pct, progressPct, doneCoordinates) {
   let progressCut = document.getElementById("progress_edit").style.width;
   let cutted = parseInt(progressCut.split("%"));
   currentProgress = parseInt(cutted) - parseInt(pct);
@@ -1042,6 +1226,79 @@ function removeProgress(i, id) {
   qickSaveMap(id);
 }
 
+/**
+ * This function will remove the progress in the subtask if clicked
+ *
+ * @param {number} i index of the subtask
+ * @param {number} id of the map
+ * @returns
+ */
+function removeProgress(i, id) {
+  let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
+  let subSum = document.getElementsByClassName("subtext");
+  let pct = 100 / subSum.length;
+  let progressPct = document.getElementById("progress_edit");
+  let map = wichSection(id);
+  let doneCoordinates = map.get(`${id}`)["subtaskStatus"];
+  doneCoordinates = checkIfString(doneCoordinates);
+
+  if (progressPct.style.width == "0%") {
+    return;
+  }
+
+  setupRemoveProgress(doneSum, pct, progressPct, doneCoordinates);
+}
+
+function addProgressCounter(doneCoordinates, counter) {
+  for (let i = 0; i < doneCoordinates.length; i++) {
+    const element = doneCoordinates[i];
+    if (element.includes("add")) {
+      counter++;
+    }
+  }
+}
+
+function addProgressVariable(doneCoordinates, counter, pct) {
+  if (typeof doneCoordinates == "string") {
+    doneCoordinates = doneCoordinates.split(",");
+    currentProgress = counter * pct;
+  }
+  return currentProgress;
+}
+
+function setProgressToZero(progressPct, pct, id, doneSum, currentProgress, i) {
+  progressPct.style = `width: ${pct}%;`;
+  addProgressCard(pct, id, doneSum);
+  currentProgress = pct;
+  toggleSelecter(i);
+  doneSum++;
+
+  doneCoordinates.splice(i, 1, `add_sub${i}`);
+  renderSubtaskStatus(id, doneSum);
+  return doneSum;
+}
+
+function setProgressInBeetween(doneSum, id, currentProgress, doneSum, i) {
+  doneSum = parseInt(document.getElementById(`subtask_done${id}`).innerHTML);
+  let theProgress = document.getElementById("progress_edit").style.width;
+
+  theProgress = theProgress.split("%");
+  currentProgress = parseInt(theProgress) + parseInt(pct);
+  progressPct.style = `width: ${currentProgress}%;`;
+  toggleSelecter(i);
+  doneSum++;
+  addProgressCard(currentProgress, id, doneSum);
+  doneCoordinates.splice(i, 1, `add_sub${i}`);
+  renderSubtaskStatus(id, doneSum);
+  return doneSum;
+}
+
+/**
+ * This function will add the progress on the subtask
+ *
+ * @param {number} i index of the subtask wich will be progress added
+ * @param {number} id of the map
+ */
 function addProgress(i, id) {
   let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
   let subSum = document.getElementsByClassName("subtext");
@@ -1051,40 +1308,22 @@ function addProgress(i, id) {
   let counter = 0;
 
   doneCoordinates = map.get(`${id}`)["subtaskStatus"];
-  if (typeof doneCoordinates == "string") {
-    doneCoordinates = doneCoordinates.split(",");
-    currentProgress = counter * pct;
-  }
-  for (let i = 0; i < doneCoordinates.length; i++) {
-    const element = doneCoordinates[i];
-    if (element.includes("add")) {
-      counter++;
-    }
-  }
+  currentProgress = addProgressVariable(doneCoordinates, counter, pct);
+  counter = addProgressCounter(doneCoordinates, counter);
   if (progressPct.style.width == "0%") {
-    progressPct.style = `width: ${pct}%;`;
-    addProgressCard(pct, id, doneSum);
-    currentProgress = pct;
-    toggleSelecter(i);
-    doneSum++;
-
-    doneCoordinates.splice(i, 1, `add_sub${i}`);
-    renderSubtaskStatus(id, doneSum);
+    doneSum = setProgressToZero(
+      progressPct,
+      pct,
+      id,
+      doneSum,
+      currentProgress,
+      i
+    );
   } else if (
     !(progressPct.style.width == "100%") &&
     !(progressPct.style.width == "0%")
   ) {
-    doneSum = parseInt(document.getElementById(`subtask_done${id}`).innerHTML);
-    let theProgress = document.getElementById("progress_edit").style.width;
-
-    theProgress = theProgress.split("%");
-    currentProgress = parseInt(theProgress) + parseInt(pct);
-    progressPct.style = `width: ${currentProgress}%;`;
-    toggleSelecter(i);
-    doneSum++;
-    addProgressCard(currentProgress, id, doneSum);
-    doneCoordinates.splice(i, 1, `add_sub${i}`);
-    renderSubtaskStatus(id, doneSum);
+    doneSum = setProgressInBeetween(doneSum, id, currentProgress, doneSum, i);
   }
   globalProgress = doneCoordinates;
   qickSaveMap(id);
@@ -1102,6 +1341,12 @@ function addProgressCard(number, id, doneSum) {
   bar.style = `width: ${number}%;`;
 }
 
+/**
+ * This function checks from the id wich map it is
+ *
+ * @param {number} id of the map
+ * @returns the right map
+ */
 function checkMap(id) {
   let currentMap = new Map();
   if (todosMap.has(`${id}`)) {
@@ -1116,7 +1361,12 @@ function checkMap(id) {
   return currentMap;
 }
 
-async function editContactsPopup(id) {
+/**
+ * This function shows the contacts in edit popup version
+ *
+ * @returns wich contacts are in popup
+ */
+async function editContactsPopup() {
   let map = await JSON.parse(backend.getItem("contacts"));
   if (map == undefined || map == null) {
     return;
@@ -1138,6 +1388,10 @@ async function editContactsPopup(id) {
   return contactsInPopup;
 }
 
+/**
+ * This function is to set the layout if subtask on it
+ * @param {number} id of the map
+ */
 function setSubtasksLayout(id) {
   let progressText = document.getElementById(`progress_text${id}`);
   let subText = document.getElementById("subtask_id");
@@ -1155,7 +1409,13 @@ function setSubtasksLayout(id) {
   }
 }
 
-function setSelecdetContacts(id) {
+/**
+ * This function will check the selected contacts in the dropdown
+ *
+ * @param {number} id of the map
+ * @returns id dropdown is close
+ */
+function setSelectedContacts(id) {
   let dropDown = document.getElementById("contacts-drop-down-edit");
 
   if (dropDown.classList.contains("d-none")) {
@@ -1171,6 +1431,11 @@ function setSelecdetContacts(id) {
   }
 }
 
+/**
+ * This function will start if user will edit
+ * is change the layout
+ * @param {number} id of the map
+ */
 function edit(id) {
   addEditClasses();
   let currentMap = new Map(checkMap(id));
@@ -1231,34 +1496,12 @@ function dateFutureTask() {
   dateId.setAttribute("min", today);
 }
 
-function renderShowEdit(
-  colors,
-  popupTitle,
-  cardConten,
-  popupDescription,
-  date,
-  prio,
-  assing,
-  contact,
-  editBox,
-  title,
-  description,
-  id
-) {
-  colors.classList.add("d-none");
-  popupTitle.innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
-  popupTitle.classList.add("set-title");
-  cardConten.classList.add("set-content");
-  popupDescription.innerHTML = descriptionHTML(description);
-  date.innerHTML = dateHTML();
-  prio.classList.add("correctPrio");
-  prio.innerHTML = priorityHTML();
-  assing.innerHTML += assignedHTML(id);
-  contact.classList.add("flex-contact");
-  editBox.innerHTML += `<button class="ok-text ok" id="ok" onclick="editDone(${id})">Done</button>
-                        <button class="ok-text ok ok-delete" id="ok" onclick="deleteTask(${id})">Delete</button>`;
-}
-
+/**
+ * This function show the old inputs on the editable card
+ * @param {string} title of the card or task in popup view to edit
+ * @param {string} description of the card task
+ * @param {number} id of the card task to edit
+ */
 function showEdit(title, description, id) {
   let colors = document.getElementById(`c-color`);
   let popupTitle = document.getElementById("popup_title");
@@ -1342,6 +1585,11 @@ function checkItBeforSaving(
   );
 }
 
+/**
+ * This function is to safe the status quo
+ *
+ * @param {number} id of the map
+ */
 function qickSaveMap(id) {
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
@@ -1373,6 +1621,10 @@ function qickSaveMap(id) {
   );
 }
 
+/**
+ * This function will add or remove the contacts and return
+ * @returns array of correct contat
+ */
 function checkSelectedContacts() {
   if (selectedContacts.length > 0) {
     for (let i = 0; i < selectedContacts.length; i++) {
@@ -1385,6 +1637,12 @@ function checkSelectedContacts() {
   return currentContacts;
 }
 
+/**
+ * This function will make sure that the right contacts will return in a rigth way
+ *
+ * @param {number} id of the map
+ * @returns correct array of contacts
+ */
 function checkContacts(id) {
   let newContacts = selectedContacts;
   let map = wichSection(id);
@@ -1445,8 +1703,11 @@ function buttonEditCheck(button, section, id) {
   return button;
 }
 
+/**
+ * This function will run if edit is done to save the edits and render after that
+ * @param {numebr} id of the map
+ */
 async function editDone(id) {
-  /// KKKKKKKKÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜRRRRRRRRRRRRRZZZZZZZZZZZZZZZZZZZEEEEEEEEENNNNNNNNNNNNNN
   addEditClasses();
   toggleEditTitle();
   checkExistContact(id);
@@ -1709,6 +1970,12 @@ function subtaskLayout(id) {
   task.classList.add("task-edit");
 }
 
+/**
+ * This function check wich priority the card task has
+ *
+ * @param {number} id of the map
+ * @returns
+ */
 function checkPrioBtn(id) {
   let map = wichSection(id);
   let currentPrio = map.get(`${id}`)["importance"];
@@ -1753,6 +2020,11 @@ function checkPrioEditDeitail(result, map, currentPrio, urgent, medium, low) {
   return result;
 }
 
+/**
+ * This function will check prio in edit version
+ * @param {number} id of the map
+ * @returns
+ */
 function checkPrioBtnEdit(id) {
   let result;
   let map = wichSection(id);
@@ -1784,6 +2056,9 @@ function setPriority(importance) {
 }
 // EDIT END ____________________________________________________________________________________|
 
+/**
+ * This function is to set the drag and drop right with slicing
+ */
 function checkCards() {
   let idCard = draggedItem.id.slice(-2);
   if (!(idCard == +idCard)) {
@@ -1887,6 +2162,9 @@ async function getDoneMap() {
   return donesMap;
 }
 
+/**
+ * load all maps
+ */
 async function getMaps() {
   loadCounter();
   let todosMap = getTodoMaps();
@@ -1917,6 +2195,9 @@ async function saveDone() {
   await backend.setItem("doneJson", JSON.stringify(dones));
 }
 
+/**
+ * Safe all maps direct
+ */
 async function saveMaps() {
   await saveTodo();
   await saveProgress();
@@ -1924,14 +2205,23 @@ async function saveMaps() {
   await saveDone();
 }
 
+/**
+ * save idCounter in backend
+ */
 async function idCounterToBackend() {
   await backend.setItem("count", JSON.stringify(idCounter));
 }
 
+/**
+ * Load idCounter from backend
+ */
 async function loadCounter() {
   idCounter = parseInt(await JSON.parse(backend.getItem("count"))) || 0;
 }
 
+/**
+ * if nothing in maps mean empty delete idCounter
+ */
 async function checkIfEmpty() {
   if (
     todosMap.size === 1 &&
@@ -1954,6 +2244,9 @@ function emptySearchArrays() {
   searchInputs = [];
 }
 
+/**
+ * This function searchs the value that will type in on cards tasks
+ */
 async function serach() {
   emptySearchArrays();
   let input = document.getElementById("inp-board").value;
@@ -1975,6 +2268,12 @@ function checkInput(input) {
   }
 }
 
+/**
+ * This function will highlight the input that are founded on the card task
+ *
+ * @param {string} input to serach on task card
+ * @param {number} key from the card task
+ */
 function highlightText(input, key) {
   let title = document.getElementById(`title${key}`);
   let description = document.getElementById(`description${key}`);
@@ -1992,6 +2291,11 @@ function highlightText(input, key) {
   );
 }
 
+/**
+ *
+ * @param {map} map to search
+ * @param {string} input the type in wich are searched
+ */
 function searchMaps(map, input) {
   for (const [key, value] of map) {
     if (key == "x") {
@@ -2001,6 +2305,10 @@ function searchMaps(map, input) {
   }
 }
 
+/**
+ * This function checks if number is type in
+ * @returns boolean
+ */
 function valueAndInputCheck() {
   return (
     Number.isInteger(parseInt(values)) && Number.isInteger(parseInt(input))
@@ -2092,6 +2400,9 @@ function highlightAndDone() {
   }
 }
 
+/**
+ * This function is to delete all maps and counter
+ */
 async function cut() {
   await backend.deleteItem("todoJson");
   await backend.deleteItem("urgentCounter");
@@ -2100,6 +2411,9 @@ async function cut() {
   await backend.deleteItem("doneJson");
 }
 
+/**
+ * This function will check screen size and toggle the edit popup
+ */
 function addEditClasses() {
   if (screen.width < 500) {
     let editPopup = document.getElementById("popup_card");
@@ -2112,11 +2426,15 @@ function editDnone() {
   editButton.classList.add("d-none");
 }
 
-let globalId;
 function setId(id) {
   globalId = id;
 }
 
+/**
+ * This function will change the section of the card
+ * @param {number} id of the map
+ * @returns
+ */
 function turnLeft(id) {
   let parent = document.getElementById(`card${id}`);
   if (parent.parentNode.id.includes("todo")) {
@@ -2150,6 +2468,12 @@ function doneFeedback(id) {
   donesMap.delete(`${id}`);
 }
 
+/**
+ * This function is to set the card one section to right
+ *
+ * @param {number} id of the map
+ * @returns
+ */
 function turnRight(id) {
   let parent = document.getElementById(`card${id}`);
   if (parent.parentNode.id.includes("done")) {
@@ -2168,11 +2492,21 @@ function turnRight(id) {
   setTimeout(toggleArrows, 75);
 }
 
+/**
+ * This function is used to delete the index from one map and added to another
+ *
+ * @param {number} id of the map
+ */
 function todoProgress(id) {
   progressesMap.set(`${id}`, todosMap.get(`${id}`));
   todosMap.delete(`${id}`);
 }
 
+/**
+ * This function is used to delete the index from one map and added to another
+ *
+ * @param {number} id of the map
+ */
 function progressFeedback(id) {
   feedbacksMap.set(`${id}`, progressesMap.get(`${id}`));
   progressesMap.delete(`${id}`);
@@ -2183,6 +2517,11 @@ function feedbackDone(id) {
   feedbacksMap.delete(`${id}`);
 }
 
+/**
+ * This function is used to delete the index from one map and added to another
+ *
+ * @param {number} id of the map
+ */
 function toggleArrows() {
   for (let i = 0; i < idCounter; i++) {
     const arrows = document.getElementById(`arrows_card${i}`);
@@ -2197,6 +2536,9 @@ function toggleArrows() {
   }
 }
 
+/**
+ * Loading screen
+ */
 function load() {
   let loader = document.getElementById("loader");
   loader.classList.toggle("d-none");
