@@ -9,34 +9,39 @@ function checkMainSize() {
   }
 }
 
-
 function hoverSummaryHtml() {
-  document
-    .getElementById("summary-html")
-    .classList.add("section-background-normal");
-  document.getElementById("summary_bg").classList.remove("section-background");
-}
+  let summaryHtml = document.getElementById("summary-html");
+  let summaryBg = document.getElementById("summary_bg");
 
+  summaryHtml.classList.add("section-background-normal");
+  summaryBg.classList.remove("section-background");
+}
 
 function hoverSummaryRespons() {
-  document
-    .getElementById("summary_bg")
-    .classList.remove("section-background-normal");
-  document.getElementById("summary_bg").classList.add("section-background");
-}
+  let summaryBg = document.getElementById("summary_bg");
 
+  summaryBg.classList.remove("section-background-normal");
+  summaryBg.classList.add("section-background");
+}
 
 function sidebarMainTabled() {
-  document.getElementById("sidebar").classList.remove("sidebar");
-  document.getElementById("sidebar").classList.add("tablet-sidebar");
-  document.getElementById("help-section-btn").classList.add("d-none");
-  document.getElementById("header-name").classList.add("d-none");
+  let sidebar = document.getElementById("sidebar");
+  let header = document.getElementById("header-name");
+  let helpBtn = document.getElementById("help-section-btn");
+
+  sidebar.classList.remove("sidebar");
+  sidebar.classList.add("tablet-sidebar");
+  helpBtn.classList.add("d-none");
+  header.classList.add("d-none");
 }
 
-
 function enableMainSidebar() {
-  document.getElementById("sidebar").classList.add("sidebar");
-  document.getElementById("sidebar").classList.remove("tablet-sidebar");
-  document.getElementById("help-section-btn").classList.remove("d-none");
-  document.getElementById("header-name").classList.remove("d-none");
+  let sidebar = document.getElementById("sidebar");
+  let header = document.getElementById("header-name");
+  let helpBtn = document.getElementById("help-section-btn");
+
+  sidebar.classList.add("sidebar");
+  sidebar.classList.remove("tablet-sidebar");
+  helpBtn.classList.remove("d-none");
+  header.classList.remove("d-none");
 }
