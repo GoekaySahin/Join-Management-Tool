@@ -75,35 +75,37 @@ function sidebarDesktop() {
 }
 
 function hoverSummaryHtml() {
-  document
-    .getElementById("summary-html")
-    .classList.add("section-background-normal");
-  document.getElementById("summary_bg").classList.remove("section-background");
+  let summaryHtml = document.getElementById("summary-html");
+  let summaryBg = document.getElementById("summary_bg");
+
+  summaryHtml.classList.add("section-background-normal");
+  summaryBg.classList.remove("section-background");
 }
 
 function hoverSummaryRespons() {
-  document
-    .getElementById("board_bg")
-    .classList.remove("section-background-normal");
-  document.getElementById("summary_bg").classList.add("section-background");
+  let summaryBg = document.getElementById("board_bg");
+
+  summaryBg.classList.remove("section-background-normal");
+  summaryBg.classList.add("section-background");
 }
 
 async function greetUser() {
   let currentTime = new Date().getHours();
   let name = ShowCurrentUserNameForSummery["userName"];
+  let greetTime = document.getElementById("greet-at-time");
+  let greetUser = document.getElementById("greet-user");
+
   if (currentTime < 12) {
-    document.getElementById("greet-at-time").innerHTML = "Good morning, ";
+    greetTime.innerHTML = "Good morning, ";
   } else if (currentTime < 17) {
-    document.getElementById("greet-at-time").innerHTML = "Good afternoon, ";
+    greetTime.innerHTML = "Good afternoon, ";
   } else {
-    document.getElementById("greet-at-time").innerHTML = "Good evening, ";
+    greetTime.innerHTML = "Good evening, ";
   }
   if (name == undefined) {
-    document.getElementById("greet-user").innerHTML =
-      ShowCurrentUserNameForSummery;
+    greetUser.innerHTML = ShowCurrentUserNameForSummery;
   } else {
-    document.getElementById("greet-user").innerHTML =
-      ShowCurrentUserNameForSummery["userName"];
+    greetUser.innerHTML = ShowCurrentUserNameForSummery["userName"];
   }
 }
 
@@ -111,22 +113,27 @@ function renderCurrentDate() {
   let currentYear = new Date().getFullYear().toString();
   let currentDay = new Date().getDate().toString();
   let currentMonth = month[d.getMonth()];
-  document.getElementById(
-    "urgent-date"
-  ).innerHTML = `${currentMonth} ${currentDay}, ${currentYear}`;
+  let dateUrgent = document.getElementById("urgent-date");
+
+  dateUrgent.innerHTML = `${currentMonth} ${currentDay}, ${currentYear}`;
 }
 
 async function renderAmountToTasks() {
   let urgentCounter = (await backend.getItem("urgentCounter")) || 0;
-  document.getElementById("task-id-").innerHTML = urgentCounter;
-  document.getElementById("task-to-do-id-").innerHTML = todosMap.size - 1;
-  document.getElementById("task-in-board-id-").innerHTML =
+  let taskId = document.getElementById("task-id-");
+  let todo = document.getElementById("task-to-do-id-");
+  let taskBoard = document.getElementById("task-in-board-id-");
+  let taskPorgress = document.getElementById("task-in-progress-id-");
+  let feedback = document.getElementById("task-awaiting-feedback-id-");
+  let done = document.getElementById("task-done-id-");
+
+  taskId.innerHTML = urgentCounter;
+  todo.innerHTML = todosMap.size - 1;
+  taskBoard.innerHTML =
     todosMap.size + progressesMap.size + feedbacksMap.size + donesMap.size - 4;
-  document.getElementById("task-in-progress-id-").innerHTML =
-    progressesMap.size - 1;
-  document.getElementById("task-awaiting-feedback-id-").innerHTML =
-    feedbacksMap.size - 1;
-  document.getElementById("task-done-id-").innerHTML = donesMap.size - 1;
+  taskPorgress.innerHTML = progressesMap.size - 1;
+  feedback.innerHTML = feedbacksMap.size - 1;
+  done.innerHTML = donesMap.size - 1;
 }
 
 function goToBoard() {

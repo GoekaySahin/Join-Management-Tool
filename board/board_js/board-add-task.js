@@ -15,19 +15,38 @@ let exist;
 let currentContacts = [];
 let filled = false;
 let checkedEdit = [];
+let checkedList = [];
+let contactsOnTask = [];
+let descript = 0;
+let subCounterAdd = 0;
+let email;
+let checkedIndex = [];
+
 setURL(
   "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
 );
 
+/**
+ * This function is to get the urgentcounter from backend
+ */
 async function getUrgentCounter() {
   urgentCounter = (await backend.getItem("urgentCounter")) || 0;
   urgentCounter = parseInt(urgentCounter);
 }
 
+/**
+ * This function is to get the contacts from backend
+ */
 async function getCurrentContacts() {
   currentContacts = await JSON.parse(backend.getItem("contacts"));
 }
 
+/**
+ * This function checks wich map must be returnt
+ *
+ * @param {string} section of the map
+ * @returns map wich get from string param
+ */
 function checkWichMap(section) {
   let map;
   if (section.includes("todo")) {
@@ -42,6 +61,12 @@ function checkWichMap(section) {
   return map;
 }
 
+/**
+ * This function will add the new created task and reset all the inputs
+ *
+ * @param {string} section where the task will be created
+ * @returns if not complety all inputs filled
+ */
 async function addToTasks(section) {
   if (filled == false) {
     return;
@@ -58,6 +83,11 @@ async function addToTasks(section) {
   resetAddTask(section);
 }
 
+/**
+ * This will start the animation and set the task
+ *
+ * @param {string} section wich map will used
+ */
 function resetAddTask(section) {
   closeAddTask();
   setTasks(section);
@@ -65,11 +95,19 @@ function resetAddTask(section) {
   setTimeout(load, 500);
 }
 
+/**
+ * Save the task and counter in backend
+ */
 async function saveTaskAndCounter() {
   await backend.setItem("urgentCounter", JSON.stringify(urgentCounter));
   await backend.setItem("tasks", JSON.stringify(tasks));
 }
 
+/**
+ * This function is used to set teh new task and start the resest inputs function and transmitted the document that need to reset
+ *
+ * @returns task wich created
+ */
 async function setNewTask() {
   let btn = document.getElementById("submit-btn");
   let title = document.getElementById("title-input");
@@ -124,13 +162,21 @@ function creatNewTask(
   };
 }
 
-let checkedList = [];
+/**
+ * Check the subtrask after creating
+ */
 function subtaskChecked() {
   subtasks.forEach((task, i) => {
     checkedList.push(document.getElementById(`subtasks-checkbox-${i}`).checked);
   });
 }
 
+/**
+ * This function returns the data of the contacts
+ *
+ * @param {array} selectedContacts of the selectedContacts
+ * @returns contacts data like names colors and letters
+ */
 async function contactToSave(selectedContacts) {
   let names = [];
   let colors = [];
@@ -141,6 +187,15 @@ async function contactToSave(selectedContacts) {
   return data;
 }
 
+/**
+ * This function transmitted the contact data to compare and creat
+ *
+ * @param {array} selectedContacts selceted contacts
+ * @param {array} list of conatcts
+ * @param {array} names name of contacts
+ * @param {array} colors color of contacts
+ * @param {array} letters letter of contacts
+ */
 function checkColorAndLetter(selectedContacts, list, names, colors, letters) {
   for (let j = 0; j < selectedContacts.length; j++) {
     const selected = selectedContacts[j];
@@ -148,6 +203,15 @@ function checkColorAndLetter(selectedContacts, list, names, colors, letters) {
   }
 }
 
+/**
+ * Transmitted every singel the data in array
+ *
+ * @param {array} selected selceted contacts
+ * @param {array} list of conatcts
+ * @param {array} names name of contacts
+ * @param {array} colors color of contacts
+ * @param {array} letters letter of contacts
+ */
 function compareColorAndLetter(selected, list, names, colors, letters) {
   for (let i = 0; i < list.length; i++) {
     const element = list[i];
@@ -155,6 +219,15 @@ function compareColorAndLetter(selected, list, names, colors, letters) {
   }
 }
 
+/**
+ * Checks color and letters
+ *
+ * @param {string} element
+ * @param {array} selected
+ * @param {array} names
+ * @param {array} colors
+ * @param {array} letters
+ */
 function selectColorAndLetter(element, selected, names, colors, letters) {
   if (element["name"] == selected) {
     names.push(element["name"]);
@@ -171,6 +244,9 @@ function selectColorAndLetter(element, selected, names, colors, letters) {
   }
 }
 
+/**
+ * Checks if all fields have a value
+ */
 function allFieldsFilled() {
   let title = document.getElementById("title-input");
   let description = document.getElementById("description-input");
@@ -190,6 +266,15 @@ function allFieldsFilled() {
   }
 }
 
+/**
+ * This function returns if all filed filled
+ *
+ * @param {string} title title of the task
+ * @param {string} description of the task
+ * @param {string} category of the task
+ * @param {number} date of the task
+ * @returns boolean
+ */
 function checkFieldsFilled(title, description, category, date) {
   return (
     title.value.length > 0 &&
@@ -200,7 +285,7 @@ function checkFieldsFilled(title, description, category, date) {
   );
 }
 
-function fieldsFilled(title, description, category, date) {
+/* function fieldsFilled(title, description, category, date) {
   return (
     title.value.length > 0 &&
     description.value.length > 0 &&
@@ -209,8 +294,12 @@ function fieldsFilled(title, description, category, date) {
     date.value.length == 0
   );
 }
+  */
 
-async function buttonImportanceCheck() {
+/**
+ * Transmitted the documents to check
+ */
+function buttonImportanceCheck() {
   let buttonUrgent = document.getElementById("importance-button1");
   let buttonMedium = document.getElementById("importance-button2");
   let buttonLow = document.getElementById("importance-button3");
@@ -223,17 +312,31 @@ async function buttonImportanceCheck() {
   }
 }
 
+/**
+ * Add a class to the submit button
+ */
 function importanceAddOpa() {
   let btn = document.getElementById("submit-btn");
   btn.classList.add("opacity");
 }
 
+/**
+ * Removes the class from submit button
+ */
 function importanceRemoveOpa() {
   let btn = document.getElementById("submit-btn");
   btn.classList.remove("opacity");
   filled = true;
 }
 
+/**
+ * This function will return if the buttons contains d-none in class
+ *
+ * @param {variable} buttonUrgent importance button
+ * @param {variable} buttonMedium importance button
+ * @param {Variable} buttonLow importance button
+ * @returns boolean
+ */
 function checkButtonImportanceAddTask(buttonUrgent, buttonMedium, buttonLow) {
   return (
     buttonUrgent.classList.contains("d-none") ||
@@ -242,6 +345,9 @@ function checkButtonImportanceAddTask(buttonUrgent, buttonMedium, buttonLow) {
   );
 }
 
+/**
+ * This function add the class d-none to the task added button
+ */
 function resetAddedButton() {
   let result = allFieldsFilled();
   if (result) {
@@ -249,6 +355,16 @@ function resetAddedButton() {
   }
 }
 
+/**
+ * This function is to reset the inputs
+ *
+ * @param {variable} title title of the task
+ * @param {array} selectedContacts array of selected
+ * @param {number} date selceted date
+ * @param {number} categoryColor color of the category
+ * @param {string} description the description of the task
+ * @param {array} selectedSubtasks and the selected subtask
+ */
 function resetTasksInputs(
   title,
   selectedContacts,
@@ -291,6 +407,15 @@ function resetImportanceButtons() {
   );
 }
 
+/**
+ *
+ * @param {variable} importance1 importance button
+ * @param {variable} importance2 importance button
+ * @param {variable} importance3 importance button
+ * @param {variable} importance1Colored importance colored button
+ * @param {variable} importance2Colored importance colored button
+ * @param {variable} importance3Colored importance colored button
+ */
 function setImportanceButtons(
   importance1,
   importance2,
@@ -307,6 +432,13 @@ function setImportanceButtons(
   importance3Colored.classList.add("d-none");
 }
 
+/**
+ *
+ * Render the contacts on the task and get it from backend
+ *
+ * @param {array} invateNewContactName arry of all contacts invated or selected
+ * @param {number} id of the seltected contact
+ */
 async function renderContactsAddTask(invateNewContactName, id) {
   let dropdown = document.getElementById("contacts-drop-down");
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
@@ -325,8 +457,12 @@ function loopForContacts(contacts, dropdown, id) {
   }
 }
 
-let contactsOnTask = [];
-
+/**
+ * This function is to render the contacts direct on the task
+ *
+ * @param {number} i
+ * @param {number} id
+ */
 async function addContactToTaskBoard(i, id) {
   let contact = document.getElementById("contacts-checkbox" + i).value;
   getCheckboxValue(contact);
@@ -337,6 +473,11 @@ async function addContactToTaskBoard(i, id) {
   renderContactsSelection(selectedContacts);
 }
 
+/**
+ * This function is to check if the contact must remove or added
+ *
+ * @param {string} contact
+ */
 function checkSelectedContacts(contact) {
   if (selectedContacts.indexOf(contact) > -1) {
     let index = selectedContacts.indexOf(contact);
@@ -346,6 +487,13 @@ function checkSelectedContacts(contact) {
   }
 }
 
+/**
+ * This function is to check and set documents
+ *
+ * @param {variable} cBox document to manipulated
+ * @param {variable} addTask to check if d none
+ * @returns
+ */
 function cBoxSetting(cBox, addTask) {
   if (
     cBox == null ||
@@ -357,6 +505,14 @@ function cBoxSetting(cBox, addTask) {
   return cBox;
 }
 
+/**
+ * This function will set the arrays right
+ *
+ * @param {array} inviteContacts
+ * @param {array} currentContacts
+ * @param {string} contactsShow
+ * @returns array of invated contacts
+ */
 function setConatctShow(inviteContacts, currentContacts, contactsShow) {
   for (let i = 0; i < contactsShow.length; i++) {
     const current = contactsShow[i];
@@ -370,6 +526,11 @@ function setConatctShow(inviteContacts, currentContacts, contactsShow) {
   return inviteContacts;
 }
 
+/**
+ * This function will check the contacts formand transsmitted to setContact
+ *
+ * @param {array} contacts
+ */
 async function renderContactsSelection(contacts) {
   contacts = checkContactsIfEmpty(contacts);
 
@@ -391,6 +552,12 @@ async function renderContactsSelection(contacts) {
   setColorForDots(inviteContacts, cBox);
 }
 
+/**
+ * This function is to check how many contacts are invated on a task
+ *
+ * @param {array} inviteContacts array of contacts
+ * @param {variable} cBox document wich get manipulated
+ */
 function setColorForDots(inviteContacts, cBox) {
   if (inviteContacts.length > 2) {
     moreThanTwoContactsSmallView(inviteContacts, cBox);
@@ -401,18 +568,36 @@ function setColorForDots(inviteContacts, cBox) {
   }
 }
 
+/**
+ * If one contact to render in small view
+ *
+ * @param {array} inviteContacts array of contacts
+ * @param {variable} cBox document wich get manipulated
+ */
 function oneContactSmallView(inviteContacts, cBox) {
   for (let i = 0; i < inviteContacts.length; i++) {
     cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
   }
 }
 
+/**
+ * If two contact to render in small view
+ *
+ * @param {array} inviteContacts array of contacts
+ * @param {variable} cBox document wich get manipulated
+ */
 function twoContactsSmallView(inviteContacts, cBox) {
   for (let i = 0; i < inviteContacts.length; i++) {
     cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
   }
 }
 
+/**
+ * If more than two contact to render in small view
+ *
+ * @param {array} inviteContacts array of contacts
+ * @param {variable} cBox document wich get manipulated
+ */
 function moreThanTwoContactsSmallView(inviteContacts, cBox) {
   for (let i = 0; i < 2; i++) {
     cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
@@ -421,6 +606,11 @@ function moreThanTwoContactsSmallView(inviteContacts, cBox) {
   cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${changedColorForDots};">...</p>`;
 }
 
+/**
+ *
+ * @param {array} contacts
+ * @returns the contact without an empty index
+ */
 function checkContactsIfEmpty(contacts) {
   if (contacts[0] == "") {
     contacts.splice(0, 1);
@@ -433,6 +623,10 @@ function checkContactsIfEmpty(contacts) {
   return contacts;
 }
 
+/**
+ * This function will fill the right categroy and transmitted to render the right categroy
+ * @param {string} category
+ */
 function fillCategory(category) {
   let categoryField = document.getElementById("select-category");
 
@@ -483,6 +677,9 @@ function createNewCategory() {
   category_accept.classList.remove("d-none");
 }
 
+/**
+ * This function will reset the category section after select one
+ */
 function goBackToSelectCategory() {
   let category_input = document.getElementById("new-category-input");
   let category_content = document.getElementById("new-category-content");
@@ -499,6 +696,9 @@ function goBackToSelectCategory() {
   categoryColorTrue = "";
 }
 
+/**
+ * This function will add a new generated category
+ */
 function addNewCategory() {
   let category_input = document.getElementById("new-category-input");
   let category_content = document.getElementById("new-category-content");
@@ -562,6 +762,9 @@ function checkIfNewCategoryPossible(
   }
 }
 
+/**
+ * Reset the colors that will show as an option to select
+ */
 function categorySelectReset() {
   let categoryColorsList = [
     "turquois",
@@ -583,6 +786,9 @@ function resetCategoryColorSelect(categoryColorsList) {
   }
 }
 
+/**
+ * If not correct input
+ */
 function showErrorCategory() {
   let messageInput = document.getElementById("error_value_cat");
   messageInput.classList.toggle("d-none");
@@ -593,6 +799,11 @@ function showErrorColor() {
   messageColor.classList.toggle("d-none");
 }
 
+/**
+ * Set the new category color
+ *
+ * @param {variable} color of the new category
+ */
 function selectCategoryColor(color) {
   categorySelectReset();
   showCategoryColor(color);
@@ -605,12 +816,23 @@ function selectCategoryColor(color) {
   }
 }
 
+/**
+ * Check if contains allready
+ *
+ * @param {number} color of the category
+ * @returns boolean
+ */
 function containsCategoryColor(color) {
   let newCategory = document.getElementById("category-color-" + color);
 
   return newCategory.classList.contains("select-new-category-color");
 }
 
+/**
+ * This wil make the category visible
+ *
+ * @param {number} color
+ */
 function showCategoryColor(color) {
   let newCategory = document.getElementById("category-color-" + color);
 
@@ -622,6 +844,9 @@ function renderNewCategories(categoryName, categoryColorTrue) {
   cDropDown.innerHTML += generateHTMLcategory(categoryName, categoryColorTrue);
 }
 
+/**
+ * Make it possible by changing input field to add subtask
+ */
 function createNewSubtask() {
   let plus = document.getElementById("plus-icon");
   let accept = document.getElementById("new-subtask-accept");
@@ -629,6 +854,9 @@ function createNewSubtask() {
   accept.classList.remove("d-none");
 }
 
+/**
+ * Check if subtask allready exist and add it
+ */
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
   let plus = document.getElementById("plus-icon");
@@ -648,7 +876,9 @@ function prepareSubstask(newSubtask, plus, subtask_accept) {
   subtask_accept.classList.add("d-none");
 }
 
-let descript = 0;
+/**
+ * Show the option the delete after creating subtask
+ */
 function subtaskDescription() {
   let subtask = document.getElementById("add-subtask");
   if (descript == 0) {
@@ -664,6 +894,9 @@ function subtaskToggleRed() {
   subtask.classList.toggle("add-subtask-red");
 }
 
+/**
+ * Set the input field back to main
+ */
 function subtaskSetBack() {
   let subatsk = document.getElementById("add-subtask");
   subatsk.placeholder = "Add new subtask";
@@ -674,6 +907,9 @@ function subtaskReturn() {
   return false;
 }
 
+/**
+ * Set subtask section back to the main view
+ */
 function backToSubtasks() {
   let plus = document.getElementById("plus-icon");
   let new_subtask = document.getElementById("new-subtask-accept");
@@ -683,8 +919,10 @@ function backToSubtasks() {
   new_subtask.classList.add("d-none");
   add_subtask.value = "";
 }
-let subCounterAdd = 0;
 
+/**
+ * Render the created subtask in bottom of subtask input
+ */
 function renderSubtasks() {
   if (subtasks.length > 0) {
     for (let i = 0; i < 1; i++) {
@@ -703,6 +941,11 @@ function renderSubtasks() {
   }
 }
 
+/**
+ * Check if exist if so, remove, else add
+ *
+ * @param {number} i of the subtask to added
+ */
 function addSubtaskToTask(i) {
   let subtask = document.getElementById("subtasks-checkbox-" + i).value;
 
@@ -713,6 +956,11 @@ function addSubtaskToTask(i) {
   }
 }
 
+/**
+ * This function will set the variable on the right importance
+ *
+ * @param {strin} pushed wich button gets pushed
+ */
 function setImportanceBoard(pushed) {
   if (pushed.innerHTML.includes("Ur")) {
     importance = "urgent";
@@ -724,6 +972,11 @@ function setImportanceBoard(pushed) {
   }
 }
 
+/**
+ * This will show the correct colored button after clicked
+ *
+ * @param {number} nr of importance button id
+ */
 function fillImportanceButton(nr) {
   let pushed;
   let pushedColored;
@@ -758,22 +1011,30 @@ function resetImportance() {
   }
 }
 
+/**
+ * Open the dropdown menu for contacts to select
+ */
 function openContactsToSelect() {
   document.getElementById("categories-drop-down").classList.add("d-none");
-  var element = document.getElementById("contacts-drop-down");
+  let element = document.getElementById("contacts-drop-down");
   element.classList.toggle("d-none");
   allFieldsFilled();
 }
 
+/**
+ * Open the dropdown to select category
+ */
 function openCategoriesToSelect() {
   document.getElementById("contacts-drop-down").classList.add("d-none");
-  var element = document.getElementById("categories-drop-down");
+  let element = document.getElementById("categories-drop-down");
   element.classList.toggle("d-none");
 }
 
-let email;
-
-let checkedIndex = [];
+/**
+ * Check and set new contact
+ *
+ * @returns if input is empty
+ */
 async function creatNewContactAddTask() {
   let invateNewContactName = document.getElementById("add_task_name").value;
   if (invateNewContactName == "") {
@@ -784,6 +1045,11 @@ async function creatNewContactAddTask() {
   allFieldsFilled();
 }
 
+/**
+ * This function will add a new contact in the edit task
+ *
+ * @param {number} id of the right map wich will probaly chanced
+ */
 async function creatNewContactEdit(id) {
   let invateNewContactName = document.getElementById("add_task_name").value;
   selectedContacts.push(invateNewContactName);
@@ -794,6 +1060,13 @@ async function creatNewContactEdit(id) {
   renderContactsSelection(invateNewContactName);
 }
 
+/**
+ * This will save the new invated contact in the backend and clear the field
+ *
+ * @param {array} invateNewContactName
+ * @param {string} email
+ * @param {number} id
+ */
 async function invateCreateNewContact(invateNewContactName, email, id) {
   let invateContacts = [];
   let firstletter = getFirstLetterInvate(invateNewContactName);
@@ -812,6 +1085,12 @@ async function invateCreateNewContact(invateNewContactName, email, id) {
   renderContactsSelection(contacts);
 }
 
+/**
+ * Check if new created contact allready exist
+ *
+ * @param {string} contact
+ * @returns list of indexes
+ */
 async function checkIfNewContactExist(contact) {
   exist = (await JSON.parse(backend.getItem("contacts"))) || [];
   exist.push(contact);
@@ -826,6 +1105,10 @@ async function checkIfNewContactExist(contact) {
   return indexLength;
 }
 
+/**
+ * Add d none to hole contacts in the list
+ * @param {array} displayContacts
+ */
 function ContactsDivDisplay(displayContacts) {
   for (let i = 0; i < displayContacts.length; i++) {
     let contactsCard = document.getElementById(`contactsDiv${i}`);
@@ -833,6 +1116,10 @@ function ContactsDivDisplay(displayContacts) {
   }
 }
 
+/**
+ * Check contacts and set the right checked
+ * @param {array} invateNewContactName
+ */
 async function getCheckboxValue(invateNewContactName) {
   if (invateNewContactName == undefined) {
     invateNewContactName = selectedContacts;
@@ -889,6 +1176,11 @@ function showCheckedOnEditContacts(selectedContacts) {
   }
 }
 
+/**
+ * This function will clear the contact field and render new that all contacts are visible
+ *
+ * @param {array} indexLength
+ */
 function clearContactsBeforeRendering(indexLength) {
   if (exist.length > 0) {
     for (let i = 0; i < indexLength - 1; i++) {
@@ -901,6 +1193,12 @@ function clearContactsBeforeRendering(indexLength) {
   }
 }
 
+/**
+ * This function checks if a empty index is there
+ *
+ * @param {array} contact maybe a empty index in it to splice
+ * @returns
+ */
 function spliceEmptyObject(contact) {
   for (let j = 0; j < contact.length; j++) {
     const element = contact[j];
@@ -912,6 +1210,12 @@ function spliceEmptyObject(contact) {
   return contact;
 }
 
+/**
+ * Get the firstlette of the contact
+ *
+ * @param {string} contact
+ * @returns if contact has no value
+ */
 function getFirstLetterInvate(contact) {
   let contacts = contact;
   let letterList;
@@ -946,6 +1250,10 @@ function setTheFirstLetterInvate(contact) {
   return letterList;
 }
 
+/**
+ * This function will creat a new color for the contact that have been new created
+ * @returns new color for new contact
+ */
 function getNewColorContacts() {
   let color = "#";
   const symbols = "0123456789ABCDEF";
@@ -955,10 +1263,15 @@ function getNewColorContacts() {
   return color;
 }
 
+/**
+ * This function checks who gets login
+ *
+ * @returns user wich is login
+ */
 function loadAtStartTask() {
   let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
   if (nameTest.length < 2) {
-    showCurrentUserNameForSummery = "Max Kebabman";
+    showCurrentUserNameForSummery = "Guest";
   } else {
     showCurrentUserNameForSummery = nameTest;
   }
