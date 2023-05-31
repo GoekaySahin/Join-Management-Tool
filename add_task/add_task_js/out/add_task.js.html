@@ -1,4 +1,32 @@
-let tasks = [];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: add_task.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: add_task.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let tasks = [];
 let selectedContacts = [];
 let importance;
 let subtasks = [];
@@ -54,7 +82,7 @@ async function getUrgentCounter() {
  */
 function controlContactCheckbox() {
   let list = document.getElementsByClassName("contacts-list-elem");
-  for (let i = 0; i < list.length; i++) {
+  for (let i = 0; i &lt; list.length; i++) {
     element = document.getElementById(`contacts-checkbox-${i}`);
     if (element == null) {
       return;
@@ -83,7 +111,7 @@ function controlDateInput() {
  * @returns {boolean}
  */
 function controlImportanceBtn() {
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i &lt; 4; i++) {
     let importanceBtn = document.getElementById(`importance-button${i}`);
     if (importanceBtn.style.display.includes("none")) {
       return true;
@@ -135,7 +163,7 @@ function checkInpAddTask() {
   let description = controlDescriptionInput();
   let category = controlCategorySelect();
   /* let category =  */
-  if (title && contacts && date && importanceBtn && description && category) {
+  if (title &amp;&amp; contacts &amp;&amp; date &amp;&amp; importanceBtn &amp;&amp; description &amp;&amp; category) {
     activateCreatTaskButton();
     return true;
   } else {
@@ -230,11 +258,11 @@ async function creatNewTask(
  * This function reset the importace buttons from colored-clicked to uncolored-unclicked
  */
 function resetImportanceButtons() {
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i &lt; 4; i++) {
     const btn = document.getElementById(`importance-button${i}`);
     btn.style = "";
   }
-  for (let j = 1; j < 4; j++) {
+  for (let j = 1; j &lt; 4; j++) {
     const btn = document.getElementById(`importance-button${j}-colored`);
     btn.style = "display: none";
   }
@@ -242,7 +270,7 @@ function resetImportanceButtons() {
 
 /**
  * This function is to save the data in backend
- * @param {array} tasks that will created, urgentCounter set and saved in backend
+ * @param {variable} tasks that will created, urgentCounter set and saved in backend
  */
 async function saveCounterAndTasks(tasks) {
   await backend.setItem("tasks", JSON.stringify(tasks));
@@ -251,6 +279,7 @@ async function saveCounterAndTasks(tasks) {
 
 /**
  * The creation of the task seperat in a small function
+ *
  * @param {variable} title of the task wich will created
  * @param {variable} date of the task wich will created
  * @param {variable} category of the task wich will created
@@ -390,7 +419,7 @@ function hoverAddTaskHtml() {
  */
 function checkSize() {
   let size = window.innerWidth;
-  if (size <= 1024) {
+  if (size &lt;= 1024) {
     sidebarTabled();
     hoverAddtaskRespons();
   } else if (size > 1024) {
@@ -453,7 +482,7 @@ async function renderContacts() {
   // list contacts in alphabetical order
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
-  for (let i = 0; i < contacts.length; i++) {
+  for (let i = 0; i &lt; contacts.length; i++) {
     const element = contacts[i];
     document.getElementById("contacts-drop-down").innerHTML +=
       generateHTMLcontacts(element, i);
@@ -461,7 +490,7 @@ async function renderContacts() {
 }
 
 function clearContactsBeforeRendering() {
-  for (let i = 0; i < contacts.length; i++) {
+  for (let i = 0; i &lt; contacts.length; i++) {
     const element = contacts[i];
     document.getElementById(`selected-contact-${i}`).parentElement.remove();
   }
@@ -702,7 +731,7 @@ function generateCategory(
 /**
  * This function will set a new color for new category
  *
- * @param {number} color hash number of color
+ * @param {variable} color hash number of color
  */
 function selectCategoryColor(color) {
   categorySelectReset();
@@ -732,7 +761,7 @@ function categorySelectReset() {
     "blue",
   ];
 
-  for (let i = 0; i < categoryColorsList.length; i++) {
+  for (let i = 0; i &lt; categoryColorsList.length; i++) {
     const element = categoryColorsList[i];
     let categoryColorId = document.getElementById(`category-color-${element}`);
     categoryColorId.classList.remove("select-new-category-color");
@@ -742,8 +771,8 @@ function categorySelectReset() {
 /**
  * This function will get the name and color of the new created category and transmitted to render it
  *
- * @param {string} categoryName name of the new category
- * @param {string} categoryColor color of the new category
+ * @param {variable} categoryName name of the new category
+ * @param {variable} categoryColor color of the new category
  */
 function renderNewCategories(categoryName, categoryColor) {
   let dropdown = document.getElementById("categories-drop-down");
@@ -801,7 +830,7 @@ function renderSubtasks() {
   let subContent = document.getElementById("subtask-content");
 
   subContent.innerHTML = "";
-  for (let i = 0; i < subtasks.length; i++) {
+  for (let i = 0; i &lt; subtasks.length; i++) {
     const subtask = subtasks[i];
     subContent.innerHTML += generateHTMLsubtask(subtask, i);
   }
@@ -916,7 +945,7 @@ function openCategoriesToSelect() {
  * This function is used to reset the checkboxes in the dropdown contacts
  */
 function resetCheckboxes() {
-  for (let i = 0; i < contacts.length; i++) {
+  for (let i = 0; i &lt; contacts.length; i++) {
     document.getElementById(`contacts-checkbox-${i}`).checked = false;
   }
 }
@@ -924,14 +953,14 @@ function resetCheckboxes() {
 /**
  * This function gets the document as variable to reset all
  *
- * @param {string} contacts document that will be manipulated
- * @param {string} title document that will be manipulated
- * @param {string} select document that will be manipulated
- * @param {string} description document that will be manipulated
- * @param {string} addSubtask document that will be manipulated
- * @param {string} accept document that will be manipulated
- * @param {string} plus document that will be manipulated
- * @param {string} selectCategory document that will be manipulated
+ * @param {variable} contacts document that will be manipulated
+ * @param {variable} title document that will be manipulated
+ * @param {variable} select document that will be manipulated
+ * @param {variable} description document that will be manipulated
+ * @param {variable} addSubtask document that will be manipulated
+ * @param {variable} accept document that will be manipulated
+ * @param {variable} plus document that will be manipulated
+ * @param {variable} selectCategory document that will be manipulated
  */
 function clearAllInputFieldsAddTask(
   contacts,
@@ -1008,10 +1037,10 @@ function newContactAddTaskReturn() {
   invateContact.classList.add("new-contact");
   invateContact.classList.remove("invate-class");
   invateContact.innerHTML = `
-  <span class="rendered-contact-name"
-  >Invite new contact</span
+  &lt;span class="rendered-contact-name"
+  >Invite new contact&lt;/span
     >
-    <img src="../add_task/img-add_task/contact_blue.png" />`;
+    &lt;img src="../add_task/img-add_task/contact_blue.png" />`;
   newContactAddTaskActive = true;
 }
 
@@ -1036,8 +1065,8 @@ async function createNewContactAddTask() {
 /**
  * This function is to creat the contact with all the information and transmitted to safe it
  *
- * @param {string} invateNewContactName of the new created contact
- * @param {string} email of the new created contact
+ * @param {variable} invateNewContactName of the new created contact
+ * @param {variable} email of the new created contact
  */
 async function invateCreateNewContact(invateNewContactName, email) {
   let firstletter = getFirstLetterInvate(invateNewContactName);
@@ -1065,7 +1094,7 @@ function getFirstLetterInvate(contact) {
   let contacts = [contact];
   let letterList;
 
-  for (let i = 0; i < contacts.length; i++) {
+  for (let i = 0; i &lt; contacts.length; i++) {
     const element = contacts[i];
     let name = element.split(" ");
     let firstLetter = name[0].split("");
@@ -1088,16 +1117,16 @@ function getNewColorContact() {
   symbols = "0123456789ABCDEF";
   color = "#";
 
-  for (let f = 0; f < 6; f++) {
+  for (let f = 0; f &lt; 6; f++) {
     color = color + symbols[Math.floor(Math.random() * 16)];
   }
   return color;
 }
 
 function creatContactsSelection() {
-  for (let i = 0; i < selectedContacts.length; i++) {
+  for (let i = 0; i &lt; selectedContacts.length; i++) {
     const current = selectedContacts[i];
-    for (let j = 0; j < currentContacts.length; j++) {
+    for (let j = 0; j &lt; currentContacts.length; j++) {
       const contactData = currentContacts[j]["name"];
       if (contactData == current) {
         contactsShow.push(currentContacts[j]);
@@ -1113,11 +1142,11 @@ function creatContactsSelection() {
  * @param {array} contactsShow contacts to show in small view
  */
 function creatContactShowMoreThanTwo(contactsShow) {
-  for (let i = 0; i < 2; i++) {
-    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${contactsShow[i]["color"]};">${contactsShow[i]["firstLetters"]}</p>`;
+  for (let i = 0; i &lt; 2; i++) {
+    cBox.innerHTML += `&lt;p class="invate-contact font-contact" style="background-color: ${contactsShow[i]["color"]};">${contactsShow[i]["firstLetters"]}&lt;/p>`;
   }
   changedColorForDots = "#FFAA00";
-  cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${changedColorForDots};">...</p>`;
+  cBox.innerHTML += `&lt;p class="invate-contact font-contact" style="background-color: ${changedColorForDots};">...&lt;/p>`;
 }
 
 /**
@@ -1126,8 +1155,8 @@ function creatContactShowMoreThanTwo(contactsShow) {
  * @param {array} contactsShow contacts to show in small view
  */
 function creatTwoContactsToShow(contactsShow) {
-  for (let i = 0; i < conatctsShow.length; i++) {
-    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${contactsShow[i]["color"]};">${contactsShow[i]["firstLetters"]}</p>`;
+  for (let i = 0; i &lt; conatctsShow.length; i++) {
+    cBox.innerHTML += `&lt;p class="invate-contact font-contact" style="background-color: ${contactsShow[i]["color"]};">${contactsShow[i]["firstLetters"]}&lt;/p>`;
   }
 }
 
@@ -1137,8 +1166,8 @@ function creatTwoContactsToShow(contactsShow) {
  * @param {array} contactsShow contact that will show in small view
  */
 function creatOneContactToShow(contactsShow) {
-  for (let i = 0; i < contactsShow.length; i++) {
-    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${contactsShow[i]["color"]};">${contactsShow[i]["firstLetters"]}</p>`;
+  for (let i = 0; i &lt; contactsShow.length; i++) {
+    cBox.innerHTML += `&lt;p class="invate-contact font-contact" style="background-color: ${contactsShow[i]["color"]};">${contactsShow[i]["firstLetters"]}&lt;/p>`;
   }
 }
 
@@ -1151,6 +1180,7 @@ function creatOneContactToShow(contactsShow) {
 async function renderContactsSelection(contacts) {
   let changedColorForDots = [];
   let cBox = document.getElementById("contacts_box");
+  let currentContacts = contacts;
   let contactsShow = [];
 
   contactShow = creatContactsSelection(contactsShow);
@@ -1168,3 +1198,26 @@ async function renderContactsSelection(contacts) {
     creatOneContactToShow(conatctsShow);
   }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activateCreatTaskButton">activateCreatTaskButton</a></li><li><a href="global.html#addContactToTask">addContactToTask</a></li><li><a href="global.html#addNameNewContact">addNameNewContact</a></li><li><a href="global.html#addNewCategory">addNewCategory</a></li><li><a href="global.html#addSubtask">addSubtask</a></li><li><a href="global.html#addSubtaskToTask">addSubtaskToTask</a></li><li><a href="global.html#addToTasks">addToTasks</a></li><li><a href="global.html#backToSubtasks">backToSubtasks</a></li><li><a href="global.html#checkImportance">checkImportance</a></li><li><a href="global.html#checkInpAddTask">checkInpAddTask</a></li><li><a href="global.html#checkNewCategory">checkNewCategory</a></li><li><a href="global.html#checkSize">checkSize</a></li><li><a href="global.html#clearAllInputFields">clearAllInputFields</a></li><li><a href="global.html#clearAllInputFieldsAddTask">clearAllInputFieldsAddTask</a></li><li><a href="global.html#clearContacts">clearContacts</a></li><li><a href="global.html#clearSubtasksAddTask">clearSubtasksAddTask</a></li><li><a href="global.html#controlCategorySelect">controlCategorySelect</a></li><li><a href="global.html#controlContactCheckbox">controlContactCheckbox</a></li><li><a href="global.html#controlDateInput">controlDateInput</a></li><li><a href="global.html#controlDescriptionInput">controlDescriptionInput</a></li><li><a href="global.html#controlImportanceBtn">controlImportanceBtn</a></li><li><a href="global.html#creatContactShowMoreThanTwo">creatContactShowMoreThanTwo</a></li><li><a href="global.html#creatNewTask">creatNewTask</a></li><li><a href="global.html#creatOneContactToShow">creatOneContactToShow</a></li><li><a href="global.html#creatTask">creatTask</a></li><li><a href="global.html#creatTwoContactsToShow">creatTwoContactsToShow</a></li><li><a href="global.html#createNewCategory">createNewCategory</a></li><li><a href="global.html#createNewContactAddTask">createNewContactAddTask</a></li><li><a href="global.html#createNewSubtask">createNewSubtask</a></li><li><a href="global.html#deactivateCreatTaskButton">deactivateCreatTaskButton</a></li><li><a href="global.html#emptyImportanceButton1">emptyImportanceButton1</a></li><li><a href="global.html#emptyImportanceButton2">emptyImportanceButton2</a></li><li><a href="global.html#emptyImportanceButton3">emptyImportanceButton3</a></li><li><a href="global.html#enableSidebar">enableSidebar</a></li><li><a href="global.html#fillBackoffice">fillBackoffice</a></li><li><a href="global.html#fillCategory">fillCategory</a></li><li><a href="global.html#fillImportanceButton1">fillImportanceButton1</a></li><li><a href="global.html#fillImportanceButton2">fillImportanceButton2</a></li><li><a href="global.html#fillImportanceButton3">fillImportanceButton3</a></li><li><a href="global.html#fillNewCategory">fillNewCategory</a></li><li><a href="global.html#fillSales">fillSales</a></li><li><a href="global.html#generateCategory">generateCategory</a></li><li><a href="global.html#generateNewCategory">generateNewCategory</a></li><li><a href="global.html#getFirstLetterInvate">getFirstLetterInvate</a></li><li><a href="global.html#getNewColorContact">getNewColorContact</a></li><li><a href="global.html#getUrgentCounter">getUrgentCounter</a></li><li><a href="global.html#goBackToSelectCategory">goBackToSelectCategory</a></li><li><a href="global.html#hoverAddtaskHtml">hoverAddtaskHtml</a></li><li><a href="global.html#hoverAddtaskRespons">hoverAddtaskRespons</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#invateCreateNewContact">invateCreateNewContact</a></li><li><a href="global.html#newContactAddTask">newContactAddTask</a></li><li><a href="global.html#newContactAddTaskReturn">newContactAddTaskReturn</a></li><li><a href="global.html#openCategoriesToSelect">openCategoriesToSelect</a></li><li><a href="global.html#openContactsToSelect">openContactsToSelect</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderContactsSelection">renderContactsSelection</a></li><li><a href="global.html#renderNewCategories">renderNewCategories</a></li><li><a href="global.html#renderSubtasks">renderSubtasks</a></li><li><a href="global.html#resetAddedButton">resetAddedButton</a></li><li><a href="global.html#resetCheckboxes">resetCheckboxes</a></li><li><a href="global.html#resetImportanceButtons">resetImportanceButtons</a></li><li><a href="global.html#resetTasksInputs">resetTasksInputs</a></li><li><a href="global.html#saveCounterAndTasks">saveCounterAndTasks</a></li><li><a href="global.html#selectCategoryColor">selectCategoryColor</a></li><li><a href="global.html#setButtonsDnone">setButtonsDnone</a></li><li><a href="global.html#setImportanceButton">setImportanceButton</a></li><li><a href="global.html#sidebarTabled">sidebarTabled</a></li><li><a href="global.html#triggerAddedToBoardButton">triggerAddedToBoardButton</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed May 31 2023 14:02:01 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
