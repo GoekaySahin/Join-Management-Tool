@@ -357,17 +357,17 @@ form input::placeholder {
 }
 
 .input-name {
-  background: url(../login/img/user.png) no-repeat scroll 95% 7px;
+  background: url(../../login/img/user.png) no-repeat scroll 95% 7px;
   font-size: 19px;
 }
 
 .input-mail {
-  background: url(../login/img/email.png) no-repeat scroll 95% 7px;
+  background: url(../../login/img/email.png) no-repeat scroll 95% 7px;
   font-size: 19px;
 }
 
 .input-phone {
-  background: url(img/phone.png) no-repeat scroll 95% 7px;
+  background: url(../../login/img/phone.png) no-repeat scroll 95% 7px;
   font-size: 19px;
 }
 

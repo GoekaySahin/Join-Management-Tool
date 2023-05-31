@@ -706,14 +706,9 @@ function generateCategory(
  */
 function selectCategoryColor(color) {
   categorySelectReset();
-  document
-    .getElementById("category-color-" + color)
-    .classList.toggle("select-new-category-color");
-  if (
-    document
-      .getElementById("category-color-" + color)
-      .classList.contains("select-new-category-color")
-  ) {
+  let colorElement = document.getElementById("category-color-" + color);
+  colorElement.classList.toggle("select-new-category-color");
+  if (colorElement.classList.contains("select-new-category-color")) {
     categoryColor = color;
     categoryColorTrue = color;
   } else {
@@ -724,7 +719,7 @@ function selectCategoryColor(color) {
 
 function categorySelectReset() {
   let categoryColorsList = [
-    "turquois",
+    "turquoise",
     "red",
     "green",
     "orange",
@@ -735,7 +730,9 @@ function categorySelectReset() {
   for (let i = 0; i < categoryColorsList.length; i++) {
     const element = categoryColorsList[i];
     let categoryColorId = document.getElementById(`category-color-${element}`);
-    categoryColorId.classList.remove("select-new-category-color");
+    if (categoryColorId.classList.value.includes("select-new-category-color")) {
+      categoryColorId.classList.remove("select-new-category-color");
+    }
   }
 }
 
@@ -825,6 +822,7 @@ function addSubtaskToTask(i) {
  * This function will set urgent and reset the other if clicked bevor
  */
 function fillImportanceButton1() {
+  importance = "urgent";
   importance1.style = "display: none;";
   importance1Colored.style = "display: flex; cursor: pointer;";
   importance2.style = "display: flex;";
@@ -1094,7 +1092,7 @@ function getNewColorContact() {
   return color;
 }
 
-function creatContactsSelection() {
+function creatContactsSelection(contactsShow, currentContacts) {
   for (let i = 0; i < selectedContacts.length; i++) {
     const current = selectedContacts[i];
     for (let j = 0; j < currentContacts.length; j++) {
@@ -1112,7 +1110,7 @@ function creatContactsSelection() {
  *
  * @param {array} contactsShow contacts to show in small view
  */
-function creatContactShowMoreThanTwo(contactsShow) {
+function creatContactShowMoreThanTwo(contactsShow, cBox) {
   for (let i = 0; i < 2; i++) {
     cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${contactsShow[i]["color"]};">${contactsShow[i]["firstLetters"]}</p>`;
   }
@@ -1125,8 +1123,8 @@ function creatContactShowMoreThanTwo(contactsShow) {
  *
  * @param {array} contactsShow contacts to show in small view
  */
-function creatTwoContactsToShow(contactsShow) {
-  for (let i = 0; i < conatctsShow.length; i++) {
+function creatTwoContactsToShow(contactsShow, cBox) {
+  for (let i = 0; i < contactsShow.length; i++) {
     cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${contactsShow[i]["color"]};">${contactsShow[i]["firstLetters"]}</p>`;
   }
 }
@@ -1136,7 +1134,7 @@ function creatTwoContactsToShow(contactsShow) {
  *
  * @param {array} contactsShow contact that will show in small view
  */
-function creatOneContactToShow(contactsShow) {
+function creatOneContactToShow(contactsShow, cBox) {
   for (let i = 0; i < contactsShow.length; i++) {
     cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${contactsShow[i]["color"]};">${contactsShow[i]["firstLetters"]}</p>`;
   }
@@ -1152,8 +1150,9 @@ async function renderContactsSelection(contacts) {
   let changedColorForDots = [];
   let cBox = document.getElementById("contacts_box");
   let contactsShow = [];
+  let currentContacts = contacts;
 
-  contactShow = creatContactsSelection(contactsShow);
+  contactsShow = creatContactsSelection(contactsShow, currentContacts);
 
   if (selectedContacts == "") {
     cBox.innerHTML = "";
@@ -1161,10 +1160,10 @@ async function renderContactsSelection(contacts) {
   }
   cBox.innerHTML = "";
   if (contactsShow.length > 2) {
-    creatContactShowMoreThanTwo(contactsShow);
+    creatContactShowMoreThanTwo(contactsShow, cBox);
   } else if (contactsShow.length == 2) {
-    creatTwoContactsToShow(contactsShow);
+    creatTwoContactsToShow(contactsShow, cBox);
   } else {
-    creatOneContactToShow(conatctsShow);
+    creatOneContactToShow(contactsShow, cBox);
   }
 }

@@ -112,7 +112,7 @@ async function safeEdit(id, selectedContacts) {
 function setupMap(id, selectedContacts) {
   let map = wichSection(id);
   if (map == undefined) {
-    debugger;
+    return;
   }
   let category = map.get(`${id}`)["category"];
   let categorycolor = map.get(`${id}`)["categorycolor"];

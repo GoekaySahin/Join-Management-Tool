@@ -218,7 +218,6 @@ async function openContactDetail(i) {
 
   renderOpenDetail(i);
   renderDecision(name, email, phone, acronym, color);
-  openContactDetailHover(i);
 }
 
 function closeContactRight() {

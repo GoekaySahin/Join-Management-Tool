@@ -116,5 +116,5 @@ async function openSummary() {
   currentUser = "Guest user";
   userAsJson = JSON.stringify(currentUser);
   await backend.setItem("currentUser", userAsJson);
-  window.location = "../../summary/summary.html";
+  window.location = "../summary/summary.html";
 }

@@ -255,10 +255,10 @@ function allFieldsFilled() {
   contacts = selectedContacts; // length
 
   let result = "";
-  if (fieldsFilled(title, description, category, date)) {
+  if (fieldsFilled(title, description, category, date, contacts)) {
     setTimeout(allFieldsFilled, 250);
   }
-  if (fieldsFilled(title, description, category, date)) {
+  if (fieldsFilled(title, description, category, date, contacts)) {
     buttonImportanceCheck();
   } else {
     let btn = document.getElementById("submit-btn");
@@ -275,7 +275,7 @@ function allFieldsFilled() {
  * @param {number} date of the task
  * @returns boolean
  */
-function fieldsFilled(title, description, category, date) {
+function fieldsFilled(title, description, category, date, contacts) {
   return (
     title.value.length > 0 &&
     description.value.length > 0 &&
@@ -442,7 +442,7 @@ function loopForContacts(contacts, dropdown, id) {
     if (dropdown == null) {
       dropdown = document.getElementById("contacts-drop-down-edit");
     }
-    dropdown.innerHTML += generateHTMLcontactsBoard(element, i, id);
+    dropdown.innerHTML += generateHTMLcontactsBoard(element, i);
   }
 }
 
@@ -456,8 +456,8 @@ async function addContactToTaskBoard(i, id) {
   let contact = document.getElementById("contacts-checkbox" + i).value;
   getCheckboxValue(contact);
 
-  checkSelectedContacts(contact);
-  await safeEdit(id, selectedContacts);
+  checkSelectedContactsAddTask(contact);
+  await safeEdit(undefined, selectedContacts);
   contactsOnTask = selectedContacts;
   renderContactsSelection(selectedContacts);
 }
@@ -467,7 +467,7 @@ async function addContactToTaskBoard(i, id) {
  *
  * @param {string} contact
  */
-function checkSelectedContacts(contact) {
+function checkSelectedContactsAddTask(contact) {
   if (selectedContacts.indexOf(contact) > -1) {
     let index = selectedContacts.indexOf(contact);
     selectedContacts.splice(index, 1);
