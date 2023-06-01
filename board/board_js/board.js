@@ -1341,42 +1341,6 @@ function setProgressInBeetween(
  * @param {number} id of the map
  */
 function addProgress(i, id) {
-  /* let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
-  let subSum = document.getElementsByClassName("subtext");
-  let pct = 100 / subSum.length;
-  let progressPct = document.getElementById("progress_edit");
-  let map = wichSection(id);
-  let counter = 1;
-
-  doneCoordinates = map.get(`${id}`)["subtaskStatus"];
-  currentProgress = addProgressVariable(doneCoordinates, counter, pct);
-  counter = addProgressCounter(doneCoordinates, counter);
-  if (progressPct.style.width == "0%") {
-    doneSum = setProgressToZero(
-      progressPct,
-      pct,
-      id,
-      doneSum,
-      currentProgress,
-      i
-    );
-  } else if (
-    !(progressPct.style.width == "100%") &&
-    !(progressPct.style.width == "0%")
-  ) {
-    doneSum = setProgressInBeetween(
-      doneSum,
-      id,
-      currentProgress,
-      doneSum,
-      i,
-      pct,
-      progressPct,
-      doneCoordinates
-    );
-  }
-  globalProgress = doneCoordinates;
-  qickSaveMap(id); */
   let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
   let subSum = document.getElementsByClassName("subtext");
   let pct = 100 / subSum.length;
@@ -1419,7 +1383,6 @@ function addProgress(i, id) {
 function subtaskInBetween(doneSum, id, currentProgress, pct, progressPct, i) {
   doneSum = parseInt(document.getElementById(`subtask_done${id}`).innerHTML);
   let theProgress = document.getElementById("progress_edit").style.width;
-
   theProgress = theProgress.split("%");
   currentProgress = parseInt(theProgress) + parseInt(pct);
   progressPct.style = `width: ${currentProgress}%;`;
@@ -1437,7 +1400,6 @@ function subtaskPctZero(progressPct, pct, id, doneSum, currentProgress, i) {
   currentProgress = pct;
   toggleSelecter(i);
   doneSum++;
-
   doneCoordinates.splice(i, 1, `add_sub${i}`);
   renderSubtaskStatus(id, doneSum);
   return doneCoordinates;
