@@ -756,7 +756,7 @@ function checkIfNewCategoryPossible(
  */
 function categorySelectReset() {
   let categoryColorsList = [
-    "turquois",
+    "turquoise",
     "red",
     "green",
     "orange",

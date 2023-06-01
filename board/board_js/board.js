@@ -140,10 +140,11 @@ function checkSize() {
     draggableTrue();
     sidebarDesktop();
     hoverBoardHtml();
-    if (activateDragAndDrop() == undefined) {
+    if (activateDragAndDrop == undefined) {
       location.reload();
+    } else {
+      activateDragAndDrop();
     }
-    activateDragAndDrop();
   }
 }
 
@@ -233,6 +234,11 @@ function openAddTask(section) {
   subtasks = [];
 }
 
+function clearContactsAndTask() {
+  subtasks = [];
+  selectedContacts = [];
+}
+
 /**
  * close the addTask div and add the d-none class from the div with id add-task
  */
@@ -243,7 +249,7 @@ function closeAddTask() {
   addBoard.classList.remove("slide-left");
   addBoard.classList.add("slide-right");
   setTimeout(openAddTask, 350);
-  subtasks = [];
+  clearContactsAndTask();
   subCounterAdd = 0;
   if (contactAdd.length == 1) {
     newContactAddTaskReturn();
@@ -485,6 +491,9 @@ function splitName(key) {
  * @param {array} doneCoordinates of the subtasks done or not
  */
 function setNewCard(map, key, colors, namesSplit, doneCoordinates) {
+  if (namesSplit.get(`${idCounter}`)["letters"] == undefined) {
+    location.reload();
+  }
   map.set(`${idCounter}`, {
     category: key["category"],
     categorycolor: key["categorycolor"],

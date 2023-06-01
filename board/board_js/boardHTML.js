@@ -177,7 +177,7 @@ function renderAddTaskHTML(section) {
         class="categories-list-elem"
       >
         Backoffice
-        <img src="../add_task/img-add_task/circle_turquois.png" />
+        <img src="../add_task/img-add_task/circle_turquoise.png" />
       </div>
     </div>
     <div
@@ -185,9 +185,9 @@ function renderAddTaskHTML(section) {
       class="new-category-content d-none"
     >
       <img
-        onclick="selectCategoryColor('turquois')"
-        src="../add_task/img-add_task/circle_turquois.png"
-        id="category-color-turquois"
+        onclick="selectCategoryColor('turquoise')"
+        src="../add_task/img-add_task/circle_turquoise.png"
+        id="category-color-turquoise"
       />
       <img
         onclick="selectCategoryColor('red')"
@@ -641,7 +641,7 @@ function setCategoryToBackoffice() {
   return `
       <div class="selected-category">
         Backoffice
-        <img src="../add_task/img-add_task/circle_turquois.png" />
+        <img src="../add_task/img-add_task/circle_turquoise.png" />
       </div>
       `;
 }
