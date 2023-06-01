@@ -34,7 +34,6 @@ let globalId;
 async function init() {
   await includeHTML();
   await downloadFromServer();
-  checkSize();
   draggableTrue();
   setTimeout(activateDragAndDrop, 400); /* setCards(); */
   await getMaps();
@@ -45,6 +44,7 @@ async function init() {
   getUrgentCounter();
   getCurrentContacts();
   setTimeout(load, 500);
+  checkSize();
 }
 
 /**
@@ -57,7 +57,6 @@ function openPopup(id) {
   popup();
   dateFutureTask();
   setId(id);
-  setTimeout(toggleArrows, 100);
 }
 
 /**
@@ -106,6 +105,7 @@ function popup(id) {
   content.classList.remove("set-content");
 
   setupForPopup(card, background);
+  toggleArrows();
 }
 
 /**
@@ -130,12 +130,13 @@ function setupForPopup(card, background) {
  */
 function checkSize() {
   let size = window.innerWidth;
-  setTimeout(toggleArrows, 50);
 
   if (size <= 1024) {
+    //addArrows();
     sidebarTabled();
     draggableFalse();
     hoverBoardRespons();
+    //setTimeout(toggleArrows, 250);
   } else if (size > 1024) {
     draggableTrue();
     sidebarDesktop();
@@ -145,6 +146,7 @@ function checkSize() {
     } else {
       activateDragAndDrop();
     }
+    //setTimeout(toggleArrows, 250);
   }
 }
 
@@ -373,6 +375,7 @@ function generateCards() {
   setCards("progress");
   setCards("feedback");
   setCards("done");
+  toggleArrows();
 }
 
 /**
@@ -392,6 +395,7 @@ async function setTasks(section) {
   setCards(progress);
   setCards(feedback);
   setCards(done);
+  toggleArrows();
 }
 
 async function checkSetTask(map, tasks, doneCoordinates, colors) {
@@ -2176,10 +2180,10 @@ async function getDoneMap() {
  */
 async function getMaps() {
   loadCounter();
-  let todosMap = getTodoMaps();
-  let progressesMap = getProgressMap();
-  let feedbacksMap = getFeedbackMap();
-  let donesMap = getDoneMap();
+  let todosMap = await getTodoMaps();
+  let progressesMap = await getProgressMap();
+  let feedbacksMap = await getFeedbackMap();
+  let donesMap = await getDoneMap();
 
   maps = [todosMap, progressesMap, feedbacksMap, donesMap];
 }
@@ -2268,6 +2272,7 @@ async function serach() {
     highlightAndDone();
   }
 }
+
 function checkInput(input) {
   input = input.toLowerCase();
 
@@ -2318,17 +2323,17 @@ function searchMaps(map, input) {
  * This function checks if number is type in
  * @returns boolean
  */
-function valueAndInputCheck() {
+function valueAndInputCheck(values, input) {
   return (
     Number.isInteger(parseInt(values)) && Number.isInteger(parseInt(input))
   );
 }
 
-function valueAndInputCheckEmpty() {
+function valueAndInputCheckEmpty(values) {
   return values == "" || values === [] || values == undefined;
 }
 
-function valueAndInputIsInteger() {
+function valueAndInputIsInteger(values, input) {
   return (
     Number.isInteger(parseInt(values)) || Number.isInteger(parseInt(input))
   );
@@ -2344,12 +2349,12 @@ function valueArray(value, element, key, input) {
 function searchInValue(value, key, input) {
   for (let i = 0; i < mapsValue.length; i++) {
     let values = value[mapsValue[i]];
-    if (valueAndInputCheckEmpty()) {
+    if (valueAndInputCheckEmpty(values)) {
       continue;
     }
-    if (valueAndInputCheckInteger()) {
+    if (valueAndInputCheck(values, input)) {
       outputNumber(values, key, input);
-    } else if (valueAndInputIsInteger()) {
+    } else if (valueAndInputIsInteger(values, input)) {
       continue;
     } else if (Array.isArray(values)) {
       valueArray(value, element, key, input);
@@ -2446,6 +2451,7 @@ function setId(id) {
  */
 function turnLeft(id) {
   let parent = document.getElementById(`card${id}`);
+  parent.classList.add("d-none");
   if (parent.parentNode.id.includes("todo")) {
     return;
   } else if (parent.parentNode.id.includes("progress")) {
@@ -2459,7 +2465,7 @@ function turnLeft(id) {
   if (window.innerWidth > 1024) {
     setTimeout(activateDragAndDrop, 50);
   }
-  setTimeout(toggleArrows, 75);
+  //toggleArrows();
 }
 
 function progressTodo(id) {
@@ -2485,6 +2491,7 @@ function doneFeedback(id) {
  */
 function turnRight(id) {
   let parent = document.getElementById(`card${id}`);
+  parent.classList.add("d-none");
   if (parent.parentNode.id.includes("done")) {
     return;
   } else if (parent.parentNode.id.includes("feedback")) {
@@ -2498,7 +2505,7 @@ function turnRight(id) {
   if (window.innerWidth > 1024) {
     setTimeout(activateDragAndDrop, 50);
   }
-  setTimeout(toggleArrows, 75);
+  //toggleArrows();
 }
 
 /**
@@ -2537,9 +2544,26 @@ function toggleArrows() {
     if (arrows == null) {
       return;
     }
-    if (window.innerWidth > 1024) {
+    if (
+      window.innerWidth > 1024 &&
+      !arrows.classList.value.includes("d-none")
+    ) {
       arrows.classList.add("d-none");
-    } else {
+    } else if (
+      arrows.classList.value.includes("d-none") &&
+      window.innerWidth < 1024
+    ) {
+      arrows.classList.remove("d-none");
+    }
+  }
+}
+function addArrows() {
+  for (let i = 0; i < idCounter; i++) {
+    const arrows = document.getElementById(`arrows_card${i}`);
+    if (arrows == null) {
+      return;
+    }
+    if (window.innerWidth < 1024) {
       arrows.classList.remove("d-none");
     }
   }
@@ -2551,4 +2575,5 @@ function toggleArrows() {
 function load() {
   let loader = document.getElementById("loader");
   loader.classList.toggle("d-none");
+  //toggleArrows();
 }

@@ -86,10 +86,10 @@
     display: block !important;
   }
   .main-logo {
-    content: url(../templates/img/logo_white.png) !important;
+    content: url(../../templates/img/logo_white.png) !important;
   }
   .logo-in-blue {
-    content: url(../templates/img/logo_blue.png) !important;
+    content: url(../../templates/img/logo_blue.png) !important;
   }
   header {
     background-color: #4589ff !important;

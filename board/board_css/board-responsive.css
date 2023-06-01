@@ -593,6 +593,7 @@
   .for-tablet {
     flex-direction: column;
     gap: 0px;
+    margin-bottom: 8%;
   }
 
   .todobox,
@@ -794,6 +795,10 @@
   .add-task-content-overlay {
     margin-inline-start: 19% !important;
   }
+
+  .popup-card {
+    height: 88vh;
+  }
 }
 
 @media (width <= 400px) {
@@ -849,10 +854,6 @@
   .head {
     margin-inline-start: 9px;
     width: 80vw !important;
-  }
-
-  .in-progress {
-    margin-top: 5vh;
   }
 
   .done {

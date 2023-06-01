@@ -36,7 +36,7 @@ async function loginSteps(element) {
 }
 
 function renderSignUpPage() {
-  window.location = "../login/signUp/signUp.html";
+  window.location = "../signUp/signUp.html";
 }
 
 function backToStart() {
@@ -44,7 +44,7 @@ function backToStart() {
 }
 
 function forgotPassword() {
-  window.location = "../login/forgot/forgotPassword.html";
+  window.location = "../forgot/forgotPassword.html";
 }
 
 function backFromForgot() {

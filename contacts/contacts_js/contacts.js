@@ -68,6 +68,9 @@ function sidebarTabled() {
   let sidebar = document.getElementById("sidebar");
   let helpBTN = document.getElementById("help-section-btn");
   let response = document.getElementById("header-name-resp");
+  if (sidebar == null) {
+    location.reload();
+  }
 
   sidebar.classList.remove("sidebar");
   sidebar.classList.add("tablet-sidebar");

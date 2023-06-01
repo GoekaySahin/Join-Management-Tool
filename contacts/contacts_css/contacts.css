@@ -57,6 +57,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 357px;
+  padding-bottom: 5%;
 }
 
 .contact-char {
