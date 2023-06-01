@@ -894,6 +894,10 @@ function oneDotContact(
  */
 function checkForContactNumber(contacts, letters, contactsSection, colors) {
   let changedColorForDots = [];
+  if (contacts[0] == contacts[1]) {
+    contacts.splice(0, 1);
+  }
+  contactsSection.innerHTML = "";
 
   if (contacts.length > 2) {
     threeDotsContact(
@@ -952,6 +956,7 @@ function renderPopup(
   importance
 ) {
   let popupCard = document.getElementById("popup_card");
+  popupCard.innerHTML = "";
   popupCard.innerHTML = renderPopupHTML(
     category,
     color,
@@ -1828,7 +1833,7 @@ function saveInTodosMap(
   });
 }
 
-function saveInProgressMap(
+function saveInFeedbackMap(
   titleEdit,
   descriptionEdit,
   dateEdit,
@@ -1843,7 +1848,7 @@ function saveInProgressMap(
   subtaskStatus,
   id
 ) {
-  progressesMap.set(`${id}`, {
+  feedbacksMap.set(`${id}`, {
     category: `${category}`,
     categorycolor: `${categorycolor}`,
     colors: `${colors}`,
@@ -1873,7 +1878,7 @@ function saveInProgressMap(
   subtaskStatus,
   id
 ) {
-  feedbacksMap.set(`${id}`, {
+  progressesMap.set(`${id}`, {
     category: `${category}`,
     categorycolor: `${categorycolor}`,
     colors: `${colors}`,
@@ -1949,6 +1954,8 @@ function saveIn(
       subtask,
       subtaskStatus
     );
+    setTimeout(activateDragAndDrop, 150);
+    return;
   } else if (progressesMap.has(`${id}`)) {
     saveInProgressMap(
       titleEdit,
@@ -1965,6 +1972,8 @@ function saveIn(
       subtaskStatus,
       id
     );
+    setTimeout(activateDragAndDrop, 150);
+    return;
   } else if (feedbacksMap.has(`${id}`)) {
     saveInFeedbackMap(
       titleEdit,
@@ -1981,6 +1990,8 @@ function saveIn(
       subtaskStatus,
       id
     );
+    setTimeout(activateDragAndDrop, 150);
+    return;
   } else if (donesMap.has(`${id}`)) {
     saveInDonesMap(
       titleEdit,
@@ -1997,8 +2008,9 @@ function saveIn(
       subtaskStatus,
       id
     );
+    setTimeout(activateDragAndDrop, 150);
+    return;
   }
-  setTimeout(activateDragAndDrop, 150);
 }
 
 function editContacts(id) {
