@@ -36,7 +36,12 @@ async function loginSteps(element) {
 }
 
 function renderSignUpPage() {
-  window.location = "../signUp/signUp.html";
+  let currentLink = window.location.href;
+  if (currentLink.includes("index")) {
+    window.location = "signUp/signUp.html";
+  } else {
+    window.location = "../signUp/signUp.html";
+  }
 }
 
 function backToStart() {
@@ -44,7 +49,12 @@ function backToStart() {
 }
 
 function forgotPassword() {
-  window.location = "../forgot/forgotPassword.html";
+  let currentLink = window.location.href;
+  if (currentLink.includes("index")) {
+    window.location = "forgot/forgotPassword.html";
+  } else {
+    window.location = "../forgot/forgotPassword.html";
+  }
 }
 
 function backFromForgot() {
