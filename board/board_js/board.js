@@ -1341,7 +1341,7 @@ function setProgressInBeetween(
  * @param {number} id of the map
  */
 function addProgress(i, id) {
-  let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
+  /* let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
   let subSum = document.getElementsByClassName("subtext");
   let pct = 100 / subSum.length;
   let progressPct = document.getElementById("progress_edit");
@@ -1376,7 +1376,81 @@ function addProgress(i, id) {
     );
   }
   globalProgress = doneCoordinates;
+  qickSaveMap(id); */
+  let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
+  let subSum = document.getElementsByClassName("subtext");
+  let pct = 100 / subSum.length;
+  let progressPct = document.getElementById("progress_edit");
+  let map = wichSection(id);
+  let counter = 0;
+  doneCoordinates = map.get(`${id}`)["subtaskStatus"];
+
+  if (typeof doneCoordinates == "string") {
+    doneCoordinates = doneCoordinates.split(",");
+    currentProgress = counter * pct;
+  }
+  counter = subtaskCounter(doneCoordinates, counter);
+  if (progressPct.style.width == "0%") {
+    doneCoordinates = subtaskPctZero(
+      progressPct,
+      pct,
+      id,
+      doneSum,
+      currentProgress,
+      i
+    );
+  } else if (
+    !(progressPct.style.width == "100%") &&
+    !(progressPct.style.width == "0%")
+  ) {
+    doneCoordinates = subtaskInBetween(
+      doneSum,
+      id,
+      currentProgress,
+      pct,
+      progressPct,
+      i
+    );
+  }
+  globalProgress = doneCoordinates;
   qickSaveMap(id);
+}
+
+function subtaskInBetween(doneSum, id, currentProgress, pct, progressPct, i) {
+  doneSum = parseInt(document.getElementById(`subtask_done${id}`).innerHTML);
+  let theProgress = document.getElementById("progress_edit").style.width;
+
+  theProgress = theProgress.split("%");
+  currentProgress = parseInt(theProgress) + parseInt(pct);
+  progressPct.style = `width: ${currentProgress}%;`;
+  toggleSelecter(i);
+  doneSum++;
+  addProgressCard(currentProgress, id, doneSum);
+  doneCoordinates.splice(i, 1, `add_sub${i}`);
+  renderSubtaskStatus(id, doneSum);
+  return doneCoordinates;
+}
+
+function subtaskPctZero(progressPct, pct, id, doneSum, currentProgress, i) {
+  progressPct.style = `width: ${pct}%;`;
+  addProgressCard(pct, id, doneSum);
+  currentProgress = pct;
+  toggleSelecter(i);
+  doneSum++;
+
+  doneCoordinates.splice(i, 1, `add_sub${i}`);
+  renderSubtaskStatus(id, doneSum);
+  return doneCoordinates;
+}
+
+function subtaskCounter(doneCoordinates, counter) {
+  for (let i = 0; i < doneCoordinates.length; i++) {
+    const element = doneCoordinates[i];
+    if (element.includes("add")) {
+      counter++;
+    }
+    return counter;
+  }
 }
 
 function renderSubtaskStatus(id, doneSum) {
