@@ -199,6 +199,7 @@ function renderOpenDetail(i) {
                 <div onclick="openAddTask()" class="name-addTask">
                     <img class="cross" src="img/cross.png" alt="" />
                     <p>Add Task</p>
+                    
                 </div>
             </div>
         </div>
@@ -220,6 +221,7 @@ function renderOpenDetail(i) {
                 <p>Edit Contact</p>
             </div>
         </div>
+        <button class="save-btn deleteBTN" onclick="deleteActualContact(${i})" >delete</button>
         <img onclick="openEditContact(${i})" src="img/edit-contact.png" id="edit_contact" class="d-none" alt="" />
     `;
 }

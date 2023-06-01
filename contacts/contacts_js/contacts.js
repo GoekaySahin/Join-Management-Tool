@@ -545,3 +545,12 @@ function checkIfString(element) {
   }
   return element;
 }
+
+async function deleteActualContact(i) {
+  let conatctDetail = document.getElementById("contact_right");
+  contacts = await JSON.parse(backend.getItem("contacts"));
+  contacts.splice(i, 1);
+  await backend.setItem("contacts", JSON.stringify(contacts));
+  conatctDetail.innerHTML = "";
+  renderContactList();
+}

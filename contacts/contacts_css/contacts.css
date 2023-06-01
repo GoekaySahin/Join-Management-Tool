@@ -82,9 +82,10 @@ body {
   align-items: center;
   padding: 15px 25px;
   gap: 35px;
-  width: 20vw;
+  width: 18vw;
   cursor: pointer;
   transition: all 5ms ease-in-out;
+  padding-bottom: 11%;
 }
 
 .contact-selected {
@@ -566,5 +567,17 @@ input[type="number"] {
 }
 
 .invite {
+  display: flex;
+}
+
+.deleteBTN {
+  position: absolute;
+  z-index: 200;
+  bottom: 0px;
+  right: 15%;
+  background-color: orange !important;
+}
+
+.df {
   display: flex;
 }
