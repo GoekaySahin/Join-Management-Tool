@@ -757,6 +757,9 @@ function setSubtasksOnCardVisible(subtaskCards, counter, id) {
     }
   }
   let cardProgress = counter * (100 / subtaskCards.length);
+  if (cardProgress == NaN) {
+    cardProgress = 0;
+  }
   addProgressCard(cardProgress, id, counter);
 }
 
@@ -1349,10 +1352,8 @@ function addProgress(i, id) {
   let counter = 0;
   doneCoordinates = map.get(`${id}`)["subtaskStatus"];
 
-  if (typeof doneCoordinates == "string") {
-    doneCoordinates = doneCoordinates.split(",");
-    currentProgress = counter * pct;
-  }
+  doneCoordinates = checkIfString(doneCoordinates);
+  currentProgress = counter * pct;
   counter = subtaskCounter(doneCoordinates, counter);
   if (progressPct.style.width == "0%") {
     doneCoordinates = subtaskPctZero(

@@ -342,7 +342,7 @@ function renderAddTaskHTML(section) {
 function descriptionHTML(description) {
   return `<div class="edit-title">
                   <h4>Description<h4>
-                  <textarea cols="36" rows="5" charswidth="500" name="text_body"id="popup_description_edit" placeholder="${description}"></textarea>
+                  <textarea cols="36" rows="5" charswidth="500" name="text_body"id="popup_description_edit">${description}</textarea>
                 </div>`;
 }
 

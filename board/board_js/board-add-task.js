@@ -847,7 +847,8 @@ function createNewSubtask() {
  * Check if subtask allready exist and add it
  */
 function addSubtask() {
-  let newSubtask = document.getElementById("add-subtask").value;
+  let newTask = document.getElementById("add-subtask");
+  let newSubtask = newTask.value;
   let plus = document.getElementById("plus-icon");
   let subtask_accept = document.getElementById("new-subtask-accept");
   subtasks.push(newSubtask);
@@ -855,6 +856,7 @@ function addSubtask() {
     selectedSubtasks.push(newSubtask);
   }
   prepareSubstask(newSubtask, plus, subtask_accept);
+  backToSubtasks();
 }
 
 function prepareSubstask(newSubtask, plus, subtask_accept) {
