@@ -1225,7 +1225,14 @@ function toggleSelecter(i) {
   span.classList.toggle("mr15");
 }
 
-function setupRemoveProgress(doneSum, pct, progressPct, doneCoordinates) {
+function setupRemoveProgress(
+  doneSum,
+  pct,
+  progressPct,
+  doneCoordinates,
+  id,
+  i
+) {
   let progressCut = document.getElementById("progress_edit").style.width;
   let cutted = parseInt(progressCut.split("%"));
   currentProgress = parseInt(cutted) - parseInt(pct);
@@ -1259,7 +1266,7 @@ function removeProgress(i, id) {
     return;
   }
 
-  setupRemoveProgress(doneSum, pct, progressPct, doneCoordinates);
+  setupRemoveProgress(doneSum, pct, progressPct, doneCoordinates, id, i);
 }
 
 function addProgressCounter(doneCoordinates, counter) {
@@ -1272,9 +1279,15 @@ function addProgressCounter(doneCoordinates, counter) {
 }
 
 function addProgressVariable(doneCoordinates, counter, pct) {
-  if (typeof doneCoordinates == "string") {
-    doneCoordinates = doneCoordinates.split(",");
-    currentProgress = counter * pct;
+  let currentProgress = document.getElementById("progress_edit").style.width;
+  currentProgress = Number(currentProgress.slice(0, -1));
+
+  if (typeof doneCoordinates[counter] == "string") {
+    if (doneCoordinates.lenght == 1) {
+      doneCoordinates = doneCoordinates.split(",");
+      debugger;
+    }
+    currentProgress += counter * pct;
   }
   return currentProgress;
 }
@@ -1285,13 +1298,22 @@ function setProgressToZero(progressPct, pct, id, doneSum, currentProgress, i) {
   currentProgress = pct;
   toggleSelecter(i);
   doneSum++;
-
+  doneCoordinates = checkIfString(doneCoordinates);
   doneCoordinates.splice(i, 1, `add_sub${i}`);
   renderSubtaskStatus(id, doneSum);
   return doneSum;
 }
 
-function setProgressInBeetween(doneSum, id, currentProgress, doneSum, i) {
+function setProgressInBeetween(
+  doneSum,
+  id,
+  currentProgress,
+  doneSum,
+  i,
+  pct,
+  progressPct,
+  doneCoordinates
+) {
   doneSum = parseInt(document.getElementById(`subtask_done${id}`).innerHTML);
   let theProgress = document.getElementById("progress_edit").style.width;
 
@@ -1301,6 +1323,7 @@ function setProgressInBeetween(doneSum, id, currentProgress, doneSum, i) {
   toggleSelecter(i);
   doneSum++;
   addProgressCard(currentProgress, id, doneSum);
+  doneCoordinates = checkIfString(doneCoordinates);
   doneCoordinates.splice(i, 1, `add_sub${i}`);
   renderSubtaskStatus(id, doneSum);
   return doneSum;
@@ -1318,7 +1341,7 @@ function addProgress(i, id) {
   let pct = 100 / subSum.length;
   let progressPct = document.getElementById("progress_edit");
   let map = wichSection(id);
-  let counter = 0;
+  let counter = 1;
 
   doneCoordinates = map.get(`${id}`)["subtaskStatus"];
   currentProgress = addProgressVariable(doneCoordinates, counter, pct);
@@ -1336,7 +1359,16 @@ function addProgress(i, id) {
     !(progressPct.style.width == "100%") &&
     !(progressPct.style.width == "0%")
   ) {
-    doneSum = setProgressInBeetween(doneSum, id, currentProgress, doneSum, i);
+    doneSum = setProgressInBeetween(
+      doneSum,
+      id,
+      currentProgress,
+      doneSum,
+      i,
+      pct,
+      progressPct,
+      doneCoordinates
+    );
   }
   globalProgress = doneCoordinates;
   qickSaveMap(id);
@@ -2402,6 +2434,9 @@ function PushInArray(values, key, input) {
 function highlightAndDone() {
   for (let i = idCounter - 1; i > -1; i--) {
     let card = document.getElementById(`card${i}`);
+    if (card == null) {
+      debugger;
+    }
     card.classList.add("d-none");
   }
 
