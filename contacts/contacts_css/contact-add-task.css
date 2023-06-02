@@ -936,16 +936,4 @@
   }
 }
 
-@media (width <= 414px) {
-  .contacts-list-elem-box {
-    width: 98vw;
-  }
-  .rendered-contact-name {
-    width: 94vw;
-  }
-  .new-contact {
-    width: 96.5vw;
-  }
-}
-
 /* end */

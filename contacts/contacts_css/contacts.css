@@ -591,3 +591,11 @@ input[type="number"] {
 .overflow {
   overflow: hidden;
 }
+
+.category-text {
+  margin-block-start: -39px !important;
+}
+
+.contacts-dropdown-content {
+  height: 230px !important;
+}

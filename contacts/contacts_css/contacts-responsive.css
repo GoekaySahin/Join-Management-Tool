@@ -135,6 +135,10 @@
     top: 82% !important;
   }
 
+  .add-task-content-overlay {
+    margin-block-start: -67px !important;
+  }
+
   .deleteBTN {
     top: 0;
     left: 62%;
@@ -201,8 +205,6 @@
 @media (width <=800px) {
   .contact-list-container {
     width: 100vw;
-    padding-top: 50px;
-    height: 90vh;
   }
 
   .contact-right {
@@ -290,18 +292,31 @@
   }
 
   .deleteBTN {
-    top: 536px;
+    width: 92px;
+    height: 46px;
+    top: 541px;
     left: 71%;
   }
 
   .contact-right {
-    margin-inline-start: -37px;
+    scale: 1.3;
+    top: 19vh;
+    margin-inline-start: -45px;
+  }
+  .contacts-list-elem {
+    height: 21px;
+    display: flex;
+    align-items: baseline;
   }
 }
 
 @media (width <=580px) {
   .contact {
     width: 80vw;
+  }
+
+  .add-task-content-overlay {
+    scale: 0.8 !important;
   }
   #add_contact_container {
     height: 100vh;
@@ -312,9 +327,9 @@
   .add-contact-information {
     width: 100vw;
   }
-  form input {
+  /*   form input {
     width: 80vw !important;
-  }
+  } */
   .new-contact-btn-container {
     width: 80vw;
   }
@@ -329,6 +344,19 @@
   }
   .input-phone {
     margin-bottom: 25px;
+  }
+}
+
+@media (width <= 500px) {
+  .add-task-content-overlay {
+    scale: 0.85 !important;
+    margin-inline-start: 11% !important;
+  }
+
+  .contacts-list-elem-box,
+  .subtask-list-elem-box {
+    display: flex;
+    width: 80vw !important;
   }
 }
 
@@ -357,10 +385,41 @@
   .contact {
     position: relative;
   }
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box {
+    display: flex;
+    flex-direction: column;
+    width: 422px;
+    margin-bottom: 6px;
+    margin-block-start: -16px;
+  }
+  /* 
+  .category-box {
+    margin-block-start: -25px !important;
+  } */
+
+  .control {
+    height: 20px !important;
+  }
+
+  form input {
+    width: 4vw !important;
+  }
 
   .contact-list-inner-container {
     margin-right: 20px;
     scale: 0.9;
+  }
+
+  .add-task-content {
+    right: -20px;
+  }
+
+  .add-task-content-overlay {
+    margin-top: -23% !important;
+    margin-inline-start: 33% !important;
   }
 
   .new-contact-btn {
@@ -381,15 +440,15 @@
   }
 
   .contact-right {
-    scale: 0.8;
-    margin-block-start: -61px;
-    height: 97vh;
+    scale: 1.2;
+    top: 20vh;
+    margin-inline-start: -34px;
   }
 
   #edit_contact {
     position: absolute;
     right: 45vw;
-    top: 535px;
+    top: 531px;
   }
 
   .deleteBTN {
@@ -448,6 +507,16 @@
 @media (height <= 700px) {
   .new-contact-btn {
     top: 20% !important;
+  }
+}
+
+@media (height <= 670px) {
+  body {
+    overflow: scroll;
+  }
+
+  .contact-right {
+    height: 100vh;
   }
 }
 
