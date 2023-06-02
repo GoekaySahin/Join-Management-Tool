@@ -148,7 +148,7 @@ body {
   top: 100px;
   left: 780px;
   overflow: hidden;
-  width: 31%;
+  width: 50%;
   height: 41vh;
 }
 
@@ -577,8 +577,9 @@ input[type="number"] {
   position: absolute;
   z-index: 200;
   bottom: 0px;
-  right: 15%;
+  right: 47%;
   background-color: orange !important;
+  top: 79%;
 }
 
 .df {
