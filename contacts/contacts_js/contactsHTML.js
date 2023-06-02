@@ -195,8 +195,14 @@ function renderOpenDetail(i) {
       <div class="name">
         <h1 id="name_right"></h1>
         <div onclick="openAddTask()" class="name-addTask">
-          <img class="cross" src="img/cross.png" alt="" />
-          <p>Add Task</p>
+          <div class="add-task-opener">
+              <img class="cross" src="img/cross.png" alt="" />
+              <p>Add Task</p>
+          </div>
+          <div onclick="openEditContact(${i})" id="edit_contact_pencil" class="edit-contact">
+            <img src="img/pencil.png" alt="" />
+            <p>Edit Contact</p>
+          </div>
         </div>
       </div>
     </div>
@@ -213,10 +219,6 @@ function renderOpenDetail(i) {
           <span id="mobil_right"></span>
         </div>
       </div>
-      <div onclick="openEditContact(${i})" id="edit_contact_pencil" class="edit-contact">
-        <img src="img/pencil.png" alt="" />
-        <p>Edit Contact</p>
-      </div>
     </div>
     <button class="save-btn deleteBTN" onclick="deleteActualContact(${i})" >delete</button>
     <img onclick="openEditContact(${i})" src="img/edit-contact.png" id="edit_contact" class="d-none" alt="" />
@@ -228,15 +230,16 @@ function renderDetailHTML(name, email, phone, acronym, color) {
   let nRight = document.getElementById("name_right");
   let mRight = document.getElementById("mail_right");
   let circleRight = document.getElementById("circle_right");
+  let mobileRight = document.getElementById("mobil_right");
 
   cRight.classList.remove("d-none");
   nRight.innerHTML = name;
   mRight.innerHTML = email;
 
   if (phone == undefined) {
-    mRight.innerHTML = "";
+    mobileRight.innerHTML = "";
   } else {
-    mRight.innerHTML = `${phone}`;
+    mobileRight.innerHTML = `${phone}`;
   }
   circleRight.innerHTML = acronym.toUpperCase();
   circleRight.style.background = color;

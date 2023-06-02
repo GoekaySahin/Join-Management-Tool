@@ -61,6 +61,8 @@ function checkSize() {
   } else if (size > 1024) {
     enableSidebar();
     hoverContactsHtml();
+  } else if (size < 800) {
+    closeDetail();
   }
 }
 
@@ -199,10 +201,16 @@ function renderDecision(name, email, phone, acronym, color) {
   if (bodyWidth < 800) {
     renderDetailHTMLRespons();
     renderDetailHTML(name, email, phone, acronym, color);
+    toggleBodyOverflow();
   } else {
+    toggleBodyOverflow();
     renderDetailHTML(name, email, phone, acronym, color);
     animateDetail();
   }
+}
+
+function toggleBodyOverflow() {
+  document.body.classList.toggle("overflow");
 }
 
 /**
