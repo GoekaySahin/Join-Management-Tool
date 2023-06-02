@@ -54,9 +54,9 @@ function renderAddTaskHTML(section) {
   return `
     
   <div class="test"></div>
-  <div class="for-close" onclick="closeAddTask()"></div>  
-  <div class="add-task-content slide-left" id="add-board">
   <form onsubmit="allFieldsFilled; return false">
+  <div class="for-close"></div>  
+  <div class="add-task-content slide-left" id="add-board">
     <div class="add-task-content-overlay"> 
         <div class="add-tasks-board-head" id="add-board">
           <h1 class="add-title">Add Task</h1>
@@ -747,7 +747,7 @@ function renderShowEdit(
   id
 ) {
   colors.classList.add("d-none");
-  popupTitle.innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
+  popupTitle.innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" value="${title}">`;
   popupTitle.classList.add("set-title");
   cardConten.classList.add("set-content");
   popupDescription.innerHTML = descriptionHTML(description);

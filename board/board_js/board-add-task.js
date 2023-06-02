@@ -276,6 +276,17 @@ function allFieldsFilled() {
  * @returns boolean
  */
 function fieldsFilled(title, description, category, date, contacts) {
+  if (
+    title.value.length > 0 &&
+    description.value.length > 0 &&
+    !category.innerHTML.includes("Select") &&
+    date.value.length > 0 &&
+    contacts.length >= 1
+  ) {
+    filled = true;
+  } else {
+    filled = false;
+  }
   return (
     title.value.length > 0 &&
     description.value.length > 0 &&
@@ -1019,6 +1030,7 @@ function openCategoriesToSelect() {
   document.getElementById("contacts-drop-down").classList.add("d-none");
   let element = document.getElementById("categories-drop-down");
   element.classList.toggle("d-none");
+  allFieldsFilled();
 }
 
 /**
