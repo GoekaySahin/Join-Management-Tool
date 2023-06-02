@@ -956,7 +956,8 @@ function renderPopup(
   contactsSplit,
   letters,
   section,
-  importance
+  importance,
+  date
 ) {
   let popupCard = document.getElementById("popup_card");
   popupCard.innerHTML = "";
@@ -971,7 +972,8 @@ function renderPopup(
     contactsSplit,
     letters,
     section,
-    importance
+    importance,
+    date
   );
   renderPopupDetail(
     colors,
@@ -1103,7 +1105,8 @@ function setPopupCard(
   colors,
   contactsSplit,
   letters,
-  id
+  id,
+  date
 ) {
   colors = colors.split(",");
   letters = letters.split(",");
@@ -1128,7 +1131,8 @@ function setPopupCard(
     contactsSplit,
     letters,
     section,
-    importance
+    importance,
+    date
   );
 }
 
@@ -1143,6 +1147,7 @@ function generatePopup(id) {
   let colors = String(section.get(`${id}`)["colors"]);
   let contactsSplit = section.get(`${id}`)["contacts"];
   let letters = String(section.get(`${id}`)["letters"]);
+  let date = section.get(`${id}`)["date"];
   setPopupCard(
     section,
     category,
@@ -1154,7 +1159,8 @@ function generatePopup(id) {
     colors,
     contactsSplit,
     letters,
-    id
+    id,
+    date
   );
 
   renderSubtasksPopup(id, section);

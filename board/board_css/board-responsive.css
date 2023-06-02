@@ -517,6 +517,7 @@
     scale: 0.9;
     top: 142px !important;
     right: 0 !important;
+    left: 57% !important;
   }
 
   .popup-title {
@@ -757,8 +758,7 @@
 
   .popup-card {
     scale: 0.75;
-    height: 82vh;
-    margin-top: -9vh;
+    margin-top: -20vh;
     left: 62% !important;
   }
 
@@ -797,7 +797,7 @@
   }
 
   .popup-card {
-    height: 88vh;
+    left: 64% !important;
   }
 }
 

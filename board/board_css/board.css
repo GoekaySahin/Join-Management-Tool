@@ -772,6 +772,7 @@ h4 {
 .sub-img-setup {
   width: 14px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .progress0 {
