@@ -713,6 +713,7 @@ function addNewCategory() {
     category_accept,
     select
   );
+  allFieldsFilled();
 }
 
 function checkIfNewCategoryPossible(

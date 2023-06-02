@@ -126,5 +126,10 @@ async function openSummary() {
   currentUser = "Guest user";
   userAsJson = JSON.stringify(currentUser);
   await backend.setItem("currentUser", userAsJson);
-  window.location = "../summary/summary.html";
+  let currentLink = window.location.href;
+  if (currentLink.includes("index")) {
+    window.location = "../summary/summary.html";
+  } else {
+    window.location = "../../summary/summary.html";
+  }
 }

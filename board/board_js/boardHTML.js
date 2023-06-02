@@ -1,5 +1,3 @@
-/* onmousedown = "return false"; */
-
 function setCardHTML(
   category,
   color,
@@ -11,42 +9,43 @@ function setCardHTML(
   importance
 ) {
   return `
-                    <div draggable="true" class="card" onclick="openPopup(${id})" id="card${id}">
-                      <div class="card-head">
-                        <div class="category-overlay" id="c-color${id}" style="background-color: ${color}">
-                          <p id="c_overlay${id}">${category}</p>
-                        </div>
-                      <div class="arrows-card d-none" id="arrows_card${id}">
-                        <img src="img-board/arrow-left.png" class="arrow" onclick="turnLeft(${id})">
-                        <img src="img-board/arrow-right.png" class="arrow arrow-rigth" onclick="turnRight(${id})">
-                      </div>
-                      </div>
+          <div draggable="true" class="card" onclick="openPopup(${id})" id="card${id}">
+            <div class="card-head">
+              <div class="category-overlay" id="c-color${id}" style="background-color: ${color}">
+                <p id="c_overlay${id}">${category}</p>
+              </div>
+            
+              <div class="arrows-card d-none" id="arrows_card${id}">
+                <img src="img-board/arrow-left.png" class="arrow" onclick="turnLeft(${id})">
+                <img src="img-board/arrow-right.png" class="arrow arrow-rigth" onclick="turnRight(${id})">
+              </div>
+           </div>
 
-                      <div class="card-title">
-                        <h1 class="title-text font" id="title${id}">${title}</h1>
-                      </div>
+           <div class="card-title">
+              <h1 class="title-text font" id="title${id}">${title}</h1>
+            </div>
 
-                      <div class="card-content">
-                        <p class="inter gray" id="description${id}">
-                          ${description}
-                        </p>
-                      </div>
+            <div class="card-content">
+              <p class="inter gray" id="description${id}">
+                ${description}
+              </p>
+            </div>
 
-                      <div class="progress-box" id="progress_box${id}">
-                        <div class="progressbar">
-                          <div class="progress" id="progress_card${id}" style="width:0;" ></div>
-                        </div>
-                          <p class="done-p" id="done_status${id}"><span id="progress_card_done${id}">${progressStatus}</span>/${totalSubtasks} Done</p>
-                      </div>
-
-                      <div class="card-footer" id="footer${id}">
-                        <div class="card-invite" id="contacts_card${id}"></div>
-                        <div class="btn-footer" id="importance_footer${id}">
-                          <img class="img-position" src="img-board/${importance}.png">
-                          <img src="img-board/${importance}.png">
-                        </div>
-                      <div>
-                    </div>`;
+            <div class="progress-box" id="progress_box${id}">
+              <div class="progressbar">
+                <div class="progress" id="progress_card${id}" style="width:0;" ></div>
+              </div>
+              <p class="done-p" id="done_status${id}"><span id="progress_card_done${id}">${progressStatus}</span>/${totalSubtasks} Done</p>
+            </div>
+            
+            <div class="card-footer" id="footer${id}">
+              <div class="card-invite" id="contacts_card${id}"></div>
+              <div class="btn-footer" id="importance_footer${id}">
+                <img class="img-position" src="img-board/${importance}.png">
+                <img src="img-board/${importance}.png">
+              </div>
+            <div>
+          </div>`;
 }
 
 function renderAddTaskHTML(section) {
@@ -270,82 +269,80 @@ function renderAddTaskHTML(section) {
 
 function descriptionHTML(description) {
   return `<div class="edit-title">
-                  <h4>Description<h4>
-                  <textarea cols="36" rows="5" charswidth="500" name="text_body"id="popup_description_edit">${description}</textarea>
-                </div>`;
+            <h4>Description<h4>
+            <textarea cols="36" rows="5" charswidth="500" name="text_body"id="popup_description_edit">${description}</textarea>
+          </div>`;
 }
 
 function dateHTML() {
   return `<div class="correctDate">
-      <h4 class="due-date-text">Due date</h4>
-      <input type="date" placeholder="dd/mm/yyyy" id="select-date" class="select-date" required />
-    </div>`;
+            <h4 class="due-date-text">Due date</h4>
+            <input type="date" placeholder="dd/mm/yyyy" id="select-date" class="select-date" required />
+          </div>`;
 }
 
 function priorityHTML() {
   return `
-              <div class="importance-buttons">
-                <button onclick="fillImportanceButton(${4})" class="importance-button1" id="importance-button-edit-4"
-                    type="button">
-                    <span>Urgent</span>
-                    <img src="../add_task/img-add_task/urgent.png" />
-                </button>
-                <button onclick="fillImportanceButton(${4})" class="importance-button1-colored d-none"
-                    id="importance-button-colored-edit-4" type="button">
-                    <span>Urgent</span>
-                    <img src="../add_task/img-add_task/urgent_white.png" />
-                </button>
+          <div class="importance-buttons">
+            <button onclick="fillImportanceButton(${4})" class="importance-button1" id="importance-button-edit-4"
+              type="button">
+              <span>Urgent</span>
+              <img src="../add_task/img-add_task/urgent.png" />
+            </button>
 
-                <button onclick="fillImportanceButton(${5})" class="importance-button2" id="importance-button-edit-5"
-                    type="button">
-                    <span>Medium</span>
-                    <img src="../add_task/img-add_task/medium.png" />
-                </button>
-                <button onclick="fillImportanceButton(${5})" class="importance-button2-colored d-none"
-                    id="importance-button-colored-edit-5" type="button">
-                    <span>Medium</span>
-                    <img src="../add_task/img-add_task/medium_white.png" />
-                </button>
+            <button onclick="fillImportanceButton(${4})" class="importance-button1-colored d-none"
+              id="importance-button-colored-edit-4" type="button">
+              <span>Urgent</span>
+              <img src="../add_task/img-add_task/urgent_white.png" />
+            </button>
+            
+            <button onclick="fillImportanceButton(${5})" class="importance-button2" id="importance-button-edit-5"
+              type="button">
+              <span>Medium</span>
+              <img src="../add_task/img-add_task/medium.png" />
+            </button>
 
-                <button onclick="fillImportanceButton(${6})" class="importance-button3" id="importance-button-edit-6"
-                    type="button">
-                    <span>Low</span>
-                    <img src="../add_task/img-add_task/low.png" />
-                </button>
-                <button onclick="fillImportanceButton(${6})" class="importance-button3-colored d-none"
-                    id="importance-button-colored-edit-6"  type="button">
-                    <span>Low</span>
-                    <img src="../add_task/img-add_task/low_white.png" />
-                </button>
-            </div>`;
+            <button onclick="fillImportanceButton(${5})" class="importance-button2-colored d-none"
+              id="importance-button-colored-edit-5" type="button">
+              <span>Medium</span>
+              <img src="../add_task/img-add_task/medium_white.png" />
+            </button>
+
+            <button onclick="fillImportanceButton(${6})" class="importance-button3" id="importance-button-edit-6"
+              type="button">
+              <span>Low</span>
+              <img src="../add_task/img-add_task/low.png" />
+            </button>
+
+            <button onclick="fillImportanceButton(${6})" class="importance-button3-colored d-none"
+              id="importance-button-colored-edit-6"  type="button">
+              <span>Low</span>
+              <img src="../add_task/img-add_task/low_white.png" />
+            </button>
+          </div>`;
 }
 
 function assignedHTML(id) {
   return `
-              <div class="contacts-box" onclick="getCheckboxValue()">
-                <div style="position: relative">
-                    <div class="contacts-dropdown">
-                        <p onclick="openEditContactsToSelect(${id})" class="select-contacts">
-                            Select contacts to assign
-                        </p>
-                        <img onclick="openEditContactsToSelect(${id})" src="../add_task/img-add_task/dropdown_blue.png"
-                            class="drop-down-arrow" />
-                        <div id="contacts-drop-down-edit" class="contacts-dropdown-content d-none set-contact-popup">
-
-
-
-
-
-                            <div onclick="newContactEdit(0)" class="contacts-list-elem new-contact" id="new_contact-edit">
-                                 <span class="rendered-contact-name">Invite new contact</span>
-                                <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
-                            </div>
-                            <div class="add-task-new-render-container" id="add_task_new_render_container"></div>
-                        </div>
-                    </div>
+          <div class="contacts-box" onclick="getCheckboxValue()">
+            <div style="position: relative">
+              <div class="contacts-dropdown">
+                <p onclick="openEditContactsToSelect(${id})" class="select-contacts">
+                  Select contacts to assign
+                </p>
+                <img onclick="openEditContactsToSelect(${id})" src="../add_task/img-add_task/dropdown_blue.png"
+                  class="drop-down-arrow" />
+                <div id="contacts-drop-down-edit" class="contacts-dropdown-content d-none set-contact-popup">
+                  <div onclick="newContactEdit(0)" class="contacts-list-elem new-contact" id="new_contact-edit">
+                    <span class="rendered-contact-name">Invite new contact</span>
+                    <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
+                  </div>
+                  <div class="add-task-new-render-container" id="add_task_new_render_container"></div>
                 </div>
-                <div class="font invate" id="invite_contacts_select_edit"></div>
-            </div`;
+              </div>
+            </div>
+            <div class="font invate" id="invite_contacts_select_edit"></div>
+          </div`;
 }
 
 function popupCardHTML(
@@ -380,7 +377,6 @@ function popupCardHTML(
       <p class="popup-text font" id="popup_description">
         ${description}
       </p>
-      
       <div class="date-box-popup" id="date_box">
         <p class="due-date" >Due date:</p>
         <p id="date">16-01-2023</p>
@@ -395,8 +391,6 @@ function popupCardHTML(
         <div class="progess-text">
         <h3 class="subtask">Subtasks:</h3><p class="tasks">${subtask}</p>
           <div class="p-overlay" id="progress_box_popup${id}">
-          
-          
           </div>
         
         </div>
@@ -462,7 +456,6 @@ function renderPopupHTML(
         <p id="c_overlay${id}">${category}</p>
       </div>
       <div onclick="popup()" class="close-box">
-      
         <img src="img-board/line.png" class="close-img">
         <img src="img-board/line.png" >
       </div>
