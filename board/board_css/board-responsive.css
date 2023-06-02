@@ -500,23 +500,20 @@
   }
 }
 
-@media (width <=757px) {
+@media (width <=700px) {
+  .category-overlay {
+    width: 17vw !important;
+  }
 }
 
 @media (width <=670px) {
   .popup-card-title {
     width: 65vw;
   }
-  .category-overlay {
-    width: 113px !important;
-  }
 }
 
 @media (width <=600px) {
   .popup-card {
-    scale: 0.9;
-    top: 142px !important;
-    right: 0 !important;
     left: 57% !important;
   }
 
@@ -657,12 +654,6 @@
     align-items: center;
   }
 
-  .popup-card {
-    transform: scale(0.9);
-    right: -22px;
-    margin-left: -305px !important;
-  }
-
   .popup-card-title {
     width: 68vw;
   }
@@ -757,9 +748,8 @@
   }
 
   .popup-card {
-    scale: 0.75;
-    margin-top: -20vh;
-    left: 62% !important;
+    scale: 0.8;
+    left: 58% !important;
   }
 
   .popup-title,
@@ -780,6 +770,14 @@
   }
 }
 
+@media (width <= 450px) {
+  .popup-card {
+    scale: 0.8.99;
+    left: 59% !important;
+    margin-top: -36px;
+  }
+}
+
 @media (width <=430px) {
   .head {
     margin-inline-start: 9px;
@@ -797,7 +795,7 @@
   }
 
   .popup-card {
-    left: 64% !important;
+    scale: 0.7.99;
   }
 }
 
@@ -811,11 +809,22 @@
   .add-task-content-overlay {
     margin-inline-start: 27% !important;
   }
+  .popup-card {
+    scale: 0.65.95;
+    left: 60% !important;
+  }
 }
 
 @media (width <= 365px) {
   .add-task-content-overlay {
     margin-inline-start: 31% !important;
+  }
+}
+
+@media (width <= 355px) {
+  .popup-card {
+    scale: 0.62.9;
+    left: 61% !important;
   }
 }
 
@@ -913,17 +922,17 @@
   }
 }
 
-@media (width <= 391px) {
+@media (width <= 335px) {
   .popup-card {
-    scale: 0.6;
-    left: 64% !important;
-    margin-top: -163px;
+    scale: 0.6.9;
+    left: 62% !important;
   }
 }
 
-@media (width <= 335px) {
+@media (width <= 320px) {
   .popup-card {
-    margin-left: -294px !important;
+    scale: 0.58.9;
+    left: 63% !important;
   }
 }
 

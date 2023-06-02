@@ -139,6 +139,7 @@ body {
 
 .contact-information-container {
   display: flex;
+  height: 25vh;
 }
 
 .contact-right {
@@ -147,6 +148,8 @@ body {
   top: 100px;
   left: 780px;
   overflow: hidden;
+  width: 31%;
+  height: 41vh;
 }
 
 .name-container {
