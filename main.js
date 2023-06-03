@@ -26,6 +26,9 @@ function hoverSummaryRespons() {
 
 function sidebarMainTabled() {
   let sidebar = document.getElementById("sidebar");
+  if (sidebar == null) {
+    location.reload();
+  }
   let header = document.getElementById("header-name");
   let helpBtn = document.getElementById("help-section-btn");
 

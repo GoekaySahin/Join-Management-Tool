@@ -824,3 +824,27 @@ h4 {
     transform: rotate(360deg);
   }
 }
+
+#addtask_bg {
+  width: 71px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#summary_bg,
+#contacts_bg,
+#addtask_bg,
+#board_bg {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#summary_bg:hover,
+#board_bg:hover,
+#addtask_bg:hover,
+#contacts_bg:hover {
+  background-color: #c1cbe6 !important;
+  cursor: pointer;
+}

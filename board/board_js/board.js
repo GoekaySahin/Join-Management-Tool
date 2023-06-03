@@ -98,7 +98,9 @@ function popup(id) {
   let editPrio = document.getElementById("edit_priority");
   let title = document.getElementById("popup_title");
   let content = document.getElementById("card_content");
+  let body = document.body;
 
+  body.classList.toggle("hide-overflow-y");
   editPrio.classList.remove("correctPrio");
   title.classList.remove("card-content-popup");
   content.classList.remove("set-content");

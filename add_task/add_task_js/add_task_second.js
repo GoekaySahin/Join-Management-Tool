@@ -5,6 +5,9 @@
  */
 function sidebarTabled() {
   let sidebar = document.getElementById("sidebar");
+  if (sidebar == null) {
+    location.reload();
+  }
   let helpBtn = document.getElementById("help-section-btn");
   let headerRes = document.getElementById("header-name-resp");
   let creatRes = document.getElementById("create-btn-responsive");

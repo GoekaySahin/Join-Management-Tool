@@ -3,6 +3,10 @@
     width: 71px;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   header {
     background-color: white;
   }
