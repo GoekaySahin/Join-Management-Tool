@@ -591,7 +591,7 @@
   .for-tablet {
     flex-direction: column;
     gap: 0px;
-    margin-bottom: 8%;
+    margin-bottom: 10%;
   }
 
   .todobox,
@@ -640,6 +640,10 @@
 }
 
 @media (width <=500px) {
+  .add-task-descript-input {
+    max-width: 385px;
+  }
+
   .popup {
     right: -21px;
   }
@@ -659,7 +663,7 @@
   }
 
   .kanban {
-    font-size: 11px;
+    font-size: 14px;
     width: 76vw;
     margin-inline-end: -2vw;
     justify-content: center;
@@ -687,6 +691,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 16vh;
   }
 
   .todo-content,
@@ -707,7 +712,13 @@
   }
 
   .add-task-content-overlay {
-    scale: 0.7 !important;
+    scale: 0.9.99 !important;
+    margin-top: 14%;
+    margin-inline-start: -33px !important;
+  }
+
+  .form {
+    width: 100%;
   }
 }
 
@@ -776,6 +787,9 @@
     left: 59% !important;
     margin-top: -36px;
   }
+  .add-task-content-overlay {
+    scale: 0.83.99 !important;
+  }
 }
 
 @media (width <=430px) {
@@ -806,12 +820,32 @@
 }
 
 @media (width <= 380px) {
-  .add-task-content-overlay {
-    margin-inline-start: -24% !important;
+  .select-contacts,
+  .select-date,
+  .select-category,
+  .add-subtask {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1.4px;
   }
   .popup-card {
     scale: 0.65.95;
     left: 60% !important;
+  }
+  #select-date-task {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2.3px;
+  }
+
+  .due-date-text,
+  .category-text,
+  .description-text,
+  .subtask-text {
+    width: 108px !important;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 2.3px;
   }
 }
 
@@ -826,6 +860,16 @@
     scale: 0.62.9;
     left: 61% !important;
   }
+
+  .rendered-contact-name {
+    width: 110.2vw !important;
+  }
+  .contacts-list-elem-box {
+    width: 115vw !important;
+  }
+  .new-contact {
+    width: 114vw !important;
+  }
 }
 
 @media (width <= 350px) {
@@ -837,7 +881,7 @@
 @media (width <= 342px) {
   .add-task-content-overlay {
     margin-inline-start: 39% !important;
-    scale: 0.65 !important;
+    scale: 0.65.9 !important;
   }
 }
 

@@ -90,6 +90,9 @@ async function addToTasks(section) {
  */
 function resetAddTask(section) {
   closeAddTask();
+  if (window.location.href.includes("contact")) {
+    return;
+  }
   setTasks(section);
   setTimeout(activateDragAndDrop, 400); /* setCards(); */
   setTimeout(load, 500);
@@ -128,7 +131,9 @@ async function setNewTask() {
     importance,
     description
   );
-  resetTasksInputs(
+  setTimeout(
+    resetTasksInputs,
+    500,
     title,
     selectedContacts,
     date,

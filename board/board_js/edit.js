@@ -1,3 +1,5 @@
+let globalId;
+
 function editSelectBtn(element, doneButton) {
   if (doneButton.disabled == false) {
     doneButton.disabled = true;
@@ -5,6 +7,23 @@ function editSelectBtn(element, doneButton) {
     doneButton.disabled = false;
   }
   element.classList.toggle("d-none");
+}
+
+/**
+ *  This function will check from wich section the id is
+ * @param {number} id of the map every task has his id
+ * @returns the right map
+ */
+function wichSection(id) {
+  if (todosMap.has(`${id}`)) {
+    return todosMap;
+  } else if (progressesMap.has(`${id}`)) {
+    return progressesMap;
+  } else if (feedbacksMap.has(`${id}`)) {
+    return feedbacksMap;
+  } else if (donesMap.has(`${id}`)) {
+    return donesMap;
+  }
 }
 
 /**
@@ -92,6 +111,9 @@ async function addContactToTask(element, id) {
     selectedContacts.splice(pos, 1);
   }
   await safeEdit(id, selectedContacts);
+}
+function setId(id) {
+  globalId = id;
 }
 
 async function safeEdit(id, selectedContacts) {
@@ -196,4 +218,18 @@ function resetImportanceEdit() {
     pushed.classList.remove("d-none");
     pushedColored.classList.add("d-none");
   }
+}
+
+/**
+ * Loading screen
+ */
+function load() {
+  if (window.location.href.includes("contact")) {
+    return;
+  } else {
+    let loader = document.getElementById("loader");
+    loader.classList.toggle("d-none");
+  }
+
+  //toggleArrows();
 }

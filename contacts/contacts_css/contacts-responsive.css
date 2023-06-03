@@ -188,7 +188,7 @@
     margin-top: 50px;
   }
 
-  form {
+  .form {
     margin-top: 50px;
     align-items: center;
   }
@@ -234,7 +234,7 @@
   }
 
   #add_contact_container {
-    width: 100vw;
+    width: 100vw !important;
     height: 100vh;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -314,12 +314,16 @@
   .contact {
     width: 80vw;
   }
+  .form input {
+    width: 80% !important;
+  }
 
   .add-task-content-overlay {
     scale: 0.8 !important;
   }
   #add_contact_container {
     height: 100vh;
+    width: 100% !important;
   }
   .add-contact-header {
     width: 100vw;
@@ -345,18 +349,37 @@
   .input-phone {
     margin-bottom: 25px;
   }
+  .form {
+    width: 80%;
+  }
 }
 
 @media (width <= 500px) {
   .add-task-content-overlay {
-    scale: 0.85 !important;
-    margin-inline-start: 11% !important;
+    scale: 0.9.99 !important;
+    margin-inline-start: 1% !important;
+    margin-top: 13% !important;
   }
 
-  .contacts-list-elem-box,
-  .subtask-list-elem-box {
-    display: flex;
-    width: 80vw !important;
+  .category-box {
+    margin-top: 17% !important;
+  }
+  #description-input {
+    max-height: 61px;
+    max-width: 382px;
+  }
+}
+
+@media (width <= 465px) {
+  .add-task-content-overlay {
+    margin-inline-start: 9% !important;
+    scale: 0.8.99 !important;
+  }
+}
+@media (width <= 425px) {
+  .add-task-content-overlay {
+    margin-inline-start: 20% !important;
+    scale: 0.7.99 !important;
   }
 }
 
@@ -382,6 +405,21 @@
 }
 
 @media (width <= 380px) {
+  .select-contacts,
+  .select-date,
+  .select-category,
+  .add-subtask {
+    font-size: 20px;
+    font-size: 20px;
+  }
+
+  .importance-button1,
+  .importance-button2,
+  .importance-button3 {
+    font-size: 28px;
+    font-weight: 700;
+  }
+
   .contact {
     position: relative;
   }
@@ -404,10 +442,6 @@
     height: 20px !important;
   }
 
-  form input {
-    width: 4vw !important;
-  }
-
   .contact-list-inner-container {
     margin-right: 20px;
     scale: 0.9;
@@ -415,11 +449,6 @@
 
   .add-task-content {
     right: -20px;
-  }
-
-  .add-task-content-overlay {
-    margin-top: -23% !important;
-    margin-inline-start: 33% !important;
   }
 
   .new-contact-btn {
@@ -454,6 +483,47 @@
   .deleteBTN {
     top: 524px;
     left: 62%;
+  }
+  .invate-contact {
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+
+  .add-contact-header p {
+    font-size: 40px;
+  }
+
+  .add-contact-header p {
+    font-size: 20px;
+  }
+}
+
+@media (width <= 354px) {
+  .add-task-content-overlay {
+    margin-inline-start: 29% !important;
+  }
+
+  .contacts-list-elem {
+    font-size: 19px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+}
+
+@media (width <= 333px) {
+  .add-task-content-overlay {
+    margin-inline-start: 29% !important;
+  }
+  .due-date-text {
+    margin-top: 19px;
+  }
+
+  .description-box {
+    margin-top: 10%;
   }
 }
 
@@ -496,7 +566,7 @@
 }
 
 @media (height <= 820px) {
-  form {
+  .form {
     margin-top: 40px;
   }
   .input-phone {

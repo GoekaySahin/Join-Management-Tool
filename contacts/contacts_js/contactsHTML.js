@@ -194,8 +194,8 @@ function renderOpenDetail(i) {
       <div class="circle-right" id="circle_right"></div>
       <div class="name">
         <h1 id="name_right"></h1>
-        <div onclick="openAddTask()" class="name-addTask">
-          <div class="add-task-opener">
+        <div class="name-addTask">
+          <div onclick="openAddTask()"  class="add-task-opener">
               <img class="cross" src="img/cross.png" alt="" />
               <p>Add Task</p>
           </div>

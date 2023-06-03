@@ -53,7 +53,7 @@
 }
 
 @media (max-width: 480px) {
-  form {
+  .form-add-task {
     width: 80vw;
   }
 

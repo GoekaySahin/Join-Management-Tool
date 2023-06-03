@@ -4,11 +4,11 @@ let selectedColor;
 let selectedLetter;
 let selectedContact;
 let editContactIndex;
-/* let maps;
+let maps;
 let todosMap;
 let progressesMap;
 let feedbacksMap;
-let donesMap; */
+let donesMap;
 
 setURL(
   "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
@@ -22,6 +22,7 @@ async function init() {
   await includeHTML();
   checkSize();
   await renderContactList();
+  await getMaps();
   await loadContacts();
 }
 /**
@@ -40,6 +41,51 @@ function hoverContactsHtml() {
 
   contactsHTML.classList.add("section-background-normal");
   contactsBG.classList.remove("section-background");
+}
+
+/**
+ * load all maps
+ */
+async function getMaps() {
+  loadCounter();
+  let todosMap = await getTodoMaps();
+  let progressesMap = await getProgressMap();
+  let feedbacksMap = await getFeedbackMap();
+  let donesMap = await getDoneMap();
+
+  maps = [todosMap, progressesMap, feedbacksMap, donesMap];
+}
+
+async function getTodoMaps() {
+  let todos = (await JSON.parse(backend.getItem("todoJson"))) || [];
+  if (todos.length > 1) {
+    todosMap = new Map(Object.entries(JSON.parse(todos)));
+  }
+  return todosMap;
+}
+
+async function getProgressMap() {
+  let progresses = (await JSON.parse(backend.getItem("progressJson"))) || [];
+  if (progresses.length > 1) {
+    progressesMap = new Map(Object.entries(JSON.parse(progresses)));
+  }
+  return progressesMap;
+}
+
+async function getFeedbackMap() {
+  let feedbacks = (await JSON.parse(backend.getItem("feedbackJson"))) || [];
+  if (feedbacks.length > 1) {
+    feedbacksMap = new Map(Object.entries(JSON.parse(feedbacks)));
+  }
+  return feedbacksMap;
+}
+
+async function getDoneMap() {
+  let dones = (await JSON.parse(backend.getItem("doneJson"))) || [];
+  if (dones.length > 1) {
+    donesMap = new Map(Object.entries(JSON.parse(dones)));
+  }
+  return donesMap;
 }
 
 function hoverContactsRespons() {

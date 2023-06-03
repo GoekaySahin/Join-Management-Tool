@@ -25,7 +25,6 @@ let progress = "progress";
 let done = "done";
 let idCounter = 0;
 let actualContacts;
-let globalId;
 
 /**
  * This function Initialized some functions that need to run with onload of the body
@@ -1164,23 +1163,6 @@ function generatePopup(id) {
   );
 
   renderSubtasksPopup(id, section);
-}
-
-/**
- *  This function will check from wich section the id is
- * @param {number} id of the map every task has his id
- * @returns the right map
- */
-function wichSection(id) {
-  if (todosMap.has(`${id}`)) {
-    return todosMap;
-  } else if (progressesMap.has(`${id}`)) {
-    return progressesMap;
-  } else if (feedbacksMap.has(`${id}`)) {
-    return feedbacksMap;
-  } else if (donesMap.has(`${id}`)) {
-    return donesMap;
-  }
 }
 
 /**
@@ -2530,10 +2512,6 @@ function editDnone() {
   editButton.classList.add("d-none");
 }
 
-function setId(id) {
-  globalId = id;
-}
-
 /**
  * This function will change the section of the card
  * @param {number} id of the map
@@ -2657,13 +2635,4 @@ function addArrows() {
       arrows.classList.remove("d-none");
     }
   }
-}
-
-/**
- * Loading screen
- */
-function load() {
-  let loader = document.getElementById("loader");
-  loader.classList.toggle("d-none");
-  //toggleArrows();
 }
