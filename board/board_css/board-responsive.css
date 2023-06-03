@@ -992,4 +992,12 @@
   }
 }
 
+@media (width < 380px) and (height < 700px) {
+  .add-task-content-overlay {
+    scale: 0.7.75 !important;
+    margin-inline-start: 30% !important;
+    margin-top: -25vh;
+  }
+}
+
 /* end */

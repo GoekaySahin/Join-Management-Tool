@@ -460,9 +460,6 @@
     width: 1px;
   }
 
-  .circle-right {
-    margin-top: 10px;
-  }
   .name {
     margin-left: 0;
     margin-top: 35.7px;
@@ -470,8 +467,9 @@
 
   .contact-right {
     scale: 1.2;
-    top: 20vh;
+    top: 15vh;
     margin-inline-start: -34px;
+    z-index: 10;
   }
 
   #edit_contact {
@@ -499,6 +497,16 @@
 
   .add-contact-header p {
     font-size: 20px;
+  }
+
+  #backarrow {
+    top: 7vh;
+  }
+  .tablet-sidebar {
+    z-index: 30;
+  }
+  .add-contact-information {
+    padding-bottom: 8vh;
   }
 }
 
@@ -593,5 +601,12 @@
 @media (height <= 500px) {
   .new-contact-btn {
     top: 25% !important;
+  }
+}
+
+@media (width < 380px) and (height < 700px) {
+  .add-task-popup {
+    height: 130vh;
+    padding-bottom: 10vh;
   }
 }

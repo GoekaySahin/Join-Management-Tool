@@ -249,14 +249,17 @@ function renderDecision(name, email, phone, acronym, color) {
     renderDetailHTML(name, email, phone, acronym, color);
     toggleBodyOverflow();
   } else {
-    toggleBodyOverflow();
+    toggleBodyOverflowDel();
     renderDetailHTML(name, email, phone, acronym, color);
     animateDetail();
   }
 }
 
 function toggleBodyOverflow() {
-  document.body.classList.toggle("overflow");
+  document.body.classList.add("overflow");
+}
+function toggleBodyOverflowDel() {
+  document.body.classList.remove("overflow");
 }
 
 /**
@@ -275,6 +278,7 @@ async function openContactDetail(i) {
 
   renderOpenDetail(i);
   renderDecision(name, email, phone, acronym, color);
+  toggleBodyOverflowDel();
 }
 
 function closeContactRight() {

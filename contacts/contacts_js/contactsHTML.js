@@ -262,187 +262,40 @@ function renderDetailHTMLRespons() {
 }
 
 function disableContactContainer() {
-  let a = document.getElementById("a");
-  let b = document.getElementById("b");
-  let c = document.getElementById("c");
-  let d = document.getElementById("d");
-  let e = document.getElementById("e");
-  let f = document.getElementById("f");
-  let g = document.getElementById("g");
-  let h = document.getElementById("h");
-  let i = document.getElementById("i");
-  let j = document.getElementById("j");
-  let k = document.getElementById("k");
-  let l = document.getElementById("l");
-  let m = document.getElementById("m");
-  let n = document.getElementById("n");
-  let o = document.getElementById("o");
-  let p = document.getElementById("p");
-  let q = document.getElementById("q");
-  let r = document.getElementById("r");
-  let s = document.getElementById("s");
-  let t = document.getElementById("t");
-  let u = document.getElementById("u");
-  let v = document.getElementById("v");
-  let w = document.getElementById("w");
-  let x = document.getElementById("x");
-  let y = document.getElementById("y");
-  let z = document.getElementById("z");
+  let alphabet = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "x",
+    "y",
+    "z",
+  ];
 
-  let aContainer = document.getElementById("a_container");
-  let bContainer = document.getElementById("b_container");
-  let cContainer = document.getElementById("c_container");
-  let dContainer = document.getElementById("d_container");
-  let eContainer = document.getElementById("e_container");
-  let fContainer = document.getElementById("f_container");
-  let gContainer = document.getElementById("g_container");
-  let hContainer = document.getElementById("h_container");
-  let iContainer = document.getElementById("i_container");
-  let jContainer = document.getElementById("j_container");
-  let kContainer = document.getElementById("k_container");
-  let lContainer = document.getElementById("l_container");
-  let mContainer = document.getElementById("m_container");
-  let nContainer = document.getElementById("n_container");
-  let oContainer = document.getElementById("o_container");
-  let pContainer = document.getElementById("p_container");
-  let qContainer = document.getElementById("q_container");
-  let rContainer = document.getElementById("r_container");
-  let sContainer = document.getElementById("s_container");
-  let tContainer = document.getElementById("t_container");
-  let uContainer = document.getElementById("u_container");
-  let vContainer = document.getElementById("v_container");
-  let wContainer = document.getElementById("w_container");
-  let xContainer = document.getElementById("x_container");
-  let yContainer = document.getElementById("y_container");
-  let zContainer = document.getElementById("z_container");
-  if (a.innerHTML < 1) {
-    aContainer.classList.add("d-none");
-  } else {
-    aContainer.classList.remove("d-none");
-  }
-  if (b.innerHTML < 1) {
-    bContainer.classList.add("d-none");
-  } else {
-    bContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("c").innerHTML < 1) {
-    cContainer.classList.add("d-none");
-  } else {
-    cContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("d").innerHTML < 1) {
-    dContainer.classList.add("d-none");
-  } else {
-    dContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("e").innerHTML < 1) {
-    eContainer.classList.add("d-none");
-  } else {
-    eContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("f").innerHTML < 1) {
-    fContainer.classList.add("d-none");
-  } else {
-    fContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("g").innerHTML < 1) {
-    gContainer.classList.add("d-none");
-  } else {
-    gContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("h").innerHTML < 1) {
-    hContainer.classList.add("d-none");
-  } else {
-    hContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("i").innerHTML < 1) {
-    iContainer.classList.add("d-none");
-  } else {
-    iContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("j").innerHTML < 1) {
-    jContainer.classList.add("d-none");
-  } else {
-    jContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("k").innerHTML < 1) {
-    kContainer.classList.add("d-none");
-  } else {
-    kContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("l").innerHTML < 1) {
-    lContainer.classList.add("d-none");
-  } else {
-    lContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("m").innerHTML < 1) {
-    mContainer.classList.add("d-none");
-  } else {
-    mContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("n").innerHTML < 1) {
-    nContainer.classList.add("d-none");
-  } else {
-    nContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("o").innerHTML < 1) {
-    oContainer.classList.add("d-none");
-  } else {
-    oContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("p").innerHTML < 1) {
-    pContainer.classList.add("d-none");
-  } else {
-    pContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("q").innerHTML < 1) {
-    qContainer.classList.add("d-none");
-  } else {
-    qContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("r").innerHTML < 1) {
-    rContainer.classList.add("d-none");
-  } else {
-    rContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("s").innerHTML < 1) {
-    sContainer.classList.add("d-none");
-  } else {
-    sContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("t").innerHTML < 1) {
-    tContainer.classList.add("d-none");
-  } else {
-    tContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("u").innerHTML < 1) {
-    uContainer.classList.add("d-none");
-  } else {
-    uContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("v").innerHTML < 1) {
-    vContainer.classList.add("d-none");
-  } else {
-    vContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("w").innerHTML < 1) {
-    wContainer.classList.add("d-none");
-  } else {
-    wContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("x").innerHTML < 1) {
-    xContainer.classList.add("d-none");
-  } else {
-    xContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("y").innerHTML < 1) {
-    yContainer.classList.add("d-none");
-  } else {
-    yContainer.classList.remove("d-none");
-  }
-  if (document.getElementById("z").innerHTML < 1) {
-    zContainer.classList.add("d-none");
-  } else {
-    zContainer.classList.remove("d-none");
-  }
+  alphabet.forEach((letter) => {
+    let container = `${letter}_container`;
+    if (document.getElementById(`${letter}`).innerHTML < 1) {
+      document.getElementById(container).classList.add("d-none");
+    } else {
+      document.getElementById(container).classList.remove("d-none");
+    }
+  });
 }
