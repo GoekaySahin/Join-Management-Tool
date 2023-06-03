@@ -233,3 +233,125 @@ function load() {
 
   //toggleArrows();
 }
+
+/**
+ * This function will start if user will edit
+ * is change the layout
+ * @param {number} id of the map
+ */
+function edit(id) {
+  addEditClasses();
+  let currentMap = new Map(checkMap(id));
+  let popTop = document.getElementById("popup_card");
+  let title = currentMap.get(`${id}`)["title"];
+  let description = currentMap.get(`${id}`)["description"];
+  let names = document.getElementsByClassName("fullName");
+  let contactsInEdit = [];
+
+  for (let i = 0; i < names.length; i++) {
+    const element = names[i];
+    element.classList.add("d-none");
+    let contact = element.innerHTML;
+    contactsInEdit.push(contact);
+  }
+  setTimeout(renderContactsSelection, 150, contactsInEdit);
+  setTimeout(ContactsDivDisplay, 1, contactsInEdit);
+
+  showEdit(title, description, id);
+  dateFuture();
+  setSubtasksLayout(id);
+  toggleEditTitle();
+  checkExistContact(id);
+  /*   openEditContactsToSelect(id);
+  openEditContactsToSelect(id); */
+  setTimeout(checkExistContact, 100, id);
+  editDnone();
+  setEditPrio(id);
+}
+
+/**
+ * This function will run if edit is done to save the edits and render after that
+ * @param {numebr} id of the map
+ */
+async function editDone(id) {
+  addEditClasses();
+  toggleEditTitle();
+  checkExistContact(id);
+  let titleEdit = document.getElementById("popup_title_edit").value;
+  let descriptionEdit = document.getElementById("popup_description_edit").value;
+  let dateEdit = document.getElementById("select-date").value;
+  let button = checkPrioBtnEdit(id);
+  let section = wichSection(id);
+  let contactsEdit = selectedContacts;
+  let category = section.get(`${id}`)["category"];
+  let categorycolor = section.get(`${id}`)["categorycolor"];
+  let colors = await contactToSave(selectedContacts);
+  let letters = getFirstLetter(selectedContacts, id);
+  letters = letters.get(`${id}`)["letters"];
+  let subtask = section.get(`${id}`)["subtask"];
+  let subtaskStatus = globalProgress;
+
+  titleEdit = titleLengthCheck(titleEdit, section, id);
+  descriptionEdit = descriptionLengthCheck(descriptionEdit, section, id);
+  dateEdit = dateLengthCheck(dateEdit, section, id);
+  button = buttonEditCheck(button, section, id);
+  colors = colors[1];
+
+  saveIn(
+    titleEdit,
+    descriptionEdit,
+    dateEdit,
+    contactsEdit,
+    button,
+    section,
+    category,
+    categorycolor,
+    colors,
+    letters,
+    subtask,
+    subtaskStatus,
+    id
+  );
+
+  generatePopup(id);
+  doneSum = 0;
+  currentProgress = 0;
+  selectedContacts = [];
+}
+
+function editContacts(id) {
+  let map = wichSection(id);
+  let contacts = map.get(`${id}`)["contacts"].split(",");
+  return contacts;
+}
+
+function subtaskLayout(id) {
+  let div = document.getElementById(`progress_text${id}`);
+  let task = document.getElementById(`task${id}`);
+
+  div.classList.add("progress-text-edit");
+  task.classList.add("task-edit");
+}
+
+/**
+ * This function will check prio in edit version
+ * @param {number} id of the map
+ * @returns
+ */
+function checkPrioBtnEdit(id) {
+  let result;
+  let map = wichSection(id);
+  let currentPrio = map.get(`${id}`)["importance"];
+  let urgent = document.getElementById(
+    "importance-button-colored-edit-4"
+  ).classList;
+  let medium = document.getElementById(
+    "importance-button-colored-edit-5"
+  ).classList;
+  let low = document.getElementById(
+    "importance-button-colored-edit-6"
+  ).classList;
+
+  result = checkPrioEditDeitail(result, map, currentPrio, urgent, medium, low);
+  return result;
+}

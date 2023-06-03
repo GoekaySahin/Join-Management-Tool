@@ -1,168 +1,51 @@
+let alphabet = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "x",
+  "y",
+  "z",
+];
+
 function openContactsOnContactsHtml() {
   renderContactsAddTask();
   openContactsToSelect();
 }
 
+/**
+ * Redner the alphabet register
+ */
 function renderContactsRasterHTML() {
-  return `
-         <div id="contact-list-id" class="contact-list-inner-container">
-           <div id="a_container">
-              <div class="contact-char">A</div>
-              <hr class="underline" />
-            </div>
-            <div id="a"></div>
+  alphabet.forEach((letter) => {
+    let container = `${letter}_container`;
+    let innerContainer = document.getElementById("contact-list-id");
 
-            <div id="b_container">
-              <div class="contact-char">B</div>
-              <hr class="underline" />
-            </div>
-            <div id="b"></div>
-
-            <div id="c_container">
-              <div class="contact-char">C</div>
-              <hr class="underline" />
-            </div>
-            <div id="c"></div>
-
-            <div id="d_container">
-              <div class="contact-char">D</div>
-              <hr class="underline" />
-            </div>
-            <div id="d"></div>
-
-            <div id="e_container">
-              <div class="contact-char">E</div>
-              <hr class="underline" />
-            </div>
-            <div id="e"></div>
-
-            <div id="f_container">
-              <div class="contact-char">F</div>
-              <hr class="underline" />
-            </div>
-            <div id="f"></div>
-
-            <div id="g_container">
-              <div class="contact-char">G</div>
-              <hr class="underline" />
-            </div>
-            <div id="g"></div>
-
-            <div id="h_container">
-              <div class="contact-char">H</div>
-              <hr class="underline" />
-            </div>
-            <div id="h"></div>
-
-            <div id="i_container">
-              <div class="contact-char">I</div>
-              <hr class="underline" />
-            </div>
-            <div id="i"></div>
-
-            <div id="j_container">
-              <div class="contact-char">J</div>
-              <hr class="underline" />
-            </div>
-            <div id="j"></div>
-
-            <div id="k_container">
-              <div class="contact-char">K</div>
-              <hr class="underline" />
-            </div>
-            <div id="k"></div>
-
-            <div id="l_container">
-              <div class="contact-char">L</div>
-              <hr class="underline" />
-            </div>
-            <div id="l"></div>
-
-            <div id="m_container">
-              <div class="contact-char">M</div>
-              <hr class="underline" />
-            </div>
-            <div id="m"></div>
-
-            <div id="n_container">
-              <div class="contact-char">N</div>
-              <hr class="underline" />
-            </div>
-            <div id="n"></div>
-
-            <div id="o_container">
-              <div class="contact-char">O</div>
-              <hr class="underline" />
-            <div>
-            <div id="o"></div>
-
-            <div id="p_container">
-              <div class="contact-char">P</div>
-              <hr class="underline" />
-            </div>
-            <div id="p"></div>
-
-            <div id="q_container">
-              <div class="contact-char">Q</div>
-              <hr class="underline" />
-            <div>
-            <div id="q"></div>
-
-            <div id="r_container">
-              <div class="contact-char">R</div>
-              <hr class="underline" />
-            </div>
-            <div id="r"></div>
-
-            <div id="s_container">
-              <div class="contact-char">S</div>
-              <hr class="underline" />
-            </div>
-            <div id="s"></div>
-
-            <div id="t_container">
-              <div class="contact-char">T</div>
-              <hr class="underline" />
-            </div>
-            <div id="t"></div>
-
-            <div id="u_container">
-              <div class="contact-char">U</div>
-              <hr class="underline" />
-            </div>
-            <div id="u"></div>
-
-            <div id="v_container">
-              <div class="contact-char">V</div>
-              <hr class="underline" />
-             </div>
-            <div id="v"></div>
-
-            <div id="w_container">
-              <div class="contact-char">W</div>
-              <hr class="underline" />
-            </div>
-            <div id="w"></div>
-
-            <div id="x_container">
-              <div class="contact-char">X</div>
-              <hr class="underline" />
-            </div>
-            <div id="x"></div>
-
-            <div id="y_container">
-              <div class="contact-char">Y</div>
-              <hr class="underline" />
-            </div>
-            <div id="y"></div>
-
-            <div id="z_container">
-              <div class="contact-char">Z</div>
-              <hr class="underline" />
-            </div>
-            <div id="z"></div>
-          </div>
-            `;
+    innerContainer.innerHTML += `
+                          <div id="${container}">
+                            <div class="contact-char">${letter.toUpperCase()}</div>
+                            <hr class="underline" />
+                          </div>
+                          <div id="${letter}"></div>`;
+  });
 }
 
 function showNoContacts() {
@@ -261,35 +144,10 @@ function renderDetailHTMLRespons() {
   editContact.classList.remove("d-none");
 }
 
+/**
+ * Disable the register where no contact exist
+ */
 function disableContactContainer() {
-  let alphabet = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "x",
-    "y",
-    "z",
-  ];
-
   alphabet.forEach((letter) => {
     let container = `${letter}_container`;
     if (document.getElementById(`${letter}`).innerHTML < 1) {
