@@ -194,3 +194,80 @@
 .invite {
   display: flex;
 }
+
+@media (width <= 500px) {
+  .add-title {
+    font-size: 36px;
+  }
+
+  .title-input::placeholder {
+    font-size: 20px;
+  }
+
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box {
+    width: 85vw;
+  }
+
+  .new-contact {
+    margin-right: 0;
+    width: 76vw;
+  }
+
+  .rendered-contact-name {
+    width: 73vw;
+  }
+
+  .contacts-dropdown-content {
+    position: absolute;
+    width: 88vw;
+  }
+
+  .slide-left {
+    z-index: 0 !important;
+    padding: 0;
+    width: 100% !important;
+    display: flex !important;
+    margin-top: 0 !important;
+    justify-content: center;
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+  }
+
+  .add-task-content-overlay {
+    width: 86%;
+  }
+
+  .add-task-descript-input {
+    width: 91% !important;
+  }
+
+  .add-tasks-board-head {
+    width: 95%;
+    height: 132px;
+  }
+
+  .title-input {
+    width: 76vw;
+  }
+
+  .btn-create {
+    font-size: 16px;
+  }
+
+  .importance-buttons button {
+    width: 63%;
+    margin-bottom: 16px;
+    margin-block-start: -9px;
+  }
+
+  .importance-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+}

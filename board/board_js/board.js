@@ -2667,3 +2667,15 @@ function load() {
   loader.classList.toggle("d-none");
   //toggleArrows();
 }
+
+/**
+ * Check if dropdown add task for contacts are open
+ */
+
+function checkDropDownAddTaskBoard() {
+  let dropDown = document.getElementById("contacts-drop-down");
+
+  if (!dropDown.classList.contains("d-none")) {
+    dropDown.classList.add("d-none");
+  }
+}

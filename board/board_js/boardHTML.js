@@ -55,7 +55,7 @@ function renderAddTaskHTML(section) {
   <div class="test"></div>
   <form onsubmit="allFieldsFilled; return false">
   <div class="for-close"></div>  
-  <div class="add-task-content slide-left" id="add-board">
+  <div class="add-task-content slide-left"  id="add-board">
     <div class="add-task-content-overlay"> 
         <div class="add-tasks-board-head" id="add-board">
           <h1 class="add-title">Add Task</h1>

@@ -88,6 +88,7 @@ body {
   height: 100vh;
   margin-left: 14% !important;
   margin-top: 5rem;
+  width: initial;
 }
 
 .d-flex {
