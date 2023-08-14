@@ -299,9 +299,9 @@ body {
   align-items: flex-start;
   padding: 36px 25px 31px 39px;
   background: #ffffff;
-  position: absolute;
-  top: 150px;
-  right: 34vw;
+  position: fixed;
+  top: 20%;
+  right: 42%;
   z-index: 10;
   box-shadow: -14px 9px 34px rgb(0 0 0 / 16%);
   border-radius: 30px;
