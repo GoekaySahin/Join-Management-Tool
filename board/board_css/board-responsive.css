@@ -480,7 +480,7 @@
 
 @media (width <=670px) {
   .popup-card-title {
-    width: 65vw;
+    width: 65vw !important;
   }
 }
 
@@ -499,7 +499,11 @@
   }
 
   .edit-box {
-    width: initial;
+    width: 78vw !important;
+  }
+
+  .card-content-popup {
+    width: 83vw !important;
   }
 
   .popup-title {
