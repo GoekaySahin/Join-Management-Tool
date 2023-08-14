@@ -10,7 +10,13 @@ async function init() {
 async function checkInput() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("pw").value;
+  let wrong_pw = document.getElementById("wrong_pw");
 
+  if (storedUsers.length == 0) {
+    handleWorngPwMessage(wrong_pw);
+    return;
+  }
+  debugger;
   for (let i = 0; i < storedUsers.length; i++) {
     const element = storedUsers[i];
     if (element["email"] == email) {
@@ -22,6 +28,28 @@ async function checkInput() {
       }
     }
   }
+}
+
+function DnoneOnWrongMessag(wrong_pw) {
+  return !wrong_pw.classList.value.includes("d-none");
+}
+
+function handleWorngPwMessage(wrong_pw) {
+  toggleWrongPw(wrong_pw);
+  if (DnoneOnWrongMessag(wrong_pw)) {
+    setTimeout(fadeMessageOut, 1250, wrong_pw);
+    setTimeout(fadeMessageOut, 2000, wrong_pw);
+  }
+  setTimeout(toggleWrongPw, 2000, wrong_pw);
+}
+
+function fadeMessageOut(wrong_pw) {
+  wrong_pw.classList.toggle("scale-up-center");
+  wrong_pw.classList.toggle("scale-out-center");
+}
+
+function toggleWrongPw(wrong_pw) {
+  wrong_pw.classList.toggle("d-none");
 }
 
 /**

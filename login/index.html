@@ -20,13 +20,14 @@
 <body onload="init()">
     <div class="blue-screen" id="logIn-blue-screen"></div>
     <div id="logos" class="logos">
-
+        
         <div class="logo-box">
             <img src="../login/img/logo_blue.png" class="blue-logo slide-tl-blue" id="blue-logo" />
         </div>
         <div class="logo-box">
-
+            
             <div class="logo-box">
+                <div class="popup-login scale-up-center d-none" id="wrong_pw"><span class="wong-message">Password is wrong</span></div>
                 <img src="../login/img/logo_blue.png" class="blue-logo slide-tl-blue" id="blue-logo" />
             </div>
             <div class="logo-box">
@@ -51,7 +52,7 @@
                     Don't worry. We will send you an email with the instructions to reset your password.
                 </p>
 
-                <form action="../summary/summary.html">
+                <form onsubmit="checkInput(); return false">
                     <input type="text" name="" id="user" placeholder="Name" class="d-none" />
                     <input type="email" name="" id="email" placeholder="Email" required/>
                     <input type="password" name="" id="pw" placeholder="Password" required/>
@@ -74,8 +75,8 @@
                     </div>
 
                     <div id="login-buttons" class="login-btn">
-                        <button onclick="checkInput()" id="login-btn" class="login-user" type="submit">Log in</button>
-                        <button onclick="openSummary()" id="guest-btn" class="login-guest" formnovalidate>Guest log in</button>
+                        <input type="submit" id="login-btn" class="login-user" type="submit" value="Log in">
+                        <button type="button" onclick="openSummary()" id="guest-btn" class="login-guest" formnovalidate>Guest log in</button>
                         <button id="sign-up-btn" class="login-user d-none">Sign up</button>
                         <button id="password-btn" class="login-user d-none">
                             Send me the email
