@@ -439,15 +439,15 @@ function setImportanceButtons(
  * @param {array} invateNewContactName arry of all contacts invated or selected
  * @param {number} id of the seltected contact
  */
-async function renderContactsAddTask(invateNewContactName, id) {
+async function renderContactsAddTask(invateNewContactName) {
   let dropdown = document.getElementById("contacts-drop-down");
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
-  loopForContacts(contacts, dropdown, id);
+  loopForContacts(contacts, dropdown);
   checkedSetting(invateNewContactName);
 }
 
-function loopForContacts(contacts, dropdown, id) {
+function loopForContacts(contacts, dropdown) {
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     if (dropdown == null) {
@@ -483,6 +483,7 @@ function checkSelectedContactsAddTask(contact) {
     let index = selectedContacts.indexOf(contact);
     selectedContacts.splice(index, 1);
   } else if (selectedContacts.indexOf(contact) == -1) {
+    debugger;
     selectedContacts.push(contact);
   }
 }
@@ -549,6 +550,9 @@ async function renderContactsSelection(contacts) {
   );
 
   cBox.innerHTML = "";
+  if (inviteContacts.length == 0) {
+    inviteContacts = contacts;
+  }
   setColorForDots(inviteContacts, cBox);
 }
 
@@ -562,9 +566,9 @@ function setColorForDots(inviteContacts, cBox) {
   if (inviteContacts.length > 2) {
     moreThanTwoContactsSmallView(inviteContacts, cBox);
   } else if (inviteContacts.length == 2) {
-    twoContactsSmallView(invateContacts, cBox);
+    twoContactsSmallView(inviteContacts, cBox);
   } else {
-    oneContactSmallView(invateContacts, cBox);
+    oneContactSmallView(inviteContacts, cBox);
   }
 }
 
@@ -575,8 +579,8 @@ function setColorForDots(inviteContacts, cBox) {
  * @param {variable} cBox document wich get manipulated
  */
 function oneContactSmallView(inviteContacts, cBox) {
-  for (let i = 0; i < inviteContacts.length; i++) {
-    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts[i]["color"]};">${inviteContacts[i]["firstLetters"]}</p>`;
+  for (let i = 0; i < 1; i++) {
+    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${inviteContacts["color"]};">${inviteContacts["firstLetters"]}</p>`;
   }
 }
 
@@ -612,6 +616,11 @@ function moreThanTwoContactsSmallView(inviteContacts, cBox) {
  * @returns the contact without an empty index
  */
 function checkContactsIfEmpty(contacts) {
+  if (contacts == undefined) {
+  }
+  /*  if (contacts[0] == null) {
+    debugger;
+  } */
   if (contacts[0] == "") {
     contacts.splice(0, 1);
   }
@@ -1056,10 +1065,12 @@ async function creatNewContactAddTask() {
  */
 async function creatNewContactEdit(id) {
   let invateNewContactName = document.getElementById("add_task_name").value;
-  if (invateNewContactName.length == 0 || invateNewContactName.includes(" ")) {
+  if (invateNewContactName.length == 0 || invateNewContactName == " ") {
     return;
   }
-  selectedContacts.push(invateNewContactName);
+  selectedContacts.push(invateNewContactName); // Here the Contact wich is created in the edit version of taks
+  // will be added to selectedContacts first
+  debugger;
   await invateCreateNewContact(invateNewContactName, email, id);
   setTimeout(contactsCheckboxUpdate, 400, id);
 
@@ -1089,7 +1100,7 @@ async function invateCreateNewContact(invateNewContactName, email, id) {
   newContactAddTaskReturn();
   clearContactsBeforeRendering(indexLength);
   renderContactsAddTask(invateNewContactName, id);
-  renderContactsSelection(contacts);
+  renderContactsSelection(contact);
 }
 
 /**
@@ -1143,7 +1154,8 @@ async function getCheckboxValue(invateNewContactName) {
   }
 }
 
-function setCheckboxValue(checkedIndex, checkedEdit) {
+async function setCheckboxValue(checkedIndex, checkedEdit) {
+  await getCurrentContacts();
   for (let i = 0; i < currentContacts.length; i++) {
     const element = document.getElementById(`contacts-checkbox${i}`);
     if (element == null) {
@@ -1162,7 +1174,9 @@ async function checkedSetting(invateNewContactName) {
   if (invateNewContactName == undefined) {
     return;
   }
+
   selectedContacts.push(invateNewContactName);
+
   if (selectedContacts.length > 1) {
     showCheckedOnEditContacts(selectedContacts);
   } else {

@@ -30,6 +30,7 @@ function existContactLoop() {
     }
     if (selectedContacts.indexOf(name) == -1) {
       selectedContacts.push(name);
+      debugger;
     }
     let nameId = name + "edit";
     let docElement = document.getElementById(nameId);
@@ -87,6 +88,7 @@ async function addContactToTask(element, id) {
 
   if (selectedContacts.indexOf(contact) == -1) {
     selectedContacts.push(contact);
+    debugger;
   } else {
     let pos = selectedContacts.indexOf(contact);
     selectedContacts.splice(pos, 1);
