@@ -215,7 +215,6 @@ async function creatNewTask(
     selectedContacts,
     date,
     categoryColor,
-    description,
     selectedSubtasks
   );
   clearContacts();
@@ -339,7 +338,13 @@ function resetAddedButton() {
  * @param {title} title title of add task
  * @param {date} date date wich will reset
  */
-function resetTasksInputs(title, date) {
+function resetTasksInputs(
+  title,
+  selectedContacts,
+  date,
+  categoryColor,
+  selectedSubtasks
+) {
   let descriptionInput = document.getElementById("description-input");
   let category = document.getElementById("select-category");
 
@@ -939,7 +944,8 @@ function clearAllInputFieldsAddTask(
   addSubtask,
   accept,
   plus,
-  selectCategory
+  selectCategory,
+  date
 ) {
   title.value = "";
   select.value = "";
@@ -955,6 +961,7 @@ function clearAllInputFieldsAddTask(
   selectCategory.innerHTML = resetCategory();
   resetCheckboxes();
   contacts.innerHTML = "";
+  date.value = "";
 }
 
 /**
@@ -969,6 +976,7 @@ function clearAllInputFields() {
   let accept = document.getElementById("new-subtask-accept");
   let plus = document.getElementById("plus-icon");
   let selectCategory = document.getElementById("select-category");
+  let date = document.getElementById("select-date");
 
   clearAllInputFieldsAddTask(
     contacts,
@@ -978,7 +986,8 @@ function clearAllInputFields() {
     addSubtask,
     accept,
     plus,
-    selectCategory
+    selectCategory,
+    date
   );
 }
 

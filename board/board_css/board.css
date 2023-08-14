@@ -240,8 +240,9 @@ body {
   display: flex;
   font-size: 16px;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   margin-top: -16px;
+  height: 85px;
 }
 
 .progressbar {

@@ -1056,6 +1056,9 @@ async function creatNewContactAddTask() {
  */
 async function creatNewContactEdit(id) {
   let invateNewContactName = document.getElementById("add_task_name").value;
+  if (invateNewContactName.length == 0 || invateNewContactName.includes(" ")) {
+    return;
+  }
   selectedContacts.push(invateNewContactName);
   await invateCreateNewContact(invateNewContactName, email, id);
   setTimeout(contactsCheckboxUpdate, 400, id);
