@@ -86,13 +86,13 @@ async function contactsCheckboxUpdate(id) {
 async function addContactToTask(element, id) {
   let contact = document.getElementById(`contacts-checkbox${element}`).value;
 
-  if (selectedContacts.indexOf(contact) == -1) {
+  /*   if (selectedContacts.indexOf(contact) == -1) {
     selectedContacts.push(contact);
     debugger;
   } else {
     let pos = selectedContacts.indexOf(contact);
     selectedContacts.splice(pos, 1);
-  }
+  } */
   await safeEdit(id, selectedContacts);
 }
 
