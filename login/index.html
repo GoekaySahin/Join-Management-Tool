@@ -75,7 +75,10 @@
                     </div>
 
                     <div id="login-buttons" class="login-btn">
-                        <input type="submit" id="login-btn" class="login-user" type="submit" value="Log in">
+                        <div id="prevent">
+                            <input id="login-btn" class="login-user" type="submit" value="Log in">
+
+                        </div>
                         <button type="button" onclick="openSummary()" id="guest-btn" class="login-guest" formnovalidate>Guest log in</button>
                         <button id="sign-up-btn" class="login-user d-none">Sign up</button>
                         <button id="password-btn" class="login-user d-none">

@@ -34,6 +34,11 @@ function DnoneOnWrongMessag(wrong_pw) {
   return !wrong_pw.classList.value.includes("d-none");
 }
 
+function btnClickPrevent() {
+  let btn = document.getElementById("prevent");
+  btn.classList.toggle("btn-prevent");
+}
+
 function handleWorngPwMessage(wrong_pw) {
   toggleWrongPw(wrong_pw);
   if (DnoneOnWrongMessag(wrong_pw)) {
@@ -50,6 +55,7 @@ function fadeMessageOut(wrong_pw) {
 
 function toggleWrongPw(wrong_pw) {
   wrong_pw.classList.toggle("d-none");
+  btnClickPrevent();
 }
 
 /**
