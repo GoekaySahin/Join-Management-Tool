@@ -49,7 +49,6 @@ async function init() {
  */
 function checkSize() {
   let size = window.innerWidth;
-  setTimeout(toggleArrows, 50);
 
   if (size <= 1024) {
     sidebarTabled();
