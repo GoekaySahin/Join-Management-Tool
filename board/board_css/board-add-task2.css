@@ -91,7 +91,7 @@ html {
 }
 
 .select-date[type="date"]::-webkit-calendar-picker-indicator {
-  content: url(../img-add_task/calendar.png);
+  content: url(../img-board/calendar.png);
 }
 
 .drop-down-arrow {

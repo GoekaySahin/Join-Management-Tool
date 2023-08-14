@@ -95,6 +95,7 @@ function hoverBoardRespons() {
  */
 function popup(id) {
   let background = document.getElementById("popup");
+  let container = document.getElementById("popups");
   let card = document.getElementById("popup_card");
   let editPrio = document.getElementById("edit_priority");
   let title = document.getElementById("popup_title");
@@ -104,7 +105,7 @@ function popup(id) {
   title.classList.remove("card-content-popup");
   content.classList.remove("set-content");
 
-  setupForPopup(card, background);
+  setupForPopup(card, background, container);
   toggleArrows();
 }
 
@@ -114,10 +115,11 @@ function popup(id) {
  * @param {variable} card to show or hide
  * @param {*} background show or hide
  */
-function setupForPopup(card, background) {
+function setupForPopup(card, background, container) {
   window.scrollTo(0, 0);
   card.classList.toggle("d-none");
   background.classList.toggle("d-none");
+  container.classList.toggle("d-none");
   activateDragAndDrop();
   newContactAddTaskActive = true;
   selectedContacts = [];

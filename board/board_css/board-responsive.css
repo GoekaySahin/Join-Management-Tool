@@ -44,16 +44,6 @@
   }
 }
 
-@media (width <= 1600px) {
-  .popup-card {
-    right: 32vw !important;
-  }
-
-  .popup-card {
-    margin-top: -73px;
-  }
-}
-
 @media (width <= 1560px) {
   .todo-content,
   .progress-content,
@@ -145,18 +135,6 @@
 
   .board-main {
     gap: 0px;
-  }
-}
-
-/* @media (width <=1440px) {
-  .popup-card {
-    right: 22vw;
-  }
-} */
-
-@media (max-width: 1500px) {
-  .popup-card {
-    right: 30vw;
   }
 }
 
@@ -261,9 +239,10 @@
   .popup-card {
     right: 25vw !important;
   }
-}
+  .category-overlay {
+    width: 100px !important;
+  }
 
-@media (width <= 1200px) {
   .head {
     width: 14.5vw !important;
   }
@@ -276,7 +255,11 @@
   }
 
   .card {
-    width: 13vw !important;
+    width: 14vw !important;
+  }
+
+  .board {
+    margin-left: 285px !important;
   }
 }
 
@@ -417,7 +400,7 @@
   }
 
   .card {
-    width: 26vw !important;
+    width: 28vw !important;
   }
 
   .edit-box {
@@ -495,12 +478,6 @@
   }
 }
 
-@media (width <=700px) {
-  .category-overlay {
-    width: 17vw !important;
-  }
-}
-
 @media (width <=670px) {
   .popup-card-title {
     width: 65vw;
@@ -508,8 +485,21 @@
 }
 
 @media (width <=600px) {
+  .popups {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
   .popup-card {
-    left: 57% !important;
+    margin: 0 !important;
+    position: initial !important;
+    width: initial !important;
+  }
+
+  .edit-box {
+    width: initial;
   }
 
   .popup-title {

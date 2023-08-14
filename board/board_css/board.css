@@ -301,7 +301,7 @@ body {
   background: #ffffff;
   position: fixed;
   top: 20%;
-  right: 42%;
+  right: calc(57% - 409px);
   z-index: 10;
   box-shadow: -14px 9px 34px rgb(0 0 0 / 16%);
   border-radius: 30px;
