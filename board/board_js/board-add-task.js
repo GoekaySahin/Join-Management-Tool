@@ -468,7 +468,11 @@ async function addContactToTaskBoard(i, id) {
   let contact = document.getElementById("contacts-checkbox" + i);
   let cBox = document.getElementById("invite_contacts_select");
 
-  if (!contact.checked) {
+  if (
+    !contact.checked &&
+    selectedContacts.length > 0 &&
+    selectedContacts.indexOf(contact.value) > -1
+  ) {
     let index = selectedContacts.indexOf(contact.value);
     selectedContacts.splice(index, 1);
   } else {
@@ -1093,7 +1097,7 @@ async function creatNewContactEdit(id) {
   setTimeout(contactsCheckboxUpdate, 400, id);
 
   getCheckboxValue(invateNewContactName);
-  renderContactsSelection(invateNewContactName);
+  renderContactsSelection(selectedContacts);
 }
 
 /**
