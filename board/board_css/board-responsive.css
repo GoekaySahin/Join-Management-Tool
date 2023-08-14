@@ -517,6 +517,13 @@
   .card {
     width: 154px !important;
   }
+
+  .done,
+  .await-feedback,
+  .in-progress,
+  .todo {
+    min-height: 200px;
+  }
 }
 
 @media (width <=500px) and (height <=800px) {
