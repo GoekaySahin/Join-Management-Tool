@@ -203,6 +203,22 @@ function draggableTrue() {
   }
 }
 
+window.addEventListener("resize", function () {
+  if (window.innerWidth > 1024) {
+    draggableTrue();
+  } else {
+    draggableFalse();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.innerWidth > 1024) {
+    draggableTrue();
+  } else {
+    draggableFalse();
+  }
+});
+
 /**
  * This function starts the render function for the tasks
  *
