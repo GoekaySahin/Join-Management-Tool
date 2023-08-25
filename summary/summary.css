@@ -65,6 +65,8 @@ body {
   overflow-y: hidden;
   flex-direction: column;
   font-family: "Open Sans";
+  scroll-behavior: smooth;
+  background-color: #ffffff;
 }
 
 .align-center {

@@ -3,6 +3,8 @@ body {
   margin: 0;
   font-family: "Open Sans";
   overflow: hidden;
+  scroll-behavior: smooth;
+  background-color: #ffffff;
 }
 
 .d-none {

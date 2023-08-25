@@ -1,5 +1,7 @@
 body {
   caret-color: transparent;
+  background-color: #ffffff;
+  scroll-behavior: smooth;
 }
 
 .d-none {

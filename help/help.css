@@ -1,67 +1,69 @@
 html {
-    font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 
 body {
-    margin-right: 171px;
+  margin-right: 171px;
+  background-color: #ffffff;
+  scroll-behavior: smooth;
 }
 
 .d-none {
-    display: none;
+  display: none;
 }
 
 .help-content {
-    margin-top: 150px;
-    margin-left: 350px;
-    margin-bottom: 100px;
-    display: flex;
-    flex-direction: column;
+  margin-top: 150px;
+  margin-left: 350px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
-    color: #4589ff;
-    font-size: 61px;
-    margin-bottom: 8px;
+  color: #4589ff;
+  font-size: 61px;
+  margin-bottom: 8px;
 }
 
 h2 {
-    color: #005DFF;
-    font-size: 33px;
-    margin-bottom: 0;
+  color: #005dff;
+  font-size: 33px;
+  margin-bottom: 0;
 }
 
 p {
-    max-width: 60vw;
+  max-width: 60vw;
 }
 
 .back-from-help {
-    height: 24px;
-    width: 24.7px;
+  height: 24px;
+  width: 24.7px;
 }
 
 .help-headline {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .help-headline img {
-    cursor: pointer;
-    margin-block-start: 46px;
+  cursor: pointer;
+  margin-block-start: 46px;
 }
 
 .list-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 h3 {
-    color:#005DFF;
-    font-size: 33px;
-    margin-top: 10px;
+  color: #005dff;
+  font-size: 33px;
+  margin-top: 10px;
 }
 
 .list-item p {
-    margin-left: 24px;
+  margin-left: 24px;
 }

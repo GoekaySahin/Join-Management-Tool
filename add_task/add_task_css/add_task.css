@@ -2,6 +2,11 @@ html {
   overflow: overlay;
 }
 
+body {
+  background-color: #ffffff;
+  scroll-behavior: smooth;
+}
+
 .d-none {
   display: none;
 }

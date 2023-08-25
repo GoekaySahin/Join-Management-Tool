@@ -89,10 +89,10 @@ async function addToTasks(section) {
  * @param {string} section wich map will used
  */
 function resetAddTask(section) {
-  closeAddTask();
   setTasks(section);
-  setTimeout(activateDragAndDrop, 400); /* setCards(); */
+  activateDragAndDrop(); /* setCards(); */
   setTimeout(load, 500);
+  closeAddTask();
 }
 
 /**
@@ -128,7 +128,9 @@ async function setNewTask() {
     importance,
     description
   );
-  resetTasksInputs(
+  setTimeout(
+    resetTasksInputs,
+    400,
     title,
     selectedContacts,
     date,
