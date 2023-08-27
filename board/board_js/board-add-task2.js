@@ -393,7 +393,7 @@ function setTheFirstLetterInvate(contact) {
     let firstLetter = name[0].split("");
     if (name[1] == undefined) {
       firstLetters = firstLetter;
-      firstLetters = firstLetters.toUpperCase();
+      firstLetters = firstLetters[0].toUpperCase();
       letterList = firstLetters;
     } else {
       let secondLetter = name[1].split("");

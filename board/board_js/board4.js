@@ -1,3 +1,5 @@
+let idCards = [];
+
 /**
  * This function will render the card in the right section
  *
@@ -64,7 +66,24 @@ function setCards(section) {
   }
 }
 
+function checkIfDoubleCard(id, section) {
+  let map = wichSection(id);
+  setTimeout(() => {
+    deleteMap(map, id);
+  }, 400);
+}
+
+function deleteMap(map, id) {
+  map.delete(`${id}`);
+  loacation.reload();
+}
+
 function cardContent(section, id) {
+  if (!idCards.includes(id)) {
+    idCards.push(id);
+  } else {
+    checkIfDoubleCard(id, section);
+  }
   if (section === "todo") {
     creatCardContent(section, id, todosMap);
   } else if (section === "progress") {

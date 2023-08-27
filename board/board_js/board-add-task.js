@@ -81,6 +81,7 @@ async function addToTasks(section) {
   await saveTaskAndCounter();
   tasks = [];
   resetAddTask(section);
+  activateDragAndDrop();
 }
 
 /**

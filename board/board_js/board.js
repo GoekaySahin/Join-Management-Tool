@@ -45,6 +45,16 @@ async function init() {
   getCurrentContacts();
   setTimeout(load, 500);
   checkSize();
+  dragAndDropLoop();
+}
+
+function dragAndDropLoop() {
+  if (window.innerWidth > 1024) {
+    activateDragAndDrop();
+    setTimeout(() => {
+      dragAndDropLoop();
+    }, 100);
+  }
 }
 
 /**
@@ -389,7 +399,8 @@ function creatNewColors(contacts, contactData, contactsBackend) {
  * This function start the generating of the card in the sections
  */
 function generateCards() {
-  setTasks("todo");
+  idCards = [];
+  setCards("todo");
   setCards("progress");
   setCards("feedback");
   setCards("done");
@@ -409,11 +420,12 @@ async function setTasks(section) {
 
   await checkSetTask(map, tasks, doneCoordinates, colors);
   await saveAndResetCounterAndTask();
-  setCards(todo);
+  generateCards();
+  /* setCards(todo);
   setCards(progress);
   setCards(feedback);
   setCards(done);
-  toggleArrows();
+  toggleArrows(); */
 }
 
 async function checkSetTask(map, tasks, doneCoordinates, colors) {

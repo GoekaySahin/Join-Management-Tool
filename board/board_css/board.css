@@ -525,8 +525,8 @@ body {
 .hover {
   background-color: #7da2e1ac;
   border-radius: 24px;
-  margin-bottom: 10px;
-  width: 280px;
+  margin-bottom: 50px;
+  width: 90%;
 }
 
 /* .choice:hover {

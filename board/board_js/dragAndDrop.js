@@ -98,6 +98,7 @@ function dragEnd() {
 
   dragItem = null;
   checkCards();
+  saveMaps();
 }
 
 async function Drop() {
