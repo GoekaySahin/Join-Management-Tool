@@ -147,8 +147,7 @@ function succesImg() {
  * This function render the contacts list
  */
 function renderContactsRaster() {
-  let raster = document.getElementById("contact_list_container");
-  raster.innerHTML = renderContactsRasterHTML();
+  return;
 }
 
 function renderContactsDetailLoop(contacts) {

@@ -48,6 +48,8 @@ function setCardHTML(
           </div>`;
 }
 
+src = "ad-task/img-add-task-";
+
 function renderAddTaskHTML(section) {
   let map = section;
   return `
@@ -73,7 +75,7 @@ function renderAddTaskHTML(section) {
               </p>
             <img
               onclick="openContactsToSelect()"
-              src="../add_task/img-add_task/dropdown_blue.png"
+              src="../board/img-board/dropdown_blue.png"
               class="drop-down-arrow"
               id=""
             />
@@ -83,7 +85,7 @@ function renderAddTaskHTML(section) {
               class="contacts-dropdown-content d-none">
                 <div class="contacts-list-elem new-contact" onmousedown="newContactAddTask(1)" id="new_contact">
                   <span class="rendered-contact-name">Invite new contact</span>
-                  <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png"/>
+                  <img class="contact-list-element-img" src="../board/img-board/contact_blue.png"/>
                 </div>
               </div>
             </div>
@@ -109,12 +111,12 @@ function renderAddTaskHTML(section) {
               <p onclick="openCategoriesToSelect()" id="select-category" class="select-category">
                 Select task category
               </p>
-            <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow" id="drop-down-arrow-categories"/>
+            <img onclick="openCategoriesToSelect()" src="../board/img-board/dropdown_blue.png" class="drop-down-arrow" id="drop-down-arrow-categories"/>
             <input type="text" placeholder="New category name" id="new-category-input" class="new-category-input d-none"/>
             <div id="new-category-accept" class="new-category-accept d-none">
-              <img onclick="goBackToSelectCategory()" src="../add_task/img-add_task/x_blue.png"/>
+              <img onclick="goBackToSelectCategory()" src="../board/img-board/x_blue.png"/>
               <span>|</span>
-              <img onclick="addNewCategory()" src="../add_task/img-add_task/check_blue.png"/>
+              <img onclick="addNewCategory()" src="../board/img-board/check_blue.png"/>
             </div>
             <div id="categories-drop-down" class="categories-dropdown-content d-none">
               <div onclick="createNewCategory()" class="categories-list-elem">
@@ -122,42 +124,42 @@ function renderAddTaskHTML(section) {
               </div>
               <div onclick="fillCategory('sales')" class="categories-list-elem">
                 Sales
-                <img src="../add_task/img-add_task/circle_pink.png" />
+                <img src="../board/img-board/circle_pink.png" />
               </div>
               <div onclick="fillCategory('backoffice')" class="categories-list-elem">
                 Backoffice
-                <img src="../add_task/img-add_task/circle_turquoise.png" />
+                <img src="../board/img-board/circle_turquoise.png" />
               </div>
             </div>
             <div id="new-category-content" class="new-category-content d-none">
               <img
                 onclick="selectCategoryColor('turquoise')"
-                src="../add_task/img-add_task/circle_turquoise.png"
+                src="../board/img-board/circle_turquoise.png"
                 id="category-color-turquoise"
               />
               <img
                 onclick="selectCategoryColor('red')"
-                src="../add_task/img-add_task/circle_red.png"
+                src="../board/img-board/circle_red.png"
                 id="category-color-red"
               />
               <img
                 onclick="selectCategoryColor('green')"
-                src="../add_task/img-add_task/circle_green.png"
+                src="../board/img-board/circle_green.png"
                 id="category-color-green"
               />
               <img
                 onclick="selectCategoryColor('orange')"
-                src="../add_task/img-add_task/circle_orange.png"
+                src="../board/img-board/circle_orange.png"
                 id="category-color-orange"
               />
               <img
                 onclick="selectCategoryColor('pink')"
-                src="../add_task/img-add_task/circle_pink.png"
+                src="../board/img-board/circle_pink.png"
                 id="category-color-pink"
               />
               <img
                 onclick="selectCategoryColor('blue')"
-                src="../add_task/img-add_task/circle_blue.png"
+                src="../board/img-board/circle_blue.png"
                 id="category-color-blue"
               />
             </div>
@@ -172,7 +174,7 @@ function renderAddTaskHTML(section) {
           type="button"
         >
           <span>Urgent</span>
-          <img src="../add_task/img-add_task/urgent.png" />
+          <img src="../board/img-board/urgent.png" />
         </button>
         <button
           onclick="fillImportanceButton(1)"
@@ -181,7 +183,7 @@ function renderAddTaskHTML(section) {
           type="button"
         >
           <span>Urgent</span>
-          <img src="../add_task/img-add_task/urgent_white.png" />
+          <img src="../board/img-board/urgent_white.png" />
         </button>
         <button
           onclick="fillImportanceButton(2)"
@@ -190,7 +192,7 @@ function renderAddTaskHTML(section) {
           type="button"
         >
           <span>Medium</span>
-          <img src="../add_task/img-add_task/medium.png" />
+          <img src="../board/img-board/medium.png" />
         </button>
         <button
           onclick="fillImportanceButton(2)"
@@ -199,7 +201,7 @@ function renderAddTaskHTML(section) {
           type="button"
         >
           <span>Medium</span>
-          <img src="../add_task/img-add_task/medium_white.png" />
+          <img src="../board/img-board/medium_white.png" />
         </button>
         <button
           onclick="fillImportanceButton(3)"
@@ -208,7 +210,7 @@ function renderAddTaskHTML(section) {
           type="button"
         >
           <span>Low</span>
-          <img src="../add_task/img-add_task/low.png" />
+          <img src="../board/img-board/low.png" />
         </button>
         <button
           onclick="fillImportanceButton(3)"
@@ -217,7 +219,7 @@ function renderAddTaskHTML(section) {
           type="button"
         >
           <span>Low</span>
-          <img src="../add_task/img-add_task/low_white.png" />
+          <img src="../board/img-board/low_white.png" />
         </button>
       </div>
       <div class="description-box" onkeyup="allFieldsFilled()">
@@ -231,7 +233,7 @@ function renderAddTaskHTML(section) {
           style="max-height: 70px"
           placeholder="Enter a description"
         ></textarea>
-        <img src="../add_task/img-add_task/input_icon.png" />
+        <img src="../board/img-board/input_icon.png" />
       </div>
       <div class="subtask-box">
         <div style="position: relative">
@@ -243,19 +245,19 @@ function renderAddTaskHTML(section) {
             name="add-subtask"
           />
           <img
-            src="../add_task/img-add_task/plus_blue.png"
+            src="../board/img-board/plus_blue.png"
             class="plus-icon"
             id="plus-icon"
           />
           <div id="new-subtask-accept" class="new-subtask-accept d-none">
             <img
               onclick="backToSubtasks()"
-              src="../add_task/img-add_task/x_blue.png"
+              src="../board/img-board/x_blue.png"
             />
           <span>|</span>
           <img
             onclick="addSubtask()"
-            src="../add_task/img-add_task/check_blue.png"
+            src="../board/img-board/check_blue.png"
           />
         </div>
       </div>
@@ -286,37 +288,37 @@ function priorityHTML() {
             <button onclick="fillImportanceButton(${4})" class="importance-button1" id="importance-button-edit-4"
               type="button">
               <span>Urgent</span>
-              <img src="../add_task/img-add_task/urgent.png" />
+              <img src="../board/img-board/urgent.png" />
             </button>
 
             <button onclick="fillImportanceButton(${4})" class="importance-button1-colored d-none"
               id="importance-button-colored-edit-4" type="button">
               <span>Urgent</span>
-              <img src="../add_task/img-add_task/urgent_white.png" />
+              <img src="../board/img-board/urgent_white.png" />
             </button>
             
             <button onclick="fillImportanceButton(${5})" class="importance-button2" id="importance-button-edit-5"
               type="button">
               <span>Medium</span>
-              <img src="../add_task/img-add_task/medium.png" />
+              <img src="../board/img-board/medium.png" />
             </button>
 
             <button onclick="fillImportanceButton(${5})" class="importance-button2-colored d-none"
               id="importance-button-colored-edit-5" type="button">
               <span>Medium</span>
-              <img src="../add_task/img-add_task/medium_white.png" />
+              <img src="../board/img-board/medium_white.png" />
             </button>
 
             <button onclick="fillImportanceButton(${6})" class="importance-button3" id="importance-button-edit-6"
               type="button">
               <span>Low</span>
-              <img src="../add_task/img-add_task/low.png" />
+              <img src="../board/img-board/low.png" />
             </button>
 
             <button onclick="fillImportanceButton(${6})" class="importance-button3-colored d-none"
               id="importance-button-colored-edit-6"  type="button">
               <span>Low</span>
-              <img src="../add_task/img-add_task/low_white.png" />
+              <img src="../board/img-board/low_white.png" />
             </button>
           </div>`;
 }
@@ -329,12 +331,12 @@ function assignedHTML(id) {
                 <p onclick="openEditContactsToSelect(${id})" class="select-contacts">
                   Select contacts to assign
                 </p>
-                <img onclick="openEditContactsToSelect(${id})" src="../add_task/img-add_task/dropdown_blue.png"
+                <img onclick="openEditContactsToSelect(${id})" src="../board/img-board/dropdown_blue.png"
                   class="drop-down-arrow" />
                 <div id="contacts-drop-down-edit" class="contacts-dropdown-content d-none set-contact-popup">
                   <div onclick="newContactEdit(0)" class="contacts-list-elem new-contact" id="new_contact-edit">
                     <span class="rendered-contact-name">Invite new contact</span>
-                    <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
+                    <img class="contact-list-element-img" src="../board/img-board/contact_blue.png" />
                   </div>
                   <div class="add-task-new-render-container" id="add_task_new_render_container"></div>
                 </div>
@@ -417,21 +419,21 @@ function popupCardHTML(
 function buttonURGENT() {
   return `<button class="importance-popup button1-colored" type="button">
             <span>Urgent</span>
-            <img src="../add_task/img-add_task/urgent.png">
+            <img src="../board/img-board/urgent.png">
           </button>`;
 }
 
 function buttonMEDIUM() {
   return `<button  class="importance-popup button2-colored" type="button">
             <span>Medium</span>
-            <img src="../add_task/img-add_task/medium.png">
+            <img src="../board/img-board/medium.png">
           </button>`;
 }
 
 function buttonLOW() {
   return `<button  class="importance-popup button3-colored" type="button">
             <span>Low</span>
-            <img src="../add_task/img-add_task/low.png">
+            <img src="../board/img-board/low.png">
           </button>`;
 }
 
@@ -545,7 +547,7 @@ function generateHTMLcategory(categoryName, categoryColorTrue) {
   return `
   <div onclick="fillCategory('${categoryName}')" class="categories-list-elem">
     ${categoryName}
-    <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
+    <img src="../board/img-board/circle_${categoryColorTrue}.png" />
   </div>
   `;
 }
@@ -554,7 +556,7 @@ function setCategoryToSales() {
   return `
       <div class="selected-category">
         Sales
-        <img src="../add_task/img-add_task/circle_pink.png" />
+        <img src="../board/img-board/circle_pink.png" />
       </div>
       `;
 }
@@ -563,7 +565,7 @@ function setCategoryToBackoffice() {
   return `
       <div class="selected-category">
         Backoffice
-        <img src="../add_task/img-add_task/circle_turquoise.png" />
+        <img src="../board/img-board/circle_turquoise.png" />
       </div>
       `;
 }
@@ -572,7 +574,7 @@ function setCategoryToNewCategory(categoryName, categoryColorTrue) {
   return `
     <div class="selected-category">
       ${categoryName}
-      <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
+      <img src="../board/img-board/circle_${categoryColorTrue}.png" />
     </div>
     `;
 }
@@ -581,7 +583,7 @@ function generateHTMLnewCategoryNameAndColor(categoryName, categoryColorTrue) {
   return `
   <div class="selected-category">
     ${categoryName}
-    <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
+    <img src="../board/img-board/circle_${categoryColorTrue}.png" />
   </div>
   `;
 }
@@ -619,9 +621,9 @@ function newContactAddTask(index) {
     invateContact.innerHTML = `<div class="new-contact-add-task">
                                     <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
                                       <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                        <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+                                        <img onmouseup="newContactAddTaskReturn()" src="../board/img-board/x_blue.png">
                                         <span>|</span>
-                                        <img onclick="addNameNewContact()" src="../add_task/img-add_task/check_blue.png">
+                                        <img onclick="addNameNewContact()" src="../board/img-board/check_blue.png">
                                      </div>
                                   </div>`;
     invateContact.classList.remove("contacts-list-elem");
@@ -643,9 +645,9 @@ function newContactEdit(index) {
     invateContact.innerHTML = `<div class="new-contact-add-task">
                                     <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
                                       <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                        <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+                                        <img onmouseup="newContactAddTaskReturn()" src="../board/img-board/x_blue.png">
                                         <span>|</span>
-                                        <img onclick="addNameNewContactEdit(${index})" src="../add_task/img-add_task/check_blue.png">
+                                        <img onclick="addNameNewContactEdit(${index})" src="../board/img-board/check_blue.png">
                                      </div>
                                   </div>`;
     invateContact.classList.remove("contacts-list-elem");
@@ -668,7 +670,7 @@ function newContactAddTaskReturn() {
   invateContact.classList.remove("invate-class");
   invateContact.innerHTML = `
   <span class="rendered-contact-name">Invite new contact</span>
-    <img src="../add_task/img-add_task/contact_blue.png" />`;
+    <img src="../board/img-board/contact_blue.png" />`;
   newContactAddTaskActive = true;
 }
 
@@ -686,9 +688,9 @@ function addNameNewContact() {
   invateContact.innerHTML = `<div class="new-contact-add-task">
                                   <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
                                     <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+                                      <img onmouseup="newContactAddTaskReturn()" src="../board/img-board/x_blue.png">
                                       <span>|</span>
-                                      <img onmouseup="creatNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
+                                      <img onmouseup="creatNewContactAddTask()" src="../board/img-board/check_blue.png">
                                    </div>
                                 </div>`;
 }
@@ -705,9 +707,9 @@ function addNameNewContactEdit(index) {
   invateContact.innerHTML = `<div class="new-contact-add-task">
                                   <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
                                     <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+                                      <img onmouseup="newContactAddTaskReturn()" src="../board/img-board/x_blue.png">
                                       <span>|</span>
-                                      <img onmouseup="creatNewContactEdit(${index})" src="../add_task/img-add_task/check_blue.png">
+                                      <img onmouseup="creatNewContactEdit(${index})" src="../board/img-board/check_blue.png">
                                    </div>
                                 </div>`;
 }
@@ -717,9 +719,9 @@ function renderSubtaskPopupHTML(i, element, id) {
       <div id='subtask_checking${i}'>
         <p class="subtext" id="sub_p${i}">${element}</p>
         <div  class="sub-checkmark d-none">
-          <img class="sub-img-setup d-none" id="cancel_sub${i}" src="../add_task/img-add_task/x_blue.png" onclick="removeProgress(${i}, ${id})">
+          <img class="sub-img-setup d-none" id="cancel_sub${i}" src="../board/img-board/x_blue.png" onclick="removeProgress(${i}, ${id})">
           <span id="span${i}">|</span>
-          <img  class="sub-img-setup" id="add_sub${i}" src="../add_task/img-add_task/check_blue.png" onclick="addProgress(${i}, ${id})">
+          <img  class="sub-img-setup" id="add_sub${i}" src="../board/img-board/check_blue.png" onclick="addProgress(${i}, ${id})">
         </div>
       </div>`; // beim checken hacken entfernen und das P element mit text-decoration: line-through; durchstreichen
 }

@@ -410,6 +410,20 @@
   .ok {
     right: 36px !important;
   }
+
+  .todo,
+  .in-progress,
+  .await-feedback,
+  .done {
+    width: initial !important;
+  }
+
+  .kanban {
+    margin-top: -33px;
+    width: initial !important;
+    text-align: justify;
+    color: #4589ff;
+  }
 }
 
 @media (width <=900px) {

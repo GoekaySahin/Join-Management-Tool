@@ -88,11 +88,12 @@
   }
 
   .importance-buttons {
-    width: 80vw;
+    width: 75vw;
+    gap: 17px;
   }
 
   .importance-buttons button {
-    width: 32%;
+    width: 75%;
   }
 
   .rendered-contact-name {
@@ -191,6 +192,7 @@
     align-items: center;
     gap: 8px;
     margin: 0;
+    margin-bottom: 34px;
   }
 }
 

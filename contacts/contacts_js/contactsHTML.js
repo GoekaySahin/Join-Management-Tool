@@ -91,28 +91,36 @@ function renderContactsRasterHTML() {
             <div id="n"></div>
 
             <div id="o_container">
-              <div class="contact-char">O</div>
-              <hr class="underline" />
-            <div>
-            <div id="o"></div>
+  <div class="contact-char">O</div>
+  <hr class="underline" />
+</div>
+<div id="o"></div>
 
-            <div id="p_container">
-              <div class="contact-char">P</div>
-              <hr class="underline" />
-            </div>
-            <div id="p"></div>
+<div id="p_container">
+  <div class="contact-char">P</div>
+  <hr class="underline" />
+</div>
+<div id="p"></div>
 
-            <div id="q_container">
-              <div class="contact-char">Q</div>
-              <hr class="underline" />
-            <div>
-            <div id="q"></div>
+<div id="q_container">
+  <div class="contact-char">Q</div>
+  <hr class="underline" />
+</div>
+<div id="q"></div>
 
-            <div id="r_container">
-              <div class="contact-char">R</div>
-              <hr class="underline" />
-            </div>
-            <div id="r"></div>
+<div id="r_container">
+  <div class="contact-char">R</div>
+  <hr class="underline" />
+</div>
+<div id="r"></div>
+
+<!-- ... (rest of the alphabet) ... -->
+
+<div id="z_container">
+  <div class="contact-char">Z</div>
+  <hr class="underline" />
+</div>
+<div id="z"></div>
 
             <div id="s_container">
               <div class="contact-char">S</div>
@@ -157,10 +165,10 @@ function renderContactsRasterHTML() {
             <div id="y"></div>
 
             <div id="z_container">
-              <div class="contact-char">Z</div>
-              <hr class="underline" />
-            </div>
-            <div id="z"></div>
+            <div class="contact-char">Z</div>
+            <hr class="underline" />
+          </div>
+          <div id="z"></div>
           </div>
             `;
 }
@@ -178,8 +186,8 @@ function ContactListHTML(id, acronym, i, element) {
     <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
       <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
       <div class="contact-info-container">
-      <span class="contact-name">${element["name"]}</span>
-      <span id="contact-email-${i}" class="contact-email">${
+        <span class="contact-name">${element["name"]}</span>
+        <span id="contact-email-${i}" class="contact-email">${
     element["mail"]
   }</span>
       </div>

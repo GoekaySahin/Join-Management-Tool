@@ -68,7 +68,8 @@
 
   .login-screen {
     transform: scale(0.8);
-    height: 560px;
+    padding: 8px 16px 97px;
+    min-height: 520px;
   }
 
   .login-btn {
