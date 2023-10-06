@@ -16,7 +16,6 @@ async function checkInput() {
     handleWorngPwMessage(wrong_pw);
     return;
   }
-  debugger;
   for (let i = 0; i < storedUsers.length; i++) {
     const element = storedUsers[i];
     if (element["email"] == email) {
@@ -113,7 +112,7 @@ function backFromReset() {
  * @returns boolean if input has value or not
  */
 function sendMeTheEmail() {
-  var email = document.getElementById("email").value;
+  let email = document.getElementById("email").value;
   if (email == "") {
     return false;
   } else {

@@ -1,6 +1,4 @@
-setURL(
-  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
-);
+setURL("https://join.goekay-nuri-sahin/join/smallest_backend_ever");
 
 async function loadAtStart() {
   await downloadFromServer();

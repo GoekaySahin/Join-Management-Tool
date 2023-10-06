@@ -19,9 +19,7 @@ let importance3Colored;
 let contactsRendered = false;
 let email;
 
-setURL(
-  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
-);
+setURL("https://join.goekay-sahin.de/join/smallest_backend_ever");
 
 /**
  * Init function to set all syncron

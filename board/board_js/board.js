@@ -1,6 +1,4 @@
-setURL(
-  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
-);
+setURL("https://join.goekay-sahin.de/join/smallest_backend_ever");
 let startposition;
 let todosMap = new Map();
 todosMap.set("x", { value: "none" });

@@ -1,9 +1,7 @@
 let storedUsers = [];
 let emailValue = false;
 
-setURL(
-  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
-);
+setURL("https://join.goekay-sahin/join/smallest_backend_ever");
 
 function checkInputSignUp(userName, email, password) {
   if (userName == "") {

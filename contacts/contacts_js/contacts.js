@@ -10,9 +10,7 @@ let progressesMap;
 let feedbacksMap;
 let donesMap; */
 
-setURL(
-  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
-);
+setURL("https://join.goekay-sahin.de/join/smallest_backend_ever");
 
 /**
  * This is the init function
