@@ -35,9 +35,10 @@ async function init() {
   draggableTrue();
   setTimeout(activateDragAndDrop, 400); /* setCards(); */
   await getMaps();
-  generateCards();
+  /* generateCards(); */
   checkIfEmpty();
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+  setTasks(todo);
   actualContacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   getUrgentCounter();
   getCurrentContacts();
@@ -325,12 +326,18 @@ function setupForGetFirstLetter(contacts, firstLetters, letterList, nameList) {
       firstLetters = firstLetter[0];
       firstLetters = firstLetters.toUpperCase();
       letterList.push(firstLetters);
-    } else {
-      let secondLetter = name[1].split("");
-      firstLetters = firstLetter[0] + secondLetter[0];
-      firstLetters = firstLetters.toUpperCase();
-      letterList.push(firstLetters);
+    } else if (name[0] == "" || name[0] == " ") {
+      name.splice(0, 1);
+      firstLetter = name[0].split("")[0];
+      console.log(name);
     }
+    let secondLetter = name[1].split("");
+    if (secondLetter.length > 1) {
+      secondLetter = name[1].split("")[0];
+    }
+    firstLetters = firstLetter[0] + secondLetter[0];
+    firstLetters = firstLetters.toUpperCase();
+    letterList.push(firstLetters);
 
     nameList.push(justName);
   }

@@ -296,7 +296,12 @@ function contactNewInvisible(contactsNew, id) {
 }
 
 function letterNewInvisible(map, id) {
-  let letters = map.get(`${id}`)["letters"];
+  if (letters == undefined) {
+    let letters = map.get(`${id}`)["letters"];
+  }
+  if (letters == letters.toLowerCase()) {
+    letters = letters.toUpperCase();
+  }
   if (letters.length == 1) {
     letters = [letters[0]];
   } else {
@@ -311,7 +316,7 @@ function renderContactsCardDetail(contactsMap, contactsNew, letters, id, map) {
   contactNewInvisible(contactsNew, id);
   let contactColor = map.get(`${id}`)["colors"];
   contactColor = checkIfString(contactColor);
-  letters = letterNewInvisible(map, id);
+  //letters = letterNewInvisible(map, id);
   let contactsSection = document.getElementById(`contacts_card${id}`);
   checkForContactNumber(contactsNew, letters, contactsSection, contactColor);
 }
@@ -326,6 +331,15 @@ async function renderContactsCard(id) {
   let contactsMap = map.get(`${id}`)["contacts"];
   let contactsNew;
   let letters;
+  if (map.get(`${id}`)["letters"]) {
+    letters = map.get(`${id}`)["letters"];
+    if (letters == "UNDEFINEDA") {
+      let namesSplit = getFirstLetter(contactsMap, id);
+      letters = namesSplit.get(`${id}`)["letters"];
+      map.get(`${id}`)["letters"] = letters;
+      console.log(map.get(`${id}`)["letters"]);
+    }
+  }
   renderContactsCardDetail(contactsMap, contactsNew, letters, id, map);
 }
 
@@ -351,6 +365,9 @@ function twoDotsContact(
   letters,
   contacts
 ) {
+  if (typeof letters == "string") {
+    letters = letters.split(",");
+  }
   for (let i = 0; i < contacts.length; i++) {
     const element = colors[i];
 
@@ -365,10 +382,18 @@ function oneDotContact(
   letters,
   contacts
 ) {
-  for (let i = 0; i < contacts.length; i++) {
-    const element = colors[i];
+  if (typeof letters == "string" && letters.length < 3) {
+    for (let i = 0; i < contacts.length; i++) {
+      const element = colors[i];
 
-    contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors};">${letters[i]}</p>`;
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors};">${letters}</p>`;
+    }
+  } else {
+    for (let i = 0; i < contacts.length; i++) {
+      const element = colors[i];
+
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors};">${letters[i]}</p>`;
+    }
   }
 }
 /**

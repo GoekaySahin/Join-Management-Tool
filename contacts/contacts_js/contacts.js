@@ -192,6 +192,12 @@ async function renderContactListHTML(element, acronym, i) {
     console.error("First letter is undefined");
     return;
   }
+  if (firstLetter == "" || firstLetter == " ") {
+    firstLetter = element["name"] ? element["name"][1] : "";
+    if (firstLetter == "") {
+      firstLetter == "x";
+    }
+  }
   let id = firstLetter.toLowerCase();
   ContactListHTML(id, acronym, i, element);
 }

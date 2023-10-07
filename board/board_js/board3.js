@@ -368,7 +368,6 @@ function addProgressVariable(doneCoordinates, counter, pct) {
   if (typeof doneCoordinates[counter] == "string") {
     if (doneCoordinates.lenght == 1) {
       doneCoordinates = doneCoordinates.split(",");
-      debugger;
     }
     currentProgress += counter * pct;
   }
