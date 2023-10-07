@@ -16,6 +16,7 @@ setURL("https://join.xn--gkay-sahin-ecb.de/smallest_backend_ever/");
  * This is the init function
  */
 async function init() {
+  renderContactsRasterHTML();
   await downloadFromServer();
   await includeHTML();
   checkSize();
@@ -180,7 +181,7 @@ async function renderContactDetail() {
 async function renderContactList() {
   let container = document.getElementById("contact_list_container");
   container.innerHTML = "";
-  renderContactsRaster();
+  container.innerHTML = `${renderContactsRasterHTML()}`;
 
   await renderContactDetail();
 }
