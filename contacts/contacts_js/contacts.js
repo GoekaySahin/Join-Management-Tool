@@ -16,10 +16,10 @@ setURL("https://join.xn--gkay-sahin-ecb.de/smallest_backend_ever/");
  * This is the init function
  */
 async function init() {
-  renderContactsRasterHTML();
   await downloadFromServer();
   await includeHTML();
   checkSize();
+
   await renderContactList();
   await loadContacts();
 }
