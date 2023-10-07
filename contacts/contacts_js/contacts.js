@@ -10,7 +10,7 @@ let progressesMap;
 let feedbacksMap;
 let donesMap; */
 
-setURL("https://join.goekay-sahin.de/join/smallest_backend_ever");
+setURL("https://join.xn--gkay-sahin-ecb.de/smallest_backend_ever/");
 
 /**
  * This is the init function
@@ -167,6 +167,9 @@ async function renderContactDetail() {
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   if (contacts.length < 1) {
     let listId = document.getElementById("contact-list-id");
+    if (listId == undefined) {
+      return;
+    }
     listId.classList.add("d-none");
     showNoContacts();
   } else {

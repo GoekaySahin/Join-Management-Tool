@@ -22,9 +22,7 @@ let subCounterAdd = 0;
 let email;
 let checkedIndex = [];
 
-setURL(
-  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
-);
+setURL("https://join.goekay-sahin.de/smallest_backend_ever");
 
 /**
  * This function is to get the urgentcounter from backend

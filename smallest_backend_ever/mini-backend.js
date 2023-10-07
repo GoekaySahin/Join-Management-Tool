@@ -99,7 +99,9 @@ function saveJSONToServer() {
 function determineProxySettings() {
   return "";
 
-  if (window.location.href.indexOf(".goekay-sahin.de") > -1) {
+  if (
+    window.location.href.indexOf("https://join.xn--gkay-sahin-ecb.de/") > -1
+  ) {
     return "";
   } else {
     return "https://cors-anywhere.herokuapp.com/";

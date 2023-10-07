@@ -15,10 +15,7 @@ const month = [
   "December",
 ];
 const d = new Date();
-setURL(
-  "https://goekay-nuri-sahin.developerakademie.com/join/smallest_backend_ever"
-);
-board = "summary.html";
+setURL("https://join.xn--gkay-sahin-ecb.de/smallest_backend_ever/");
 
 async function init() {
   await includeHTML();

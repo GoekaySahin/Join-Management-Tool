@@ -1,4 +1,3 @@
-setURL("https://join.goekay-sahin.de/join/smallest_backend_ever");
 let startposition;
 let todosMap = new Map();
 todosMap.set("x", { value: "none" });
@@ -25,6 +24,7 @@ let idCounter = 0;
 let actualContacts;
 let globalId;
 
+setURL("https://join.xn--gkay-sahin-ecb.de/smallest_backend_ever/");
 /**
  * This function Initialized some functions that need to run with onload of the body
  *
