@@ -19,7 +19,7 @@ let importance3Colored;
 let contactsRendered = false;
 let email;
 
-setURL("https://join.xn--gkay-sahin-ecb.de/smallest_backend_ever/");
+setURL("https://join.goekay-sahin.de/smallest_backend_ever/");
 
 /**
  * Init function to set all syncron

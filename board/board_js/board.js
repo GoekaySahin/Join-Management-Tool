@@ -24,7 +24,7 @@ let idCounter = 0;
 let actualContacts;
 let globalId;
 
-setURL("https://join.xn--gkay-sahin-ecb.de/smallest_backend_ever/");
+setURL("https://join.goekay-sahin.de/smallest_backend_ever/");
 /**
  * This function Initialized some functions that need to run with onload of the body
  *

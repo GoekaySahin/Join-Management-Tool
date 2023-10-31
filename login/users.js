@@ -1,4 +1,4 @@
-setURL("https://join.xn--gkay-sahin-ecb.de/smallest_backend_ever/");
+setURL("https://join.goekay-sahin.de/smallest_backend_ever/");
 
 async function loadAtStart() {
   await downloadFromServer();

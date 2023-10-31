@@ -148,7 +148,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 100px;
-  left: 780px;
+  left: 949.2px;
   overflow: hidden;
   width: 56%;
   height: 80vh;
@@ -600,4 +600,8 @@ input[type="number"] {
 
 .contacts-dropdown-content {
   height: 230px !important;
+}
+
+.category-box {
+  margin-top: 68px !important;
 }

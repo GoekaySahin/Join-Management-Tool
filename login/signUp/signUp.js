@@ -1,7 +1,7 @@
 let storedUsers = [];
 let emailValue = false;
 
-setURL("https://join.xn--gkay-sahin-ecb.de/smallest_backend_ever/");
+setURL("https://join.goekay-sahin.de/smallest_backend_ever/");
 
 function checkInputSignUp(userName, email, password) {
   if (userName == "") {

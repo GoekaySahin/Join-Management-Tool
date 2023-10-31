@@ -41,7 +41,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $email = $_POST['email'];
         $message = "Hello,\n
-        \nhttps://gruppe-417.developerakademie.net/join/forgotPassword/resetYourPassword.html?email-" . $email . "\n
+        \nhttps://join.goekay-sahin.de/forgotPassword/resetYourPassword.html?email-" . $email . "\n
         \nIf you didn't akt to reset your password, you can ignor this email.\n
         \nThanks,\n
         \n Your Join Team\n";
@@ -49,7 +49,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $recipient = $email;
         $subject = "Reset your password for Join App";
-        $headers = "From:  noreply@https://gruppe-417.developerakademie.net/join/login/resetYourPassword.html";
+        $headers = "From:  noreply@https://join.goekay-sahin.de/login/resetYourPassword.html";
 
         $result = mail($recipient, $subject, $headers);
         print($result);

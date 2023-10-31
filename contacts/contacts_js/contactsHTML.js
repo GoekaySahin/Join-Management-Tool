@@ -207,10 +207,11 @@ function renderOpenDetail(i) {
               <img class="cross" src="img/cross.png" alt="" />
               <p>Add Task</p>
           </div>
-          <div onclick="openEditContact(${i})" id="edit_contact_pencil" class="edit-contact">
-            <img src="img/pencil.png" alt="" />
-            <p>Edit Contact</p>
-          </div>
+
+      </div>
+       <div onclick="openEditContact(${i})" id="edit_contact_pencil" class="edit-contact">
+          <img src="img/pencil.png" alt="" />
+          <p>Edit Contact</p>
         </div>
       </div>
     </div>
