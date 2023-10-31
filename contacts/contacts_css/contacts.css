@@ -137,6 +137,7 @@ body {
   width: 42px;
   height: 42px;
   margin-left: 25px;
+  min-width: 10%;
 }
 
 .contact-information-container {
@@ -148,7 +149,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 100px;
-  left: 949.2px;
+  left: 42%;
   overflow: hidden;
   width: 56%;
   height: 80vh;
@@ -157,7 +158,8 @@ body {
 .name-container {
   display: flex;
   align-items: center;
-  margin-left: 65px;
+  flex-direction: column;
+  width: 35%;
 }
 
 .circle-right {
@@ -174,9 +176,23 @@ body {
   margin-top: 58.7px;
 }
 
+.edit-button {
+  font-size: 18px;
+  color: #4589ff;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 7px;
+  border: 1px solid #4589ff;
+  border-radius: 10px;
+  left: 58px;
+  top: 529px;
+  background-color: white;
+}
+
 .name {
-  margin-left: 54px;
-  margin-top: 73.7px;
+  margin-top: 33.7px;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -234,12 +250,7 @@ body {
   cursor: pointer;
   display: flex;
   align-items: flex-start;
-}
-
-.edit-contact p {
-  font-size: 16px;
-  color: #2a3647;
-  margin: 0;
+  margin-top: 10px;
 }
 
 .edit-contact img {
@@ -327,6 +338,7 @@ body {
   align-items: center;
   background-color: white;
   border-bottom-right-radius: 30px;
+  height: 70%;
 }
 
 .img-container {
@@ -389,7 +401,7 @@ input[type="number"] {
 }
 
 .new-contact-btn-container {
-  padding-top: 100px;
+  padding-top: 14px;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -576,9 +588,14 @@ input[type="number"] {
 
 .deleteBTN {
   position: absolute;
-  background-color: orange !important;
-  top: 34vh;
-  left: 366px;
+  top: 529px;
+  left: 218px;
+  padding: 16px 35px;
+  color: orange;
+  border: 1px solid orange;
+  font-size: 22px;
+  border-radius: 8px;
+  background-color: white;
 }
 
 .df {

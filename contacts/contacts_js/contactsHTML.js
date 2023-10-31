@@ -202,17 +202,10 @@ function renderOpenDetail(i) {
       <div class="circle-right" id="circle_right"></div>
       <div class="name">
         <h1 id="name_right"></h1>
-        <div onclick="openAddTask()" class="name-addTask">
-          <div class="add-task-opener">
-              <img class="cross" src="img/cross.png" alt="" />
-              <p>Add Task</p>
-          </div>
+      
 
       </div>
-       <div onclick="openEditContact(${i})" id="edit_contact_pencil" class="edit-contact">
-          <img src="img/pencil.png" alt="" />
-          <p>Edit Contact</p>
-        </div>
+        
       </div>
     </div>
 
@@ -229,7 +222,13 @@ function renderOpenDetail(i) {
         </div>
       </div>
     </div>
-    <button class="save-btn deleteBTN" onclick="deleteActualContact(${i})" >delete</button>
+    <div onclick="openEditContact(${i})" id="edit_contact_pencil" class="edit-contact">
+      <button class="edit-button">
+        <img src="img/pencil.png" alt="" />
+        <p>Edit Contact</p>
+      </button>  
+    </div>
+    <button class="deleteBTN" onclick="deleteActualContact(${i})" >delete</button>
     <img onclick="openEditContact(${i})" src="img/edit-contact.png" id="edit_contact" class="d-none" alt="" />
     `;
 }
