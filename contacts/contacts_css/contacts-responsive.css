@@ -1,10 +1,10 @@
-@media (width <=1900px) {
+@media (width <= 1900px) {
   .circle {
     margin-left: 0;
   }
 }
 
-@media (width <=1700px) {
+@media (width <= 1700px) {
   .contact-list-container {
     width: 26vw;
   }
@@ -16,7 +16,7 @@
   }
 }
 
-@media (width <=1550px) {
+@media (width <= 1550px) {
   .contact {
     width: 26vw;
   }
@@ -29,7 +29,7 @@
   }
 }
 
-@media (width <=1350px) {
+@media (width <= 1350px) {
   .contact-list-container {
     width: 34vw;
   }
@@ -47,7 +47,7 @@
   }
 }
 
-@media (width <=1280px) {
+@media (width <= 1280px) {
   .contact-right {
     left: 52vw;
   }
@@ -62,13 +62,13 @@
   }
 }
 
-@media (width <=1210px) {
+@media (width <= 1210px) {
   .contact-list-container {
     width: 33vw;
   }
 }
 
-@media (width <=1190px) {
+@media (width <= 1190px) {
   .contact-list-container {
     width: 32vw;
   }
@@ -128,7 +128,7 @@
   }
 }
 
-@media (width <=1024px) {
+@media (width <= 1024px) {
   .new-contact-btn {
     padding: 14px 6px;
     right: 3%;
@@ -158,7 +158,7 @@
   }
 
   .contact-list-container {
-    margin-left: 0;
+    margin-left: 0 !important;
     width: 45vw;
   }
 
@@ -200,9 +200,13 @@
   #task-urgent-desc {
     font-size: clamp(1rem, 3vw, 1rem);
   }
+
+  .contact-right {
+    width: 327px !important;
+  }
 }
 
-@media (width <=800px) {
+@media (width <= 800px) {
   .contact-list-container {
     width: 100vw;
   }
@@ -224,7 +228,7 @@
 
   .new-contact-btn {
     right: 9%;
-    top: 80% !important;
+    top: 87% !important;
     font-size: 16px;
   }
 
@@ -257,9 +261,9 @@
   }
 
   .contact-right {
-    width: 100vw;
-    left: 5vw;
-    height: 84vh;
+    width: 100vw !important;
+    left: 5vw !important;
+    height: 84vh !important;
   }
 
   .name-container {
@@ -276,26 +280,15 @@
     right: 5vh;
     height: 20px;
     width: 20px;
-  }
-
-  .contact-information {
-    margin-left: 0;
+    top: 100px;
   }
 
   .edit-contact-inner-container {
     width: 100vw;
   }
   #edit_contact {
-    position: absolute;
-    right: 34vw;
-    top: 546px;
-  }
-
-  .deleteBTN {
-    width: 92px;
-    height: 46px;
-    top: 541px;
-    left: 71%;
+    right: 31vw !important;
+    top: 531px;
   }
 
   .contact-right {
@@ -308,9 +301,28 @@
     display: flex;
     align-items: baseline;
   }
+
+  .deleteBTN {
+    position: absolute;
+    top: 529px;
+    left: 32vw !important;
+    padding: 8px 16px !important;
+  }
+
+  .name h1 {
+    font-size: 34px !important;
+  }
+
+  .contact-information h2 {
+    font-size: 19px !important;
+  }
+
+  .contact-information {
+    margin-left: 20px !important;
+  }
 }
 
-@media (width <=580px) {
+@media (width <= 580px) {
   .contact {
     width: 80vw;
   }
@@ -358,9 +370,17 @@
     display: flex;
     width: 80vw !important;
   }
+
+  .deleteBTN {
+    left: 22vw !important;
+  }
+
+  #edit_contact {
+    right: 25vw !important;
+  }
 }
 
-@media (width >=1980px) {
+@media (width >= 1980px) {
   .contact-list-container {
     width: 500px;
     padding-top: 50px;
@@ -375,7 +395,7 @@
   }
 }
 
-@media (width >=2160px) {
+@media (width >= 2160px) {
   .contact {
     width: 15vw;
   }
