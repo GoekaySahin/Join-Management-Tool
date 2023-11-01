@@ -93,10 +93,8 @@
   }
 
   form {
-    width: 58vw !important;
     gap: 4px !important;
-    height: 58vh !important;
-    margin-top: 307px !important;
+    margin-top: -84px !important;
     padding-bottom: 200px !important;
   }
 }
@@ -116,14 +114,6 @@
 
   .title-input {
     width: 75vw;
-  }
-
-  .date-box,
-  .category-box,
-  .contacts-box,
-  .description-box,
-  .subtask-box {
-    width: 80vw;
   }
 
   .select-contacts,

@@ -351,10 +351,6 @@
   .contact-information h2 {
     font-size: 19px !important;
   }
-
-  .contact-information {
-    margin-left: 20px !important;
-  }
 }
 
 @media (width <= 580px) {
