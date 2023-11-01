@@ -37,10 +37,10 @@
     width: 23vw;
   }
   .contact-name {
-    font-size: 16px;
+    font-size: 16px !important;
   }
   .contact-email {
-    font-size: 14px;
+    font-size: 14px !important;
   }
   /* .contact-right {
     transform: scale(0.9) !important;
@@ -74,6 +74,9 @@
 @media (width <= 1210px) {
   .contact-list-container {
     width: 33vw;
+  }
+  .contact {
+    align-items: baseline;
   }
 }
 
@@ -146,6 +149,11 @@
 
   body {
     padding-bottom: 147px !important;
+  }
+
+  #contact_container {
+    width: 100%;
+    height: 100vh;
   }
 
   .add-task-content-overlay {
@@ -264,12 +272,12 @@
   }
 
   .contact-list-inner-container {
-    width: 90vw;
+    width: 90vw !important;
     align-items: center;
   }
 
   .underline {
-    width: 90vw;
+    width: 90vw !important;
   }
 
   .new-contact-btn {
@@ -304,6 +312,7 @@
 
   .circle {
     margin-right: 10px;
+    margin-left: 0;
   }
 
   .name-container {
@@ -355,7 +364,13 @@
 
 @media (width <= 580px) {
   .contact {
-    width: 80vw;
+    width: 100vw;
+    gap: 0 !important;
+    padding: 15px 0px !important;
+  }
+
+  .contact:hover {
+    border-radius: 0 !important;
   }
 
   .add-task-content-overlay {
@@ -385,6 +400,13 @@
   }
   .input-phone {
     margin-bottom: 25px;
+  }
+
+  .new-contact-btn {
+    right: -5% !important;
+    top: 72% !important;
+    scale: 0.65 !important;
+    position: fixed !important;
   }
 }
 
@@ -438,6 +460,8 @@
 @media (width <= 380px) {
   .contact {
     position: relative;
+    min-width: 0 !important;
+    gap: 0 !important;
   }
   .date-box,
   .category-box,
@@ -462,11 +486,6 @@
     width: 4vw !important;
   }
 
-  .contact-list-inner-container {
-    margin-right: 20px;
-    scale: 0.9;
-  }
-
   .add-task-content {
     right: -20px;
   }
@@ -478,7 +497,6 @@
 
   .new-contact-btn {
     right: 11%;
-    top: 17% !important;
   }
 
   *::-webkit-scrollbar {
@@ -502,6 +520,14 @@
   .deleteBTN {
     top: 524px;
     left: 62%;
+  }
+  .contact-char {
+    width: 282px;
+    font-size: 19px;
+    font-weight: 400;
+    font-family: "Open Sans";
+    margin-top: 10px;
+    margin-left: 0;
   }
 }
 
