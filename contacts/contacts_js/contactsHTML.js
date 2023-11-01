@@ -219,8 +219,8 @@ function renderOpenDetail(i) {
         <img src="img/pencil.png" alt="" />
         <p>Edit Contact</p>
       </button>  
+      <button class="deleteBTN" onclick="deleteActualContact(${i})" >delete</button>
     </div>
-    <button class="deleteBTN" onclick="deleteActualContact(${i})" >delete</button>
     <img onclick="openEditContact(${i})" src="img/edit-contact.png" id="edit_contact" class="d-none" alt="" />
     `;
 }

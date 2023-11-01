@@ -1,7 +1,7 @@
 body {
   margin: 0;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: #eeeeee5e;
   scroll-behavior: smooth;
 }
 
@@ -35,6 +35,8 @@ body {
   height: 100vh;
   overflow-y: scroll;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+  background-color: white;
+  position: absolute;
 }
 
 * {
@@ -142,7 +144,7 @@ body {
 
 .contact-information-container {
   display: flex;
-  height: 25vh;
+  height: 204px;
 }
 
 .contact-right {
@@ -151,7 +153,7 @@ body {
   top: 17%;
   left: 60%;
   overflow: hidden;
-  width: 20%;
+  width: initial;
   height: 60vh;
 }
 
@@ -174,6 +176,7 @@ body {
   border-radius: 100%;
   background-color: orange;
   margin-top: 58.7px;
+  margin-inline-end: 23px;
 }
 
 .edit-button {
@@ -186,8 +189,8 @@ body {
   padding: 1px 7px;
   border: 1px solid #4589ff;
   border-radius: 10px;
-  left: 32px;
-  top: 528.5px;
+  left: 0;
+  top: 0;
 }
 
 .name {
@@ -222,11 +225,6 @@ body {
   width: 15px;
 }
 
-.contact-information {
-  margin-left: 50px;
-  margin-top: 21.67px;
-}
-
 .contact-information h2 {
   margin: 0;
   font: 23px;
@@ -250,6 +248,7 @@ body {
   display: flex;
   align-items: flex-start;
   margin-top: 10px;
+  position: relative;
 }
 
 .edit-contact img {
@@ -587,8 +586,8 @@ input[type="number"] {
 
 .deleteBTN {
   position: absolute;
-  top: 529px;
-  left: 187px;
+  top: 0;
+  right: 0;
   padding: 16px 35px;
   color: orange;
   border: 1px solid orange;
