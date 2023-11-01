@@ -266,6 +266,13 @@ function closeDetail() {
   backArrow.classList.add("d-none");
 }
 
+function scrollTopFreeze() {
+  let body = document.getElementById("body");
+
+  body.scrollTo(0, 0);
+  //body.classList.toggle("pos-fix");
+}
+
 function addNewContact() {
   const addContactContainer = document.getElementById("add_contact_container");
   const blurScreen = document.getElementById("blur_screen");
@@ -278,6 +285,7 @@ function addNewContact() {
     addContactContainer.classList.add("d-none");
     blurScreen.classList.add("d-none");
   }
+  scrollTopFreeze();
 }
 
 function closeBlurScreen() {

@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  overflow: hidden;
   background-color: #fffdfd5e;
   scroll-behavior: smooth;
 }
@@ -32,10 +31,11 @@ body {
   margin-left: 275px;
   margin-top: 100px;
   min-width: 400px;
-  height: 100vh;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
   background-color: white;
   position: absolute;
+  bottom: 0;
+  top: 0;
 }
 
 * {
@@ -61,6 +61,11 @@ body {
   align-items: center;
   width: 357px;
   padding-bottom: 5%;
+  padding-top: 5%;
+}
+
+.pos-fix {
+  position: fixed;
 }
 
 .contact-char {
@@ -450,6 +455,7 @@ input[type="number"] {
   background-color: rgba(24, 24, 24, 0.096);
   z-index: 24;
   transition: all ease-in-out 125ms;
+  position: fixed;
 }
 
 .contacts_html {
