@@ -115,6 +115,8 @@
     gap: 0px !important;
     margin-top: 218px !important;
     padding-bottom: 0px !important;
+    padding: 44px 34px !important;
+    min-height: 768px !important;
   }
 
   .add-task-content {
@@ -206,8 +208,8 @@
   }
 
   .add-task-content {
-    margin-top: -10px !important;
-    padding-bottom: 225px !important;
+    margin-top: 0px !important;
+    padding-bottom: 0px !important;
   }
 
   .description-input {
@@ -237,6 +239,7 @@
   .contacts-box,
   .description-box {
     min-width: 100%;
+    margin-bottom: 8px !important;
   }
 }
 
