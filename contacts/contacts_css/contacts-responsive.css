@@ -299,7 +299,8 @@
   }
 
   .add-contact-header {
-    border-top-right-radius: 0;
+    border-top-right-radius: 0 !important;
+    height: 23% !important;
   }
 
   .new-contact-btn-container {
@@ -391,8 +392,9 @@
     width: 100vw;
   }
   .add-contact-information {
-    width: 100vw;
-    height: 78% !important;
+    width: 100%;
+    height: 90% !important;
+    border-top-right-radius: 30px !important;
   }
 
   form input {
@@ -413,8 +415,15 @@
     margin-bottom: 25px;
   }
 
+  form input {
+    padding: 6px 18px !important;
+    margin-bottom: 20px !important;
+    border-radius: 0 !important;
+    height: 40px !important;
+  }
+
   .new-contact-btn {
-    right: -5% !important;
+    right: 2% !important;
     top: 72% !important;
     scale: 0.65 !important;
     position: fixed !important;
@@ -428,16 +437,27 @@
   }
 
   .add-contact-headline {
-    font-size: 40px !important;
-  }
-
-  .add-contact-paragraph {
     font-size: 24px !important;
   }
 
+  .add-contact-paragraph {
+    font-size: 13px !important;
+  }
+
   .img-container {
-    width: 150px !important;
-    height: 150px !important;
+    width: 106px !important;
+    height: 106px !important;
+    margin-top: 8% !important;
+  }
+
+  .add-contact-img {
+    height: 35px !important;
+    width: 35px !important;
+  }
+
+  form {
+    margin-top: 8% !important;
+    border-top: none !important;
   }
 }
 
@@ -638,7 +658,7 @@
   .add-contact-information {
     height: initial;
     position: absolute;
-    top: 312px;
+    top: 109px;
     bottom: -73px;
   }
 }

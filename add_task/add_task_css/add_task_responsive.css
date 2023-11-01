@@ -41,10 +41,14 @@
   .add-subtask {
     cursor: pointer;
     width: initial !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
 
   .title-input {
     width: 91% !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
 
   .add-subtask {
@@ -109,8 +113,8 @@
 
   form {
     gap: 0px !important;
-    margin-top: 440px !important;
-    padding-bottom: 200px !important;
+    margin-top: 218px !important;
+    padding-bottom: 0px !important;
   }
 
   .add-task-content {
@@ -311,5 +315,3 @@
     width: 67vw;
   }
 }
-
-@media (heigth <=);
