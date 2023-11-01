@@ -489,18 +489,21 @@ async function getMaps() {
  * @returns if contact is undefined
  */
 function checkSetupMapsContact(contacts, map, index) {
-  if (index.contacts == undefined) {
+  let name = index.contacts;
+  if (name == undefined) {
     return;
+  } else if (name[name.length - 1] == " ") {
+    name.substring(0, name.length - 1);
   } else {
-    if (index.contacts.indexOf(selectedContact.name) >= 0) {
-      let i = index.contacts.indexOf(selectedContact.name);
-      index.contacts.splice(i, 1);
+    if (name.indexOf(selectedContact.name) >= 0) {
+      let i = name.indexOf(selectedContact.name);
+      name.splice(i, 1);
       if (typeof index.letters == "string") {
         index.letters = index.letters.split(",");
       }
       index.letters.splice(i, 1);
       index.letters.splice(i, 0, contacts.firstLetters);
-      index.contacts.splice(i, 0, contacts.name);
+      name.splice(i, 0, contacts.name);
     }
   }
 }

@@ -57,7 +57,7 @@
   }
   #backarrow {
     position: absolute;
-    right: 5vh;
+    right: 8vh !important;
     height: 20px;
     width: 20px;
     top: 13vh;
@@ -163,7 +163,7 @@
   }
 
   .contact-right {
-    top: 7% !important;
+    top: 13% !important;
     left: 0% !important;
     width: 100% !important;
     height: 100vh !important;
@@ -172,7 +172,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: fixed !important;
   }
 
   .deleteBTN-edit {
@@ -280,6 +279,10 @@
     width: 90vw !important;
   }
 
+  .contact-right {
+    position: fixed !important;
+  }
+
   .new-contact-btn {
     right: 9%;
     top: 87% !important;
@@ -340,7 +343,7 @@
   }
   #edit_contact {
     right: 31vw !important;
-    top: 531px;
+    top: 396px !important;
   }
 
   .contacts-list-elem {
@@ -365,7 +368,8 @@
   }
 
   .contact-list-container {
-    height: 84vh !important;
+    height: 100vh !important;
+    padding-bottom: 270px !important;
   }
 }
 
@@ -398,7 +402,7 @@
   }
 
   form input {
-    width: 80% !important;
+    width: 100% !important;
   }
 
   .new-contact-btn-container {
@@ -458,6 +462,10 @@
   form {
     margin-top: 8% !important;
     border-top: none !important;
+  }
+
+  .edit-contact-correct {
+    width: 63% !important;
   }
 }
 
@@ -560,7 +568,7 @@
   #edit_contact {
     position: absolute;
     right: 45vw;
-    top: 531px;
+    top: 57%;
   }
 
   .deleteBTN {
