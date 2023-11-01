@@ -12,6 +12,7 @@ body {
   margin-top: 150px;
   margin-left: 350px;
   margin-bottom: 100px;
+  width: 89%;
   display: flex;
   flex-direction: column;
 }
@@ -43,6 +44,8 @@ p {
 .legal-headline img {
   cursor: pointer;
   margin-block-start: 46px;
+  position: absolute;
+  right: 4rem;
 }
 
 .legal_notice_html {
