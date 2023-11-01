@@ -1,6 +1,6 @@
 body {
   caret-color: transparent;
-  background-color: #eeeeee5e;
+  background-color: #fffdfd5e;
   scroll-behavior: smooth;
 }
 
@@ -168,7 +168,7 @@ body {
 }
 
 .card-head {
-  width: 68%;
+  width: 100%;
   height: 36px;
   display: flex;
   align-items: end;

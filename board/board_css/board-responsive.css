@@ -503,7 +503,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 85vh;
+    margin-top: 110px;
   }
 
   .popup-card {
@@ -525,7 +526,13 @@
   }
 
   .popup-card-title h1 {
-    font-size: 50px !important;
+    font-size: 39px !important;
+  }
+
+  .popup-text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px !important;
   }
 
   .card {
@@ -537,6 +544,20 @@
   .in-progress,
   .todo {
     min-height: 200px;
+  }
+  .assigned-to,
+  .priority,
+  .due-date {
+    font-size: 18px !important;
+  }
+
+  .importance-popup {
+    height: 33px !important;
+    width: 106px !important;
+  }
+
+  .popup-title {
+    line-height: 47.2px !important;
   }
 }
 

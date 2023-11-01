@@ -1,3 +1,42 @@
+@media (width <= 1200px) {
+  form {
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .select-contacts,
+  .select-date,
+  .select-category,
+  .add-subtask {
+    cursor: pointer;
+    width: initial !important;
+  }
+
+  .title-input {
+    width: 91% !important;
+  }
+
+  .add-subtask {
+    width: 92% !important;
+  }
+
+  .add-task-buttons {
+    width: 20%;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 24px;
+    position: absolute;
+    bottom: 8%;
+    right: 1%;
+    display: flex;
+    flex-direction: column;
+    height: 130px;
+    align-items: center;
+  }
+}
+
 @media (max-width: 1024px) {
   #addtask_bg {
     width: 71px;
@@ -28,6 +67,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 279px !important;
+    margin-top: 82px;
   }
 
   .clear-task-btn,
@@ -50,6 +91,14 @@
   .new-category-input {
     width: 55vw;
   }
+
+  form {
+    width: 58vw !important;
+    gap: 4px !important;
+    height: 58vh !important;
+    margin-top: 307px !important;
+    padding-bottom: 200px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -62,7 +111,7 @@
   }
 
   .add-task-content {
-    margin-top: 138px;
+    margin-top: 235px !important;
   }
 
   .title-input {
@@ -84,7 +133,7 @@
   }
 
   .select-date {
-    width: 91%;
+    width: initial !important ;
   }
 
   .importance-buttons {
@@ -119,6 +168,11 @@
 
   .rendered-subtask-name {
     width: 65vw;
+  }
+
+  .add-task-content {
+    margin-top: 490px !important;
+    padding-bottom: 225px !important;
   }
 }
 

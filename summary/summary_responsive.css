@@ -12,6 +12,15 @@
   .container {
     margin: 0 !important;
   }
+
+  #greeting {
+    height: 10%;
+    margin-bottom: 50px !important;
+  }
+
+  #summary-container {
+    gap: 0px !important;
+  }
 }
 
 @media (max-width: 820px) {
@@ -24,6 +33,7 @@
   body {
     display: flex;
     align-items: center;
+    overflow-y: initial;
   }
 
   #greeting {
@@ -107,10 +117,11 @@
 
   #summary-container {
     justify-content: center;
-    height: calc(100vh - 97.3px);
-    top: 95px;
+    height: auto !important;
+    top: 134px !important;
     gap: 30px;
     scale: 1;
+    padding-bottom: 163px;
   }
 
   #task-to-do-container {
@@ -150,16 +161,12 @@
     font-size: 3rem;
   }
 
-  #task-to-do-desc {
-    margin-left: 1rem;
-  }
-
   #urgent-date {
     font-size: clamp(1rem, 3vw, 2rem);
   }
 
   .container {
-    width: 450px;
+    width: 100% !important;
   }
 }
 

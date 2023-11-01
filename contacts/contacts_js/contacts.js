@@ -251,12 +251,14 @@ function closeContactRight() {
 function closeDetail() {
   let editPencil = document.getElementById("edit_contact_pencil");
   let editContact = document.getElementById("edit_contact");
+  let editDelete = document.getElementById("edit_delete");
   let listContainer = document.getElementById("contact_list_container");
   let newBTN = document.getElementById("new_contact_btn");
   let contactRight = document.getElementById("contact_right");
   let backArrow = document.getElementById("backarrow");
 
   editPencil.classList.remove("d-none");
+  editDelete.classList.remove("d-none");
   editContact.classList.add("d-none");
   listContainer.classList.remove("d-none");
   newBTN.classList.remove("d-none");
