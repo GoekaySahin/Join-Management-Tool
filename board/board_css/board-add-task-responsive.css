@@ -1,5 +1,5 @@
 @media (max-width: 1024px) {
-  #addtask_bg {
+  /*  #addtask_bg {
     width: 71px;
   }
 
@@ -50,8 +50,48 @@
   .new-category-input {
     width: 55vw;
   }
+ */
+  .add-title {
+    font-size: 38px;
+    padding-left: 4px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+
+  .add-tasks-board-head {
+    width: 100%;
+  }
+
+  .btn-create {
+    height: 40px;
+    padding: 0px 10px;
+    border: 1px solid #4589ff;
+    background: #4589ff;
+    border-radius: 11px;
+    color: white;
+    font-family: "Open Sans";
+    font-size: 18px;
+    line-height: 100%;
+    margin-right: 28px;
+  }
+
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box {
+    width: 100%;
+  }
 }
 
+@media (width <= 520px) {
+  .add-task-content {
+    margin-left: 0px;
+    width: initial !important;
+    left: 0;
+    border-radius: initial;
+  }
+}
+/* 
 @media (max-width: 480px) {
   form {
     width: 80vw;
@@ -191,3 +231,4 @@
     width: 67vw;
   }
 }
+ */

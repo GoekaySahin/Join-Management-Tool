@@ -74,7 +74,7 @@
 }
 
 /*                   RESPONSIV SECTION                      **/
-
+/* 
 @media (width <=1600px) {
   .add-task-content {
     width: 449px;
@@ -271,3 +271,4 @@
     margin: 0;
   }
 }
+ */
