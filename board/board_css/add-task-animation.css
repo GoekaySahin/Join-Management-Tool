@@ -4,14 +4,14 @@
   background-color: #ffffff5c;
   overflow: hidden;
   right: 0;
-  top: -41px;
+  top: 0;
   bottom: 0;
   left: 0;
 }
 
 .add-task-content {
   padding: 28px 39px;
-  top: -28.5vh;
+  top: 0;
   bottom: 0px;
   background-color: white;
   width: inherit !important;

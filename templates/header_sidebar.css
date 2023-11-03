@@ -190,3 +190,28 @@ header span {
   height: 100vh;
   z-index: 10;
 }
+
+@media (width <= 500px) {
+  .main-logo {
+    cursor: pointer;
+    width: 33px;
+    height: 41.3px;
+  }
+
+  .profile-picture {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+  }
+
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 39px;
+    gap: 34px;
+    position: fixed;
+    height: 35px;
+  }
+}

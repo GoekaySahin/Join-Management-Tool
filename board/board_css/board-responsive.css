@@ -449,8 +449,7 @@
 
 @media (width <=767px) {
   .add-task-content {
-    top: -100px !important;
-    bottom: 277px !important;
+    margin-top: 0px !important;
     display: flex;
     align-items: center;
     width: 89vw;

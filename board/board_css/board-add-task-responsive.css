@@ -1,4 +1,12 @@
 @media (max-width: 1024px) {
+  body {
+    position: relative;
+  }
+  form {
+    position: fixed;
+    inset: 0;
+  }
+
   .add-title {
     font-size: 42px;
     padding-left: 4px;
@@ -47,13 +55,25 @@
   .add-task-content {
     margin-left: 0px;
     width: initial !important;
-    padding-top: 9%;
     left: 0;
     border-radius: initial;
+    padding: 8px 24px;
   }
 
   .title-input {
-    width: 91%;
+  }
+
+  .title-input,
+  .title-input::placeholder {
+    width: 90%;
+    font-size: 23px;
+  }
+
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box {
+    margin-bottom: 8px;
   }
 
   .select-contacts,
@@ -62,6 +82,7 @@
   .add-subtask {
     cursor: pointer;
     width: 91%;
+    margin-bottom: 8px;
   }
   .add-task-descript-input {
     width: 87%;
@@ -72,6 +93,7 @@
   }
   .select-date {
     width: 87%;
+    min-width: 285px;
   }
 
   .subtask-box {
@@ -82,6 +104,16 @@
 
   .importance-buttons {
     width: 97%;
+    margin-bottom: 10px;
+  }
+
+  .importance-buttons button {
+    height: 42px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 10px;
   }
 
   .importance-buttons button {
@@ -96,12 +128,17 @@
 
   .add-tasks-board-head {
     display: flex;
-    flex-direction: column-reverse;
     align-items: center;
+    height: 44px;
+    width: 100%;
   }
 
   .btn-create {
-    margin-right: 0px;
+    width: 108px;
+    height: 41px;
+    margin-right: 20px;
+    margin-bottom: 12px;
+    text-align: left;
   }
 
   .importance-button1 span,
@@ -123,5 +160,22 @@
 
   .importance-buttons {
     width: 99%;
+  }
+}
+
+@media (width <= 350px) {
+  .add-title {
+    font-size: 22px;
+  }
+
+  .add-card img {
+    display: none;
+  }
+
+  .btn-create {
+    width: 108px;
+    height: 37px;
+    text-align: left;
+    font-size: 15px;
   }
 }
