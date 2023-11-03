@@ -49,6 +49,9 @@ body {
   display: flex;
   flex-direction: column;
   width: 30%;
+  height: 100vh;
+  min-height: 968px;
+  margin-top: 300px;
 }
 
 form {
@@ -516,7 +519,7 @@ form {
   display: flex;
   flex-direction: column;
   width: inherit;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   position: relative;
 }
 

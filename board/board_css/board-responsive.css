@@ -797,4 +797,7 @@
   .popup-title {
     line-height: 35.2px !important;
   }
+  .edit-box {
+    width: 72vw !important;
+  }
 }

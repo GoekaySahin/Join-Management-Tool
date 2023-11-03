@@ -848,4 +848,9 @@ h4 {
     cursor: pointer;
     width: 43px;
   }
+
+  .close-box {
+    position: absolute;
+    right: -12px;
+  }
 }
