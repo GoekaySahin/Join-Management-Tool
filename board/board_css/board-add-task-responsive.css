@@ -137,8 +137,13 @@
     width: 108px;
     height: 41px;
     margin-right: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 7px;
     text-align: left;
+    font-size: 15px;
+  }
+
+  .add-card img {
+    display: none;
   }
 
   .importance-button1 span,
