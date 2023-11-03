@@ -379,6 +379,7 @@
 
   .head h2 {
     padding-inline-start: 0 !important;
+    min-width: 134px;
   }
 
   .for-tablet {
@@ -403,16 +404,6 @@
 
   .ok {
     right: 36px !important;
-  }
-
-  .todo,
-  .in-progress,
-  .await-feedback,
-  .done {
-    width: 100% !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .kanban {
@@ -615,6 +606,7 @@
     flex-direction: column;
     gap: 0px;
     margin-bottom: 8%;
+    align-items: center;
   }
 
   .todobox,

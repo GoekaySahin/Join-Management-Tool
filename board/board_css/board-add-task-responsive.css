@@ -52,10 +52,8 @@
   }
  */
   .add-title {
-    font-size: 38px;
+    font-size: 42px;
     padding-left: 4px;
-    margin-bottom: 8px;
-    margin-top: 8px;
   }
 
   .add-tasks-board-head {
@@ -64,7 +62,7 @@
 
   .btn-create {
     height: 40px;
-    padding: 0px 10px;
+    padding: 0px 8px;
     border: 1px solid #4589ff;
     background: #4589ff;
     border-radius: 11px;
@@ -81,14 +79,106 @@
   .description-box {
     width: 100%;
   }
+
+  .for-tablet {
+    gap: 0px;
+  }
+
+  .todo,
+  .in-progress,
+  .await-feedback,
+  .done {
+    width: 48% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* 
+  .select-contacts {
+    width: 97%;
+  } */
 }
 
 @media (width <= 520px) {
   .add-task-content {
     margin-left: 0px;
     width: initial !important;
+    padding-top: 9%;
     left: 0;
     border-radius: initial;
+  }
+
+  .title-input {
+    width: 91%;
+  }
+
+  .select-contacts,
+  .select-date,
+  .select-category,
+  .add-subtask {
+    cursor: pointer;
+    width: 91%;
+  }
+  .add-task-descript-input {
+    width: 87%;
+  }
+
+  .select-date {
+    width: 86%;
+  }
+  .select-date {
+    width: 87%;
+  }
+
+  .subtask-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .importance-buttons {
+    width: 97%;
+  }
+
+  .importance-buttons button {
+    height: 32px;
+    width: 31%;
+    gap: 0;
+    font-size: 13px;
+  }
+  .add-title {
+    font-size: 32px;
+  }
+
+  .add-tasks-board-head {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .btn-create {
+    margin-right: 0px;
+  }
+
+  .importance-button1 span,
+  .importance-button2 span,
+  .importance-button3 span {
+    display: none;
+  }
+
+  .importance-buttons button img {
+    margin-left: 0px;
+    width: 20px;
+  }
+}
+
+@media (width <= 400px) {
+  .add-task-descript-input {
+    width: 85%;
+  }
+
+  .importance-buttons {
+    width: 99%;
   }
 }
 /* 
