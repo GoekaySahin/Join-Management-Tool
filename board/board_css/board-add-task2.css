@@ -29,7 +29,7 @@ html {
 }
 
 .add-task-content {
-  margin-top: 140px;
+  margin-top: 100px;
   margin-left: 350px;
   margin-bottom: 120px;
   display: flex;
@@ -723,4 +723,26 @@ html {
 
 #header-name-resp {
   display: none;
+}
+
+.improtance-images-popup {
+  display: flex;
+  flex-direction: column;
+  position: relative !important;
+  height: 13px;
+  width: 18px;
+}
+
+.improtance-images-popup img {
+  object-fit: cover;
+  width: 17px;
+}
+
+.correct-importance-top-medium {
+  margin-block-start: 5px;
+}
+
+.arrow-popup-top {
+  position: absolute;
+  top: 5px;
 }

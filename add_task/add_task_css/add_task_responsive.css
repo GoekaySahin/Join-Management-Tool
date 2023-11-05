@@ -217,7 +217,7 @@
   }
 
   .categories-dropdown-content {
-    width: 83vw;
+    width: 100%;
   }
 
   .subtask-content {
@@ -316,7 +316,7 @@
   }
 
   .contacts-dropdown-content {
-    width: 82vw;
+    width: 100%;
   }
 
   .new-contact {

@@ -412,6 +412,21 @@
     text-align: justify;
     color: #4589ff;
   }
+
+  .contacts-dropdown-content {
+    width: 100% !important;
+  }
+
+  .new-contact {
+    padding-right: 31px;
+  }
+  .rendered-contact-name {
+    width: 100% !important;
+  }
+
+  .control {
+    width: 100%;
+  }
 }
 
 @media (width <=900px) {

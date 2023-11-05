@@ -255,7 +255,7 @@ function closeDetail() {
   let listContainer = document.getElementById("contact_list_container");
   let newBTN = document.getElementById("new_contact_btn");
   let contactRight = document.getElementById("contact_right");
-  let backArrow = document.getElementById("backarrow");
+  //let backArrow = document.getElementById("backarrow");
 
   editPencil.classList.remove("d-none");
   editDelete.classList.remove("d-none");
@@ -263,7 +263,7 @@ function closeDetail() {
   listContainer.classList.remove("d-none");
   newBTN.classList.remove("d-none");
   contactRight.classList.add("d-none");
-  backArrow.classList.add("d-none");
+  //backArrow.classList.add("d-none");
 }
 
 function scrollTopFreeze() {

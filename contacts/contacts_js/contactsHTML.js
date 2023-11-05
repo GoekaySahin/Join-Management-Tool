@@ -189,7 +189,7 @@ function ContactListHTML(id, acronym, i, element) {
 
 function renderOpenDetail(i) {
   document.getElementById("contact_right").innerHTML = `
-    <img onclick="closeDetail()" class="d-none" id="backarrow" src="img/backarrow.png" alt="" />
+    <img onclick="closeDetail()"  id="backarrow" src="img/backarrow.png" alt="" />
     <div class="name-container">
       <div class="circle-right" id="circle_right"></div>
       <div class="name">
@@ -222,7 +222,6 @@ function renderOpenDetail(i) {
       <button class="deleteBTN" onclick="deleteActualContact(${i})" >delete</button>
     </div>
     <img onclick="openEditContact(${i})" src="img/edit-contact.png" id="edit_contact" class="d-none" alt="" />
-    <button class="deleteBTN-edit d-none" onclick="deleteActualContact(${i})" id="edit_delete" >delete</button>
     `;
 }
 
@@ -249,17 +248,11 @@ function renderDetailHTML(name, email, phone, acronym, color) {
 function renderDetailHTMLRespons() {
   let newBtn = document.getElementById("new_contact_btn");
   let contactList = document.getElementById("contact_list_container");
-  let editPush = document.getElementById("edit_contact_pencil");
-  let back = document.getElementById("backarrow");
-  let editContact = document.getElementById("edit_contact");
   let contactRight = document.getElementById("contact_right");
 
   newBtn.classList.add("d-none");
   contactList.classList.add("d-none");
-  editPush.classList.add("d-none");
-  back.classList.remove("d-none");
   contactRight.classList.remove("d-none");
-  editContact.classList.remove("d-none");
 }
 
 function disableContactContainer() {

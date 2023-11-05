@@ -163,15 +163,17 @@
   }
 
   .contact-right {
-    top: 13% !important;
+    top: 6% !important;
     left: 0% !important;
-    width: 100% !important;
     height: 100vh !important;
     background-color: white;
     border-radius: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    right: 0;
+    bottom: 0;
+    position: fixed !important;
   }
 
   .deleteBTN-edit {
@@ -201,6 +203,7 @@
   .contact {
     padding: 15px 20px;
     width: 35vw;
+    min-width: initial !important;
   }
 
   .circle {
@@ -261,6 +264,11 @@
     top: 0;
     width: 140px !important;
     height: 44px !important;
+  }
+
+  .new-contact-btn {
+    font-size: 15px !important;
+    padding: 10px 10px !important;
   }
 }
 
@@ -330,7 +338,7 @@
 
   #backarrow {
     position: absolute;
-    right: 3vh;
+    right: 3vh !important;
     height: 26px;
     width: 26px;
     top: 75px;
