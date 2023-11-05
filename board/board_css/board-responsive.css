@@ -615,6 +615,10 @@
     width: inherit;
   }
 
+  .donebox {
+    padding-bottom: 100px !important;
+  }
+
   .todo-content,
   .progress-content,
   .await-feedback-content,

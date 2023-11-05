@@ -223,9 +223,6 @@
 
 @media (max-width: 375px) {
   #summary-container {
-    justify-content: flex-start;
-    margin-bottom: 15rem !important;
-    top: 6rem;
-    scale: 0.8;
+    top: 9rem !important;
   }
 }
