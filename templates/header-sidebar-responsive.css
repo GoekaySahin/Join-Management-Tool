@@ -40,6 +40,13 @@
     border: none;
   }
 
+  .font-family span {
+    font-size: 12px !important; 
+    font-weight: 500 !important;
+    letter-spacing: 1px !important;
+    padding-top: 3px !important;
+  }
+
   .sidebar span {
     padding-top: 5px;
   }

@@ -258,7 +258,7 @@ function closeDetail() {
   //let backArrow = document.getElementById("backarrow");
 
   editPencil.classList.remove("d-none");
-  editDelete.classList.remove("d-none");
+  //editDelete.classList.remove("d-none");
   editContact.classList.add("d-none");
   listContainer.classList.remove("d-none");
   newBTN.classList.remove("d-none");
