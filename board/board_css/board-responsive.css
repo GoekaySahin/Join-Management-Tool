@@ -42,6 +42,11 @@
   .board {
     margin-left: 19vw;
   }
+  .popup-card {
+    top: 0px !important;
+    bottom: 0 !important;
+    z-index: 70 !important;
+}
 }
 
 @media (width <= 1560px) {

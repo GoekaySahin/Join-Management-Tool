@@ -458,6 +458,13 @@ body {
   color: #808080a6;
 }
 
+.importance-add-task-button-board {
+  position: absolute !important;
+  right: 26px !important;
+  top: 12px !important;
+
+}
+
 .contactsDiv {
   display: flex;
   text-align: center;
@@ -495,6 +502,7 @@ body {
   cursor: pointer;
   position: absolute;
   transform: rotate(90deg);
+  top: 1px;
 }
 
 .edit-box {

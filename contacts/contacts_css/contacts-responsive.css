@@ -600,11 +600,13 @@
     padding-top: 10px;
   }
   .contact-list-container {
-    height: 100vh;
+    min-height: 100vh;
   }
-  .contact-list-inner-container {
-    height: 85vh;
-  }
+
+  .contact-list-container {
+    position:initial !important;
+}
+
 }
 
 @media (height <= 1024px) {
@@ -652,6 +654,12 @@
 @media (height <= 700px) {
   .new-contact-btn {
     top: 20% !important;
+  }
+  .circle-right {
+    font-size: 40px !important;
+    height: 80px !important;
+    width: 80px !important;
+    margin-top: 68.7px !important;
   }
 }
 

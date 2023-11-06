@@ -41,7 +41,6 @@ function setCardHTML(
             <div class="card-footer" id="footer${id}">
               <div class="card-invite" id="contacts_card${id}"></div>
               <div class="btn-footer" id="importance_footer${id}">
-                <img class="img-position" src="img-board/${importance}.png">
                 <img src="img-board/${importance}.png">
               </div>
             <div>
@@ -420,7 +419,6 @@ function buttonURGENT() {
   return `<button class="importance-popup button1-colored" type="button">
             <span>Urgent</span>
             <div class="improtance-images-popup">
-              <img class="arrow-popup-top" src="../board/img-board/urgent.png">
               <img src="../board/img-board/urgent.png">
             </div> 
           </button>`;
@@ -430,7 +428,6 @@ function buttonMEDIUM() {
   return `<button  class="importance-popup button2-colored" type="button">
             <span>Medium</span>
             <div class="improtance-images-popup correct-importance-top-medium">
-              <img class="arrow-popup-top" src="../board/img-board/medium.png">
               <img src="../board/img-board/medium.png">
             </div>
           </button>`;
